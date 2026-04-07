@@ -639,7 +639,7 @@ app.post('/incoming-call', (req, res) => {
 
 // ─── WebSocket Bridge: Twilio ↔ OpenAI Realtime ──────────────────────────────
 
-wss.on('connection', (twilioWs) => {
+if (wss) wss.on('connection', (twilioWs) => {
   let openaiWs = null;
   let callSid = null;
   let streamSid = null;
