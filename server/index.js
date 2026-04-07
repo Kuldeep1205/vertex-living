@@ -21,8 +21,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const server = createServer(app);
 
-// WebSocket server specifically for Twilio media streams
-const wss = new WebSocketServer({ server, path: '/media-stream' });
+// WebSocket server - only in non-serverless environments
+const wss = process.env.VERCEL ? null : new WebSocketServer({ server, path: '/media-stream' });
 
 app.use(cors({
   origin: [
@@ -1341,8 +1341,12 @@ app.get('/api/admin/bookings', (req, res) => {
 
 // ─── Start Server ────────────────────────────────────────────────────────────
 
-server.listen(PORT, () => {
-  console.log(`\n🤖 AI Phone Server running on port ${PORT}`);
-  console.log(`📞 Twilio webhook: POST http://your-domain/incoming-call`);
-  console.log(`📊 Dashboard API: http://localhost:${PORT}/api/stats\n`);
-});
+if (!process.env.VERCEL) {
+  server.listen(PORT, () => {
+    console.log(`\n🤖 AI Phone Server running on port ${PORT}`);
+    console.log(`📞 Twilio webhook: POST http://your-domain/incoming-call`);
+    console.log(`📊 Dashboard API: http://localhost:${PORT}/api/stats\n`);
+  });
+}
+
+export default app;
