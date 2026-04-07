@@ -1,0 +1,172 @@
+/* ============================================
+   SMART GREETING — Intelligence Layer UI
+   ============================================ */
+
+/* Strip */
+.sg-strip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+  padding: 7px 14px 7px 10px;
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1);
+  max-width: 100%;
+  flex-wrap: wrap;
+  min-height: 34px;
+  position: relative;
+  margin-bottom: 0;
+}
+.sg-strip--in { opacity: 1; transform: scale(1); }
+.sg-strip--returning {
+  background: rgba(212,168,83,0.15);
+  border-color: rgba(212,168,83,0.3);
+}
+[data-mood="budget"] .sg-strip--returning {
+  background: rgba(22,163,74,0.15);
+  border-color: rgba(22,163,74,0.3);
+}
+
+.sg-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px #22c55e;
+  animation: sg-pulse 2s ease infinite;
+}
+@keyframes sg-pulse {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.sg-text { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.sg-headline { font-size: 13px; font-weight: 700; color: #fff; }
+.sg-sep { color: rgba(255,255,255,0.3); font-size: 12px; }
+.sg-sub { font-size: 12px; color: rgba(255,255,255,0.75); }
+
+.sg-cta {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 999px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: inherit;
+  white-space: nowrap;
+}
+.sg-cta:hover { background: rgba(255,255,255,0.25); }
+
+.sg-session-badge {
+  background: rgba(212,168,83,0.25);
+  color: #d4a853;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+[data-mood="budget"] .sg-session-badge {
+  background: rgba(22,163,74,0.25);
+  color: #4ade80;
+}
+
+/* Profile inference card — absolutely positioned so it doesn't shift hero layout */
+.sg-profile {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  padding: 8px 14px;
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+  flex-wrap: wrap;
+  white-space: nowrap;
+  z-index: 5;
+}
+.sg-profile--in { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+.sg-profile-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+  white-space: nowrap;
+}
+
+.sg-profile-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.sg-tag {
+  background: rgba(212,168,83,0.2);
+  border: 1px solid rgba(212,168,83,0.3);
+  color: #d4a853;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+[data-mood="budget"] .sg-tag {
+  background: rgba(22,163,74,0.2);
+  border-color: rgba(22,163,74,0.3);
+  color: #4ade80;
+}
+
+.sg-profile-note {
+  font-size: 10px;
+  color: rgba(255,255,255,0.35);
+  font-style: italic;
+  white-space: nowrap;
+}
+
+/* Nudge toast */
+.sg-nudge {
+  position: fixed;
+  bottom: 90px;
+  left: 20px;
+  z-index: 950;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #1e3a5f;
+  border: 1px solid rgba(212,168,83,0.3);
+  border-radius: 14px;
+  padding: 12px 14px;
+  max-width: 320px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.3);
+  cursor: pointer;
+  animation: sg-nudge-in 0.4s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes sg-nudge-in {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+[data-theme="dark"]  .sg-nudge { background: #0a1628; }
+[data-theme="light"] .sg-nudge { background: #1e3a5f; }
+[data-mood="budget"] .sg-nudge { border-color: rgba(22,163,74,0.3); }
+
+.sg-nudge-icon { font-size: 20px; flex-shrink: 0; }
+.sg-nudge-msg { font-size: 12px; color: rgba(255,255,255,0.85); line-height: 1.4; flex: 1; }
+.sg-nudge-close {
+  background: none; border: none; color: rgba(255,255,255,0.3);
+  font-size: 12px; cursor: pointer; flex-shrink: 0; padding: 2px;
+  line-height: 1;
+}
+.sg-nudge-close:hover { color: rgba(255,255,255,0.7); }
+
+@media (max-width: 600px) {
+  .sg-sub { display: none; }
+  .sg-nudge { left: 12px; right: 12px; max-width: none; bottom: 80px; }
+}

@@ -1,0 +1,93 @@
+[
+  {
+    "id": 1775365300627,
+    "name": "Newsletter",
+    "email": "dhthyhj@gmail.com",
+    "enquiry": "Newsletter Subscription",
+    "type": "Newsletter",
+    "createdAt": "2026-04-05T05:01:40.627Z",
+    "read": false
+  },
+  {
+    "id": 1775289739984,
+    "name": "Newsletter",
+    "email": "vbfgfrfvfbth@gmail.com",
+    "enquiry": "Newsletter Subscription",
+    "type": "Newsletter",
+    "createdAt": "2026-04-04T08:02:19.985Z",
+    "read": false
+  },
+  {
+    "id": 1775202831560,
+    "name": "Newsletter",
+    "email": "mohitchapri@gmail.com",
+    "enquiry": "Newsletter Subscription",
+    "type": "Newsletter",
+    "createdAt": "2026-04-03T07:53:51.560Z",
+    "read": false
+  },
+  {
+    "id": 1775197547126,
+    "name": "Newsletter",
+    "email": "hhggcbgxv@gmail.com",
+    "enquiry": "Newsletter Subscription",
+    "type": "Newsletter",
+    "createdAt": "2026-04-03T06:25:47.126Z",
+    "read": false
+  },
+  {
+    "id": 1775188811565,
+    "subject": "ankit",
+    "budget": "₹1 Cr – ₹2 Cr",
+    "type": "Apartment",
+    "sector": "2503",
+    "bedrooms": "4 BHK",
+    "message": "",
+    "name": "rghdvbvbg",
+    "email": "jhhrfttxs@gmail.com",
+    "phone": "89212662366",
+    "formType": "buyer",
+    "userId": 1775188698342,
+    "createdAt": "2026-04-03T04:00:11.565Z",
+    "read": true
+  },
+  {
+    "id": 1775142596093,
+    "name": "fbgngng",
+    "phone": "95489251431",
+    "email": "dsfggggr@gmail.com",
+    "budget": "₹50L – ₹1 Cr",
+    "type": "Apartment",
+    "sector": "ssc",
+    "message": "",
+    "formType": "buyer",
+    "createdAt": "2026-04-02T15:09:56.093Z",
+    "read": false
+  },
+  {
+    "id": 1775102181384,
+    "name": "sahil",
+    "phone": "9466224960",
+    "email": "fgghjhfbn@gmail.com",
+    "budget": "₹1 Cr – ₹2 Cr",
+    "type": "Apartment",
+    "sector": "35359",
+    "message": "bvfdhgjyfbrf",
+    "formType": "buyer",
+    "createdAt": "2026-04-02T03:56:21.385Z",
+    "read": true
+  },
+  {
+    "id": 1775098046539,
+    "name": "Mukesh kumar",
+    "phone": "9467637011",
+    "email": "sainiefvfv@gmail.com",
+    "budget": "₹2 Cr – ₹5 Cr",
+    "type": "Apartment",
+    "sector": "89",
+    "message": "",
+    "formType": "buyer",
+    "createdAt": "2026-04-02T02:47:26.539Z",
+    "read": true
+  }
+]

@@ -1,0 +1,290 @@
+/* ── Builder Listing Panel ── */
+.blp-wrap {
+  background: linear-gradient(135deg, #0f1d2e 0%, #1a0a2e 100%);
+  border-radius: 20px;
+  border: 1px solid rgba(99,102,241,0.2);
+  overflow: hidden;
+}
+
+/* Header */
+.blp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 24px 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.blp-header-left { display: flex; align-items: center; gap: 14px; }
+.blp-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(99,102,241,0.3), rgba(139,92,246,0.25));
+  border: 1px solid rgba(99,102,241,0.3);
+  display: flex; align-items: center; justify-content: center;
+  color: #a5b4fc;
+  flex-shrink: 0;
+}
+.blp-title { font-size: 1.05rem; font-weight: 700; color: #f1f5f9; margin: 0 0 2px; }
+.blp-sub   { font-size: 0.78rem; color: rgba(255,255,255,0.45); margin: 0; }
+
+/* Tabs */
+.blp-header-tabs { display: flex; gap: 8px; }
+.blp-tab {
+  padding: 8px 18px;
+  border-radius: 9999px;
+  border: 1px solid rgba(99,102,241,0.25);
+  background: rgba(99,102,241,0.08);
+  color: rgba(255,255,255,0.5);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.blp-tab.active {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(99,102,241,0.4);
+}
+.blp-tab:hover:not(.active) { border-color: rgba(99,102,241,0.5); color: rgba(255,255,255,0.75); }
+
+/* Loading / empty */
+.blp-loading, .blp-empty {
+  padding: 56px 24px;
+  text-align: center;
+  color: rgba(255,255,255,0.4);
+  font-size: 0.9rem;
+}
+.blp-empty-icon { font-size: 2.5rem; margin-bottom: 12px; }
+.blp-empty p { margin: 0 0 18px; }
+
+.blp-cta-btn {
+  padding: 10px 22px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.blp-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(99,102,241,0.4); }
+
+/* Listings grid */
+.blp-listings { padding: 24px 28px; }
+.blp-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+.blp-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.blp-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.35); }
+.blp-card-img {
+  width: 100%; height: 150px;
+  object-fit: cover;
+}
+.blp-card-img-placeholder {
+  width: 100%; height: 150px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem;
+  background: rgba(99,102,241,0.1);
+}
+.blp-card-body { padding: 14px; }
+.blp-card-name { font-size: 0.9rem; font-weight: 700; color: #f1f5f9; margin-bottom: 4px; }
+.blp-card-loc  { font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-bottom: 8px; }
+.blp-card-meta {
+  display: flex; gap: 6px; flex-wrap: wrap;
+  font-size: 0.72rem; color: rgba(255,255,255,0.55);
+  margin-bottom: 8px;
+}
+.blp-card-meta span {
+  background: rgba(255,255,255,0.07);
+  padding: 2px 8px;
+  border-radius: 9999px;
+}
+.blp-card-status {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 9999px;
+}
+.blp-card-status.green { background: rgba(16,185,129,0.15); color: #10b981; }
+.blp-card-status.yellow { background: rgba(234,179,8,0.15); color: #eab308; }
+.blp-card-status.pending { background: rgba(251,146,60,0.15); color: #fb923c; }
+
+/* Form */
+.blp-form-wrap { padding: 28px; }
+.blp-form { display: flex; flex-direction: column; gap: 16px; }
+.blp-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.blp-field { display: flex; flex-direction: column; gap: 6px; }
+.blp-field label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.55);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.blp-field input,
+.blp-field select,
+.blp-field textarea {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: #f1f5f9;
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 0.2s;
+  resize: vertical;
+}
+.blp-field input::placeholder,
+.blp-field textarea::placeholder { color: rgba(255,255,255,0.25); }
+.blp-field input:focus,
+.blp-field select:focus,
+.blp-field textarea:focus { border-color: rgba(99,102,241,0.5); }
+.blp-field select option { background: #1a1a2e; color: #f1f5f9; }
+.blp-hint { font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+
+.blp-error {
+  padding: 10px 14px;
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.25);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  color: #fca5a5;
+}
+
+.blp-form-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 4px; }
+.blp-cancel-btn {
+  padding: 11px 22px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: transparent;
+  color: rgba(255,255,255,0.55);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.blp-cancel-btn:hover { border-color: rgba(255,255,255,0.3); color: #fff; }
+.blp-submit-btn {
+  display: flex; align-items: center; gap: 8px;
+  padding: 11px 26px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.blp-submit-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(99,102,241,0.45); }
+.blp-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Spinner */
+.blp-spinner {
+  width: 14px; height: 14px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: blp-spin 0.7s linear infinite;
+}
+@keyframes blp-spin { to { transform: rotate(360deg); } }
+
+/* Success */
+.blp-success {
+  padding: 56px 24px;
+  text-align: center;
+}
+.blp-success-icon { font-size: 2.5rem; margin-bottom: 14px; }
+.blp-success h4 { font-size: 1.2rem; font-weight: 700; color: #10b981; margin: 0 0 8px; }
+.blp-success p { color: rgba(255,255,255,0.5); font-size: 0.85rem; margin: 0; }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .blp-header { flex-direction: column; align-items: flex-start; }
+  .blp-form-row { grid-template-columns: 1fr; }
+  .blp-form-actions { flex-direction: column; }
+  .blp-submit-btn, .blp-cancel-btn { width: 100%; justify-content: center; }
+}
+
+/* Light mode — panel stays dark (intentional) */
+[data-theme="light"] .blp-wrap {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2d1a5f 100%);
+  border-color: rgba(99,102,241,0.3);
+}
+
+/* ── File Upload UI ── */
+.blp-upload-area {
+  border: 2px dashed rgba(99,102,241,0.4);
+  border-radius: 10px;
+  padding: 28px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  background: rgba(99,102,241,0.04);
+}
+.blp-upload-area:hover {
+  border-color: rgba(99,102,241,0.7);
+  background: rgba(99,102,241,0.08);
+}
+.blp-upload-icon { font-size: 2rem; margin-bottom: 8px; }
+.blp-upload-text { font-size: 0.9rem; font-weight: 600; color: #a5b4fc; margin-bottom: 4px; }
+.blp-upload-hint { font-size: 0.78rem; color: rgba(255,255,255,0.35); }
+
+.blp-file-list {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.blp-file-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+.blp-file-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.blp-file-pdf-icon { font-size: 1.8rem; flex-shrink: 0; }
+.blp-file-name {
+  flex: 1;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.7);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.blp-file-remove {
+  background: rgba(239,68,68,0.15);
+  border: 1px solid rgba(239,68,68,0.3);
+  color: #f87171;
+  border-radius: 4px;
+  width: 24px;
+  height: 24px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.blp-file-remove:hover { background: rgba(239,68,68,0.3); }

@@ -1,0 +1,117 @@
+.mp-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: #0f1d2e;
+  border-bottom: 1px solid rgba(212,168,83,0.2);
+  display: flex;
+  align-items: center;
+  height: 36px;
+  overflow: hidden;
+  z-index: 1001;
+}
+
+[data-mood="budget"] .mp-bar {
+  background: #075985;
+  border-color: rgba(22,163,74,0.3);
+}
+
+/* Left label */
+.mp-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 16px;
+  font-size: 10px;
+  font-weight: 800;
+  color: #d4a853;
+  letter-spacing: 1.5px;
+  white-space: nowrap;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  height: 100%;
+  flex-shrink: 0;
+}
+[data-mood="budget"] .mp-label { color: #4ade80; }
+
+.mp-live-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 6px #22c55e;
+  animation: mp-blink 1.4s ease infinite;
+  flex-shrink: 0;
+}
+@keyframes mp-blink {
+  0%,100% { opacity:1; } 50% { opacity:0.3; }
+}
+
+/* Ticker */
+.mp-ticker-wrap {
+  flex: 1;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+
+.mp-ticker-track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  white-space: nowrap;
+  animation: mp-scroll 35s linear infinite;
+}
+@keyframes mp-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.mp-ticker-wrap:hover .mp-ticker-track {
+  animation-play-state: paused;
+}
+
+.mp-ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  font-size: 11px;
+}
+
+.mp-ticker-sector {
+  color: rgba(255,255,255,0.7);
+  font-weight: 500;
+}
+.mp-ticker-change { font-weight: 700; font-size: 11px; }
+.mp-up   { color: #22c55e; }
+.mp-down { color: #f87171; }
+.mp-ticker-sep { color: rgba(255,255,255,0.15); }
+
+/* Insight */
+.mp-insight {
+  padding: 0 16px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.65);
+  white-space: nowrap;
+  border-left: 1px solid rgba(255,255,255,0.1);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  max-width: 340px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.mp-insight--in  { opacity:1; transform: translateY(0); }
+.mp-insight--out { opacity:0; transform: translateY(6px); }
+
+@media (max-width: 768px) {
+  .mp-insight { display: none; }
+  .mp-label   { padding: 0 10px; font-size: 9px; }
+}
+@media (max-width: 480px) {
+  .mp-label { display: none; }
+}

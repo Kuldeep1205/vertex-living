@@ -1,0 +1,931 @@
+/* =============================================
+   LUXURY MICRO ANIMATIONS
+   ============================================= */
+
+/* ── 1. BUTTON EFFECTS ── */
+.btn, .btn-primary, .btn-secondary, .btn-outline,
+.btn-cta, .hero-cta-btn, .pick-cta,
+.dream-search-btn, .pd-enquire-btn, .pd-sticky-btn,
+.sr-enquire, .cmp-bar-btn, .cp-winner-btn {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.22s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.22s cubic-bezier(0.4,0,0.2,1),
+              opacity 0.2s !important;
+}
+
+/* Shimmer sweep on hover */
+.btn::after, .btn-primary::after, .btn-cta::after,
+.hero-cta-btn::after, .pick-cta::after,
+.dream-search-btn::after, .pd-enquire-btn::after,
+.pd-sticky-btn::after, .sr-enquire::after,
+.cmp-bar-btn::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,0.18) 50%,
+    transparent 100%
+  );
+  transition: left 0.45s ease;
+  pointer-events: none;
+}
+.btn:hover::after, .btn-primary:hover::after, .btn-cta:hover::after,
+.hero-cta-btn:hover::after, .pick-cta:hover::after,
+.dream-search-btn:hover:not(:disabled)::after,
+.pd-enquire-btn:hover::after, .pd-sticky-btn:hover::after,
+.sr-enquire:hover::after, .cmp-bar-btn:hover:not(:disabled)::after {
+  left: 160%;
+}
+
+/* Lift + glow on hover */
+.btn-primary:hover, .btn-cta:hover, .hero-cta-btn:hover,
+.pick-cta:hover, .dream-search-btn:hover:not(:disabled),
+.pd-enquire-btn:hover, .pd-sticky-btn:hover,
+.sr-enquire:hover, .cmp-bar-btn:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 28px rgba(99,102,241,0.45);
+}
+
+/* Click press */
+.btn:active, .btn-cta:active, .pd-enquire-btn:active { transform: translateY(0) scale(0.98) !important; }
+
+/* ── 2. CARD LIFT EFFECTS ── */
+.feature-card,
+.testimonial-card,
+.ai-recommendation-card,
+.ai-pick-card,
+.sr-card,
+.cp-sel-card,
+.pd-nearby-card,
+.pd-amenity-chip,
+.dream-card,
+.pick-card {
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.3s ease,
+              border-color 0.3s ease !important;
+  will-change: transform;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(99,102,241,0.2);
+}
+.testimonial-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+.ai-pick-card:hover, .pick-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(99,102,241,0.2);
+}
+.sr-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(99,102,241,0.2);
+}
+
+/* ── 3. INPUT GLOW ── */
+.smart-search-input,
+.dream-textarea,
+.cp-picker-input,
+input[type="text"], input[type="email"], input[type="tel"],
+textarea, select {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease !important;
+}
+
+/* ── 4. STAT ITEMS — float up on load ── */
+.stat-item {
+  animation: statFloatIn 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+.stat-item:nth-child(1) { animation-delay: 0.05s; }
+.stat-item:nth-child(2) { animation-delay: 0.15s; }
+.stat-item:nth-child(3) { animation-delay: 0.25s; }
+.stat-item:nth-child(4) { animation-delay: 0.35s; }
+
+@keyframes statFloatIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.9); }
+  to   { opacity: 1; transform: translateY(0)  scale(1); }
+}
+
+/* ── 5. FEATURE CARDS — stagger on load ── */
+.feature-card {
+  animation: cardFadeUp 0.7s cubic-bezier(0.34,1.2,0.64,1) both;
+}
+.features-grid .feature-card:nth-child(1) { animation-delay: 0.1s; }
+.features-grid .feature-card:nth-child(2) { animation-delay: 0.22s; }
+.features-grid .feature-card:nth-child(3) { animation-delay: 0.34s; }
+.features-grid .feature-card:nth-child(4) { animation-delay: 0.46s; }
+
+@keyframes cardFadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── 6. SECTION TITLES — slide in from left ── */
+.section-title {
+  animation: titleSlideIn 0.65s cubic-bezier(0.25,0.46,0.45,0.94) both;
+}
+.section-subtitle {
+  animation: titleSlideIn 0.65s cubic-bezier(0.25,0.46,0.45,0.94) 0.12s both;
+}
+@keyframes titleSlideIn {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── 7. AI PICK CARDS — stagger ── */
+.ai-pick-card {
+  animation: cardFadeUp 0.6s cubic-bezier(0.34,1.1,0.64,1) both;
+}
+.ai-picks-grid .ai-pick-card:nth-child(1) { animation-delay: 0.05s; }
+.ai-picks-grid .ai-pick-card:nth-child(2) { animation-delay: 0.15s; }
+.ai-picks-grid .ai-pick-card:nth-child(3) { animation-delay: 0.25s; }
+.ai-picks-grid .ai-pick-card:nth-child(4) { animation-delay: 0.35s; }
+.ai-picks-grid .ai-pick-card:nth-child(5) { animation-delay: 0.45s; }
+.ai-picks-grid .ai-pick-card:nth-child(6) { animation-delay: 0.55s; }
+
+/* ── 8. SEARCH CHIPS — pop in ── */
+.search-chip {
+  transition: background 0.2s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1),
+              color 0.2s ease, border-color 0.2s ease !important;
+  animation: chipPop 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+.search-chip:nth-child(1) { animation-delay: 0.0s; }
+.search-chip:nth-child(2) { animation-delay: 0.06s; }
+.search-chip:nth-child(3) { animation-delay: 0.12s; }
+.search-chip:nth-child(4) { animation-delay: 0.18s; }
+.search-chip:nth-child(5) { animation-delay: 0.24s; }
+
+@keyframes chipPop {
+  from { opacity: 0; transform: scale(0.7); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.search-chip:hover {
+  transform: translateY(-2px) scale(1.04);
+}
+
+/* ── 9. DROPDOWN ITEMS ── */
+.dropdown-item, .dropdown-trending-item {
+  transition: background 0.18s ease, transform 0.18s ease !important;
+}
+.dropdown-item:hover, .dropdown-trending-item:hover {
+  transform: translateX(4px);
+}
+
+/* ── 10. SEARCH RESULTS — stagger ── */
+.sr-card {
+  animation: cardFadeUp 0.5s cubic-bezier(0.34,1.1,0.64,1) both;
+}
+.sr-grid .sr-card:nth-child(1)  { animation-delay: 0.05s; }
+.sr-grid .sr-card:nth-child(2)  { animation-delay: 0.12s; }
+.sr-grid .sr-card:nth-child(3)  { animation-delay: 0.19s; }
+.sr-grid .sr-card:nth-child(4)  { animation-delay: 0.26s; }
+.sr-grid .sr-card:nth-child(5)  { animation-delay: 0.33s; }
+.sr-grid .sr-card:nth-child(6)  { animation-delay: 0.40s; }
+.sr-grid .sr-card:nth-child(7)  { animation-delay: 0.47s; }
+.sr-grid .sr-card:nth-child(8)  { animation-delay: 0.54s; }
+
+/* ── 11. LOGO PULSE ── */
+.logo-icon {
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+.navbar-logo:hover .logo-icon {
+  transform: rotate(-6deg) scale(1.12);
+}
+
+/* ── 12. NAV LINKS — underline slide ── */
+.nav-link {
+  position: relative;
+  transition: color 0.2s ease !important;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 50%; right: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  border-radius: 2px;
+  transition: left 0.25s ease, right 0.25s ease;
+}
+.nav-link:hover::after, .nav-link.active::after {
+  left: 0; right: 0;
+}
+
+/* ── 13. WHATSAPP FLOAT — heartbeat ── */
+.whatsapp-float {
+  animation: waBeat 2.4s ease-in-out infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.whatsapp-float:hover {
+  animation: none;
+  transform: scale(1.15) !important;
+  box-shadow: 0 8px 28px rgba(37,211,102,0.5) !important;
+}
+@keyframes waBeat {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.07); }
+}
+
+/* ── 14. DREAM HOME SECTION ── */
+.dream-card {
+  animation: cardFadeUp 0.55s cubic-bezier(0.34,1.1,0.64,1) both;
+}
+.dream-card.best-match-card { animation-delay: 0.05s; }
+.dream-card.close-match-card { animation-delay: 0.18s; }
+
+/* ── 15. PROPERTY DETAIL PAGE ── */
+.pd-sel-card, .pd-nearby-card, .pd-amenity-chip, .pd-detail-item {
+  transition: transform 0.25s cubic-bezier(0.34,1.2,0.64,1),
+              border-color 0.25s ease,
+              background 0.25s ease !important;
+}
+.pd-detail-item:hover {
+  background: rgba(99,102,241,0.06);
+  transform: translateX(3px);
+}
+
+/* ── 16. COMPARE TABLE ROWS ── */
+.cp-table tbody tr {
+  transition: background 0.18s ease;
+}
+.cp-td-val {
+  transition: background 0.25s ease, color 0.25s ease !important;
+}
+
+/* ── 17. SCORE FILL ANIMATION ── */
+.dream-score-fill, .pd-invest-ring circle {
+  transition: all 0.8s cubic-bezier(0.34,1.1,0.64,1);
+}
+
+/* ── 18. HERO HEADLINE — luxury reveal ── */
+.hero-title, .hero-headline {
+  animation: heroReveal 1s cubic-bezier(0.25,0.46,0.45,0.94) 0.2s both;
+}
+@keyframes heroReveal {
+  from { opacity: 0; transform: translateY(32px) skewY(1deg); }
+  to   { opacity: 1; transform: translateY(0) skewY(0); }
+}
+
+/* ── 19. SMOOTH SECTION TRANSITIONS ── */
+.stats-section, .features-section, .about-section,
+.ai-recommendations-section, .featured-section,
+.testimonials-section, .ai-picks-section,
+.dream-home-section, .search-results-section,
+.contact-section {
+  transition: opacity 0.3s ease;
+}
+
+/* ── 20. MODAL OPEN ANIMATION ── */
+.pick-modal-overlay {
+  animation: overlayFadeIn 0.25s ease both;
+}
+.pick-modal-content {
+  animation: modalSlideUp 0.35s cubic-bezier(0.34,1.2,0.64,1) both;
+}
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes modalSlideUp {
+  from { opacity: 0; transform: translateY(40px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── 21. NEARBY CARDS IN DETAIL PAGE ── */
+.pd-nearby-card {
+  animation: cardFadeUp 0.5s cubic-bezier(0.34,1.1,0.64,1) both;
+}
+.pd-nearby-card:nth-child(1) { animation-delay: 0.05s; }
+.pd-nearby-card:nth-child(2) { animation-delay: 0.12s; }
+.pd-nearby-card:nth-child(3) { animation-delay: 0.19s; }
+.pd-nearby-card:nth-child(4) { animation-delay: 0.26s; }
+.pd-nearby-card:nth-child(5) { animation-delay: 0.33s; }
+.pd-nearby-card:nth-child(6) { animation-delay: 0.40s; }
+
+/* ── 22. RANGE SLIDER THUMB ── */
+.pd-range { cursor: pointer; }
+.pd-range::-webkit-slider-thumb {
+  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+}
+.pd-range::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+}
+
+/* ── 23. GLOW PULSE on price ── */
+.pd-price-main, .sr-price, .cp-sel-price {
+  transition: text-shadow 0.3s ease;
+}
+.pd-price-card:hover .pd-price-main {
+  text-shadow: 0 0 20px rgba(99,102,241,0.6);
+}
+
+/* ── 24. AI BADGE SHIMMER ── */
+.pd-ai-badge, .dream-badge, .pick-tag {
+  position: relative; overflow: hidden;
+}
+.pd-ai-badge::after, .dream-badge::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -80%;
+  width: 50%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.25), transparent);
+  animation: badgeShimmer 2.5s ease infinite;
+}
+@keyframes badgeShimmer {
+  0%   { left: -80%; }
+  60%, 100% { left: 160%; }
+}
+
+/* ── 25. SCROLL INDICATOR BOUNCE ── */
+.scroll-indicator {
+  animation: scrollBounce 1.8s ease-in-out infinite;
+}
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(8px); }
+}
+
+/* ═══════════════════════════════════════════════════
+   SECTION 2 — ADVANCED LUXURY ANIMATIONS
+   ═══════════════════════════════════════════════════ */
+
+/* ── 26. SCROLL REVEAL — base state ── */
+.reveal,
+.reveal-left,
+.reveal-right,
+.reveal-scale,
+.reveal-rotate {
+  opacity: 0;
+  transition: opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94),
+              transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+  will-change: opacity, transform;
+}
+
+.reveal        { transform: translateY(50px); }
+.reveal-left   { transform: translateX(-60px); }
+.reveal-right  { transform: translateX(60px); }
+.reveal-scale  { transform: scale(0.82); }
+.reveal-rotate { transform: translateY(40px) rotate(-3deg); }
+
+/* Triggered state */
+.reveal.is-visible,
+.reveal-left.is-visible,
+.reveal-right.is-visible,
+.reveal-scale.is-visible,
+.reveal-rotate.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger children */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.55s cubic-bezier(0.34,1.2,0.64,1),
+              transform 0.55s cubic-bezier(0.34,1.2,0.64,1);
+}
+.stagger-children.is-visible > *:nth-child(1)  { opacity:1; transform:none; transition-delay:0.05s; }
+.stagger-children.is-visible > *:nth-child(2)  { opacity:1; transform:none; transition-delay:0.12s; }
+.stagger-children.is-visible > *:nth-child(3)  { opacity:1; transform:none; transition-delay:0.19s; }
+.stagger-children.is-visible > *:nth-child(4)  { opacity:1; transform:none; transition-delay:0.26s; }
+.stagger-children.is-visible > *:nth-child(5)  { opacity:1; transform:none; transition-delay:0.33s; }
+.stagger-children.is-visible > *:nth-child(6)  { opacity:1; transform:none; transition-delay:0.40s; }
+.stagger-children.is-visible > *:nth-child(7)  { opacity:1; transform:none; transition-delay:0.47s; }
+.stagger-children.is-visible > *:nth-child(8)  { opacity:1; transform:none; transition-delay:0.54s; }
+
+/* ── 27. GRADIENT TEXT SHIMMER ── */
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    #6366f1 0%,
+    #a78bfa 25%,
+    #f59e0b 50%,
+    #ec4899 75%,
+    #6366f1 100%
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 5s ease-in-out infinite;
+}
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+
+/* Gold variant for luxury */
+.gradient-text-gold {
+  background: linear-gradient(
+    135deg,
+    #d4a853 0%,
+    #f5d08a 30%,
+    #d4a853 60%,
+    #c49a47 100%
+  );
+  background-size: 250% 250%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 4s ease-in-out infinite;
+}
+
+/* ── 28. GLOW BORDER PULSE ── */
+.glow-border {
+  position: relative;
+}
+.glow-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899, #6366f1);
+  background-size: 300% 300%;
+  animation: borderRotate 4s linear infinite;
+  z-index: -1;
+  opacity: 0.7;
+}
+@keyframes borderRotate {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: 300% 300%; }
+}
+
+/* ── 29. FLOATING ORBS (background decoration) ── */
+.orb-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.18;
+}
+.orb-1 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, #6366f1, transparent 70%);
+  top: -100px; left: -100px;
+  animation: orbFloat1 18s ease-in-out infinite;
+}
+.orb-2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, #8b5cf6, transparent 70%);
+  bottom: -80px; right: -80px;
+  animation: orbFloat2 22s ease-in-out infinite;
+}
+.orb-3 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, #ec4899, transparent 70%);
+  top: 40%; left: 50%;
+  animation: orbFloat3 15s ease-in-out infinite;
+}
+@keyframes orbFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(80px, 60px) scale(1.1); }
+  66%       { transform: translate(-40px, 100px) scale(0.9); }
+}
+@keyframes orbFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40%       { transform: translate(-100px, -80px) scale(1.15); }
+  70%       { transform: translate(60px, -40px) scale(0.88); }
+}
+@keyframes orbFloat3 {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50%       { transform: translate(-50%, -50%) scale(1.3) rotate(20deg); }
+}
+
+/* ── 30. AURORA BACKGROUND ── */
+.aurora-bg {
+  position: relative;
+  overflow: hidden;
+}
+.aurora-bg::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    transparent 0deg,
+    rgba(99,102,241,0.08) 60deg,
+    rgba(139,92,246,0.12) 120deg,
+    rgba(236,72,153,0.06) 180deg,
+    transparent 240deg,
+    rgba(99,102,241,0.08) 300deg,
+    transparent 360deg
+  );
+  animation: auroraRotate 25s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+@keyframes auroraRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ── 31. NEON GLOW on hover for buttons ── */
+.neon-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.neon-btn:hover {
+  box-shadow:
+    0 0 10px rgba(99,102,241,0.8),
+    0 0 30px rgba(99,102,241,0.5),
+    0 0 60px rgba(99,102,241,0.3),
+    inset 0 0 20px rgba(99,102,241,0.1) !important;
+  border-color: rgba(99,102,241,0.8) !important;
+}
+
+/* ── 32. 3D TILT CARD ── */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease;
+}
+.tilt-card .tilt-inner {
+  transform: translateZ(20px);
+  transition: transform 0.15s ease;
+}
+
+/* ── 33. TYPING CURSOR BLINK ── */
+.typing-cursor::after {
+  content: '|';
+  display: inline-block;
+  font-weight: 300;
+  animation: cursorBlink 1s step-end infinite;
+  margin-left: 2px;
+  color: #6366f1;
+}
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ── 34. RIPPLE CLICK EFFECT ── */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+.ripple-wave {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transform: scale(0);
+  animation: rippleAnim 0.6s linear;
+  pointer-events: none;
+}
+@keyframes rippleAnim {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* ── 35. SPOTLIGHT HOVER on cards ── */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle 200px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(99,102,241,0.12),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.spotlight-card:hover::before { opacity: 1; }
+
+/* ── 36. FLOATING ANIMATION for icons/badges ── */
+.float-anim {
+  animation: floatUpDown 3.5s ease-in-out infinite;
+}
+.float-anim:nth-child(2) { animation-delay: 0.5s; }
+.float-anim:nth-child(3) { animation-delay: 1s; }
+@keyframes floatUpDown {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+/* ── 37. PRICE TAG COUNTER ANIMATION ── */
+.count-up {
+  display: inline-block;
+  animation: countUp 1.5s cubic-bezier(0.34,1.2,0.64,1) both;
+}
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.8); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── 38. IMAGE HOVER ZOOM with overlay ── */
+.img-zoom-wrap {
+  overflow: hidden;
+  border-radius: inherit;
+}
+.img-zoom-wrap img,
+.img-zoom-wrap .img-zoom-inner {
+  transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+  will-change: transform;
+}
+.img-zoom-wrap:hover img,
+.img-zoom-wrap:hover .img-zoom-inner {
+  transform: scale(1.08);
+}
+
+/* ── 39. SKELETON SHINE (enhanced) ── */
+.shine-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.04) 25%,
+    rgba(255,255,255,0.1) 50%,
+    rgba(255,255,255,0.04) 75%
+  );
+  background-size: 400% 100%;
+  animation: skeletonShine 1.8s ease infinite;
+}
+@keyframes skeletonShine {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+/* ── 40. SECTION ENTRANCE with clip-path ── */
+.clip-reveal {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.9s cubic-bezier(0.77,0,0.175,1);
+}
+.clip-reveal.is-visible {
+  clip-path: inset(0 0% 0 0);
+}
+
+/* ── 41. BADGE FLOAT IN ── */
+.badge-pop {
+  animation: badgePop 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes badgePop {
+  from { opacity: 0; transform: scale(0) rotate(-10deg); }
+  to   { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* ── 42. HERO VIDEO PARALLAX SCALE ── */
+.hero-video-background {
+  animation: heroVideoScale 12s ease-in-out infinite alternate;
+}
+@keyframes heroVideoScale {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
+
+/* ── 43. GLASSY CARD ENTRANCE ── */
+.glass-card-enter {
+  animation: glassEnter 0.6s cubic-bezier(0.34,1.1,0.64,1) both;
+  backdrop-filter: blur(12px);
+}
+@keyframes glassEnter {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    backdrop-filter: blur(12px);
+  }
+}
+
+/* ── 44. NAVBAR slide-down on load ── */
+.navbar {
+  animation: navSlideDown 0.6s cubic-bezier(0.34,1.2,0.64,1) 0.1s both;
+}
+@keyframes navSlideDown {
+  from { transform: translateY(-80px); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+/* ── 45. PAGE LOADING OVERLAY ── */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: #0a0a14;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.page-loader.fade-out {
+  animation: loaderFadeOut 0.5s ease 0.3s forwards;
+}
+@keyframes loaderFadeOut {
+  to { opacity: 0; visibility: hidden; pointer-events: none; }
+}
+
+/* Loader spinner */
+.loader-spinner {
+  width: 48px; height: 48px;
+  border: 3px solid rgba(99,102,241,0.2);
+  border-top-color: #6366f1;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loader-logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #e2e8f0;
+  animation: loaderTextPulse 1.4s ease-in-out infinite;
+}
+@keyframes loaderTextPulse {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1; }
+}
+
+/* ── 46. MORPHING GRADIENT BG for hero ── */
+.morph-gradient {
+  background: linear-gradient(
+    -45deg,
+    #0d1117,
+    #0f1d2e,
+    #1a0a2e,
+    #0a1628
+  );
+  background-size: 400% 400%;
+  animation: morphGradient 12s ease infinite;
+}
+@keyframes morphGradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ── 47. STAT NUMBER TICKER ── */
+.stat-ticker {
+  display: inline-block;
+  animation: tickerBounce 0.7s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes tickerBounce {
+  from { opacity: 0; transform: translateY(-20px) scale(1.2); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── 48. CARD STACK hover depth ── */
+.card-stack {
+  position: relative;
+}
+.card-stack::before,
+.card-stack::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(99,102,241,0.04);
+  border: 1px solid rgba(99,102,241,0.1);
+  transition: transform 0.3s cubic-bezier(0.34,1.2,0.64,1);
+  z-index: -1;
+}
+.card-stack::before { transform: translate(4px,  4px); }
+.card-stack::after  { transform: translate(8px,  8px); }
+.card-stack:hover::before { transform: translate(6px,  6px); }
+.card-stack:hover::after  { transform: translate(12px, 12px); }
+
+/* ── 49. ICON SPIN on hover ── */
+.icon-hover-spin {
+  transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+.icon-hover-spin:hover { transform: rotate(360deg) scale(1.15); }
+
+/* ── 50. BOTTOM NAV bounce entry ── */
+.bottom-nav {
+  animation: bottomNavUp 0.55s cubic-bezier(0.34,1.2,0.64,1) 0.3s both;
+}
+@keyframes bottomNavUp {
+  from { transform: translateY(80px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* ══════════════════════════════════════════════════════
+   SECTION 3 — GSAP + FRAMER PAGE TRANSITIONS & MICRO-FX
+   ══════════════════════════════════════════════════════ */
+
+/* ── 51. PAGE TRANSITION — fade + slide via Framer Motion ── */
+/* The motion.div (PageWrapper in App.jsx) handles opacity/y  */
+/* This class locks overflow during exit so no scroll flash   */
+.page-transitioning {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* ── 52. BUTTON RIPPLE — enhanced glow ring ── */
+.ripple-wave {
+  background: radial-gradient(
+    circle,
+    rgba(255,255,255,0.55) 0%,
+    rgba(99,102,241,0.28) 40%,
+    transparent 70%
+  );
+  transform: scale(0);
+  animation: rippleAnim 0.65s cubic-bezier(0.2, 0.8, 0.4, 1);
+}
+
+/* ── 53. BUTTON — neon glow pulse on hover ── */
+.btn-primary:hover, .hero-cta-btn:hover, .pd-enquire-btn:hover,
+.pd-sticky-btn:hover, .sr-enquire:hover,
+.dream-search-btn:hover:not(:disabled) {
+  box-shadow:
+    0 0 0 1px rgba(99,102,241,0.6),
+    0 0 18px rgba(99,102,241,0.55),
+    0 0 40px rgba(99,102,241,0.28),
+    0 6px 22px rgba(0,0,0,0.45) !important;
+}
+
+/* ── 54. PROPERTY CARD 3D TILT — depth shadow ── */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: box-shadow 0.2s ease;
+  will-change: transform;
+}
+.tilt-card:hover {
+  box-shadow:
+    0 24px 60px rgba(0,0,0,0.5),
+    0 0 0 1px rgba(99,102,241,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.06) !important;
+}
+
+/* Tilt inner content lifts forward */
+.tilt-card .property-content,
+.tilt-card .pick-body {
+  transform-style: preserve-3d;
+}
+
+/* ── 55. SCROLL-REVEAL via GSAP — avoid double animation  ── */
+/* GSAP sets initial state directly, CSS just prevents flash  */
+.hc-card:not(.gsap-animated),
+.ai-property-card:not(.gsap-animated),
+.ai-pick-card:not(.gsap-animated) {
+  opacity: 0;
+}
+/* Once GSAP animates, it sets inline opacity — override safe */
+.hc-card.gsap-animated,
+.ai-property-card.gsap-animated,
+.ai-pick-card.gsap-animated {
+  opacity: 1;
+}
+
+/* ── 56. SECTION TITLE clip-path base (GSAP sets clipPath) ── */
+.section-title {
+  will-change: clip-path, opacity, transform;
+}
+
+/* ── 57. HERO PARALLAX — GPU hint ── */
+.hero-content {
+  will-change: transform, opacity;
+}
+.hero-video-background {
+  will-change: transform;
+  transform-origin: center center;
+}
+
+/* ── 58. STAT ITEMS — reset for GSAP (elastic pop) ── */
+.stat-item {
+  will-change: transform, opacity;
+}
+
+/* ── 59. MAGNETIC BUTTON — smooth easing ── */
+.btn-magnetic {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+/* ── 60. ABOUT SECTION — GPU hint for GSAP ── */
+.about-content, .about-image-wrap, .about-image {
+  will-change: transform, opacity;
+}
+
+/* ── 61. MAP SECTION — scale + fade base ── */
+#map-section {
+  will-change: transform, opacity;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,102 @@
+.ad-page {
+  min-height: 100vh;
+  background: #0d1117;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.ad-card {
+  background: #161f2e;
+  border: 1px solid #1e2d45;
+  border-radius: 20px;
+  padding: 56px 48px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+}
+
+.ad-icon {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  line-height: 1;
+}
+
+.ad-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #f1f5f9;
+  margin: 0 0 14px;
+}
+
+.ad-desc {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.7;
+  margin: 0 0 32px;
+}
+
+.ad-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.ad-btn-primary {
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #1e3a5f, #2d5a8f);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  text-decoration: none;
+}
+.ad-btn-primary:hover {
+  background: linear-gradient(135deg, #2d5a8f, #3b6fa8);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(30,58,95,0.5);
+}
+
+.ad-btn-secondary {
+  padding: 12px 28px;
+  background: rgba(212,168,83,0.1);
+  border: 1px solid rgba(212,168,83,0.3);
+  color: #d4a853;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+.ad-btn-secondary:hover {
+  background: rgba(212,168,83,0.2);
+}
+
+.ad-note {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.25);
+  line-height: 1.5;
+  margin: 0;
+  padding-top: 20px;
+  border-top: 1px solid #1e2d45;
+}
+.ad-note strong {
+  color: rgba(255,255,255,0.45);
+}
+
+@media (max-width: 480px) {
+  .ad-card { padding: 40px 24px; }
+  .ad-title { font-size: 1.4rem; }
+  .ad-actions { flex-direction: column; align-items: center; }
+  .ad-btn-primary, .ad-btn-secondary { width: 100%; justify-content: center; }
+}

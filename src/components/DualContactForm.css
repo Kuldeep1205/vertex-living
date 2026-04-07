@@ -1,0 +1,168 @@
+/* ── Dual Contact Form ── */
+.dcf-wrap { display: flex; flex-direction: column; gap: 20px; }
+
+/* Tabs */
+.dcf-tabs {
+  display: flex;
+  gap: 4px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 4px;
+}
+.dcf-tab {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(255,255,255,0.55);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+.dcf-tab.active {
+  background: #d4a853;
+  color: #0f1d2e;
+  box-shadow: 0 4px 12px rgba(212,168,83,0.35);
+}
+.dcf-tab:hover:not(.active) { color: rgba(255,255,255,0.85); }
+
+/* Form */
+.dcf-form { display: flex; flex-direction: column; gap: 14px; }
+.dcf-row  { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.dcf-field { display: flex; flex-direction: column; gap: 5px; }
+.dcf-field label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.dcf-field input,
+.dcf-field select,
+.dcf-field textarea {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #e2e8f0;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  font-family: inherit;
+  resize: none;
+}
+.dcf-field input::placeholder,
+.dcf-field textarea::placeholder { color: rgba(255,255,255,0.25); }
+.dcf-field select { appearance: none; cursor: pointer; }
+.dcf-field select option { background: #1e3a5f; color: #e2e8f0; }
+.dcf-field input:focus,
+.dcf-field select:focus,
+.dcf-field textarea:focus {
+  border-color: rgba(212,168,83,0.55);
+  background: rgba(212,168,83,0.06);
+  box-shadow: 0 0 0 3px rgba(212,168,83,0.12);
+}
+
+/* Submit */
+.dcf-submit {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #1e3a5f, #2d5a8f);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex; align-items: center; justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+}
+.dcf-submit:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2d5a8f, #3b6fa8);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(30,58,95,0.55);
+}
+.dcf-submit:disabled { opacity: 0.65; cursor: not-allowed; }
+
+.dcf-spinner {
+  width: 18px; height: 18px;
+  border: 2.5px solid rgba(255,255,255,0.25);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: dcf-spin 0.8s linear infinite;
+}
+@keyframes dcf-spin { to { transform: rotate(360deg); } }
+
+/* Success */
+.dcf-success {
+  text-align: center;
+  padding: 32px 16px;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+}
+.dcf-success-icon { font-size: 2.8rem; }
+.dcf-success h3 { font-size: 1.3rem; font-weight: 800; color: #e2e8f0; margin: 0; }
+.dcf-success p  { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.6; max-width: 300px; margin: 0; }
+.dcf-reset-btn {
+  padding: 10px 24px;
+  background: rgba(212,168,83,0.12);
+  border: 1px solid rgba(212,168,83,0.3);
+  color: #d4a853;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 4px;
+}
+.dcf-reset-btn:hover { background: rgba(212,168,83,0.22); }
+
+/* Responsive */
+@media (max-width: 520px) {
+  .dcf-row { grid-template-columns: 1fr; }
+}
+
+/* ── Light Mode ── */
+[data-theme="light"] .dcf-tabs {
+  background: rgba(30,58,95,0.07);
+}
+[data-theme="light"] .dcf-tab {
+  color: rgba(30,58,95,0.55);
+}
+[data-theme="light"] .dcf-tab:hover:not(.active) {
+  color: #1e3a5f;
+}
+[data-theme="light"] .dcf-field label {
+  color: #4a5568;
+}
+[data-theme="light"] .dcf-field input,
+[data-theme="light"] .dcf-field select,
+[data-theme="light"] .dcf-field textarea {
+  background: #f8fafc;
+  border-color: rgba(30,58,95,0.15);
+  color: #1e3a5f;
+}
+[data-theme="light"] .dcf-field input::placeholder,
+[data-theme="light"] .dcf-field textarea::placeholder {
+  color: #94a3b8;
+}
+[data-theme="light"] .dcf-field select option {
+  background: #ffffff;
+  color: #1e3a5f;
+}
+[data-theme="light"] .dcf-field input:focus,
+[data-theme="light"] .dcf-field select:focus,
+[data-theme="light"] .dcf-field textarea:focus {
+  border-color: rgba(212,168,83,0.6);
+  background: rgba(212,168,83,0.04);
+  box-shadow: 0 0 0 3px rgba(212,168,83,0.1);
+}
+[data-theme="light"] .dcf-success h3 {
+  color: #1e3a5f;
+}
+[data-theme="light"] .dcf-success p {
+  color: #64748b;
+}

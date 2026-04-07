@@ -1,0 +1,8 @@
+node_modules/
+server/node_modules/
+dist/
+.env
+*.log
+.DS_Store
+smooth-result.png
+skills-lock.json

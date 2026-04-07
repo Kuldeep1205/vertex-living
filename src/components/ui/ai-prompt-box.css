@@ -1,0 +1,498 @@
+/* =========================================
+   AI PROMPT BOX - Complete Standalone Styles
+   ========================================= */
+
+.apb-root {
+  width: 100%;
+  position: relative;
+}
+
+/* Outer container */
+.apb-container {
+  width: 100%;
+  background: #1F2023;
+  border: 1.5px solid #444444;
+  border-radius: 24px;
+  padding: 10px 12px 8px 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.apb-container:hover {
+  border-color: #555555;
+  box-shadow: 0 10px 36px rgba(0,0,0,0.45);
+}
+
+.apb-container.apb-loading {
+  border-color: rgba(239, 68, 68, 0.7);
+}
+
+.apb-container.apb-recording {
+  border-color: rgba(239, 68, 68, 0.7);
+}
+
+/* File preview strip */
+.apb-file-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.apb-file-thumb {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.apb-file-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.apb-file-remove {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.75);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: #fff;
+}
+
+/* Textarea wrapper */
+.apb-textarea-wrap {
+  transition: all 0.25s ease;
+}
+
+.apb-textarea-wrap.apb-hidden {
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+
+/* Textarea */
+.apb-textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  color: #F3F4F6;
+  font-size: 15px;
+  line-height: 1.55;
+  font-family: inherit;
+  padding: 4px 2px;
+  min-height: 44px;
+  max-height: 240px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #444 transparent;
+  box-sizing: border-box;
+  caret-color: #9b87f5;
+}
+
+.apb-textarea::placeholder {
+  color: #6B7280;
+}
+
+.apb-textarea::-webkit-scrollbar { width: 4px; }
+.apb-textarea::-webkit-scrollbar-track { background: transparent; }
+.apb-textarea::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
+
+/* Bottom action bar */
+.apb-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 6px;
+  gap: 6px;
+}
+
+.apb-actions.apb-recording-mode {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Left side icon group */
+.apb-left-icons {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Icon button base */
+.apb-icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9CA3AF;
+  transition: background 0.15s ease, color 0.15s ease;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.apb-icon-btn:hover {
+  background: rgba(156, 163, 175, 0.15);
+  color: #D1D5DB;
+}
+
+.apb-icon-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Hidden file input */
+.apb-file-input {
+  display: none;
+}
+
+/* Toggle buttons (Search / Think / Canvas) */
+.apb-toggle-group {
+  display: flex;
+  align-items: center;
+}
+
+.apb-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 30px;
+  padding: 0 8px;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 500;
+  transition: all 0.18s ease;
+  color: #9CA3AF;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.apb-toggle-btn:hover {
+  color: #D1D5DB;
+}
+
+.apb-toggle-btn .apb-icon-inner {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.apb-toggle-btn:hover .apb-icon-inner {
+  transform: rotate(15deg) scale(1.1);
+}
+
+/* Active states */
+.apb-toggle-btn.apb-search-active {
+  background: rgba(30, 174, 219, 0.12);
+  border-color: #1EAEDB;
+  color: #1EAEDB;
+}
+.apb-toggle-btn.apb-search-active .apb-icon-inner {
+  transform: rotate(360deg) scale(1.1);
+}
+
+.apb-toggle-btn.apb-think-active {
+  background: rgba(139, 92, 246, 0.12);
+  border-color: #8B5CF6;
+  color: #8B5CF6;
+}
+.apb-toggle-btn.apb-think-active .apb-icon-inner {
+  transform: rotate(360deg) scale(1.1);
+}
+
+.apb-toggle-btn.apb-canvas-active {
+  background: rgba(249, 115, 22, 0.12);
+  border-color: #F97316;
+  color: #F97316;
+}
+.apb-toggle-btn.apb-canvas-active .apb-icon-inner {
+  transform: rotate(360deg) scale(1.1);
+}
+
+/* Label that animates in/out */
+.apb-toggle-label {
+  font-size: 11px;
+  overflow: hidden;
+  max-width: 0;
+  opacity: 0;
+  transition: max-width 0.2s ease, opacity 0.2s ease;
+}
+
+.apb-toggle-btn.apb-search-active .apb-toggle-label,
+.apb-toggle-btn.apb-think-active .apb-toggle-label,
+.apb-toggle-btn.apb-canvas-active .apb-toggle-label {
+  max-width: 60px;
+  opacity: 1;
+}
+
+/* Divider between toggles */
+.apb-divider {
+  width: 1.5px;
+  height: 22px;
+  margin: 0 4px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.apb-divider-inner {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(155,135,245,0.65) 50%, transparent 100%);
+}
+
+/* Send / Mic button (right side) */
+.apb-send-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s ease, color 0.15s ease, opacity 0.15s ease;
+  padding: 0;
+}
+
+/* Mic (default - no content) */
+.apb-send-btn.apb-btn-mic {
+  background: transparent;
+  color: #9CA3AF;
+}
+.apb-send-btn.apb-btn-mic:hover {
+  background: rgba(156,163,175,0.15);
+  color: #D1D5DB;
+}
+
+/* Send (has content) */
+.apb-send-btn.apb-btn-send {
+  background: #FFFFFF;
+  color: #1F2023;
+}
+.apb-send-btn.apb-btn-send:hover {
+  background: rgba(255,255,255,0.85);
+}
+
+/* Stop recording */
+.apb-send-btn.apb-btn-stop {
+  background: transparent;
+  color: #EF4444;
+}
+.apb-send-btn.apb-btn-stop:hover {
+  background: rgba(239,68,68,0.15);
+}
+
+/* Loading/stop-gen */
+.apb-send-btn.apb-btn-loading {
+  background: transparent;
+  color: #9CA3AF;
+}
+
+/* Disabled */
+.apb-send-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Voice recorder UI */
+.apb-recorder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 0;
+  transition: all 0.3s ease;
+}
+
+.apb-recorder.apb-rec-hidden {
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0;
+}
+
+.apb-rec-timer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.apb-rec-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #EF4444;
+  animation: apb-pulse 1.4s ease infinite;
+}
+
+@keyframes apb-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.apb-rec-time {
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  color: rgba(255,255,255,0.8);
+}
+
+.apb-rec-bars {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.apb-rec-bar {
+  width: 2px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.45);
+  animation: apb-pulse 1s ease infinite;
+}
+
+/* Image dialog overlay */
+.apb-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: apb-fade-in 0.15s ease;
+}
+
+@keyframes apb-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.apb-dialog-content {
+  position: relative;
+  background: #1F2023;
+  border-radius: 20px;
+  overflow: hidden;
+  max-width: 90vw;
+  max-height: 90vh;
+  animation: apb-zoom-in 0.2s ease;
+}
+
+@keyframes apb-zoom-in {
+  from { opacity: 0; transform: scale(0.93); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.apb-dialog-content img {
+  display: block;
+  max-width: 800px;
+  width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+.apb-dialog-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(46,48,51,0.85);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #E5E7EB;
+  transition: background 0.15s;
+}
+
+.apb-dialog-close:hover {
+  background: rgba(46,48,51,1);
+  color: #fff;
+}
+
+/* Tooltip */
+.apb-tooltip-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.apb-tooltip-wrap .apb-tooltip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1F2023;
+  border: 1px solid #333;
+  color: #fff;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.apb-tooltip-wrap:hover .apb-tooltip {
+  opacity: 1;
+}
+
+/* Hero section integration */
+.hero-search-cta .apb-root {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .apb-container {
+    border-radius: 18px;
+    padding: 8px 10px 6px 10px;
+  }
+  .apb-toggle-btn {
+    padding: 0 5px;
+  }
+}

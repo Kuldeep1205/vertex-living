@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      (function() {
+        try {
+          var theme = localStorage.getItem('vl_theme');
+          if (!theme) theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', theme);
+          var mood = localStorage.getItem('vl_mood') || 'luxury';
+          document.documentElement.setAttribute('data-mood', mood);
+        } catch(e) {}
+      })();
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Vertex Living — Premium Real Estate in Gurgaon. Discover luxury properties, AI-powered recommendations, virtual tours, and smart property search." />
+    <meta name="theme-color" content="#0d1117" />
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+    <link rel="dns-prefetch" href="https://videos.pexels.com" />
+    <link rel="dns-prefetch" href="https://assets.mixkit.co" />
+    <title>Vertex Living - Premium Real Estate</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  </head>
+  <body>
+    <div id="smooth-wrapper">
+      <div id="smooth-content">
+        <div id="root"></div>
+      </div>
+      <!-- position: fixed elements render here via portals (outside smooth-content) -->
+      <div id="portal-fixed"></div>
+    </div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

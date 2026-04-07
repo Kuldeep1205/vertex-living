@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Arjun Sharma",
+    "photo": "https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=400",
+    "experience": 12,
+    "specialization": "Luxury Villas & Penthouses",
+    "deals": 340,
+    "rating": 4.9,
+    "topAgent": true,
+    "phone": "+91 98765 43210",
+    "email": "arjun@vertexliving.in"
+  },
+  {
+    "id": 2,
+    "name": "Priya Mehta",
+    "photo": "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400",
+    "experience": 8,
+    "specialization": "Commercial & Office Spaces",
+    "deals": 210,
+    "rating": 4.8,
+    "topAgent": true,
+    "phone": "+91 98765 43211",
+    "email": "priya@vertexliving.in"
+  },
+  {
+    "id": 3,
+    "name": "Rohit Kapoor",
+    "photo": "https://images.unsplash.com/photo-1584999734482-0361aecad844?w=400",
+    "experience": 6,
+    "specialization": "Affordable Housing & Plots",
+    "deals": 175,
+    "rating": 4.7,
+    "topAgent": false,
+    "phone": "+91 98765 43212",
+    "email": "rohit@vertexliving.in"
+  },
+  {
+    "id": 4,
+    "name": "Sneha Verma",
+    "photo": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=400",
+    "experience": 10,
+    "specialization": "NRI & Investment Properties",
+    "deals": 290,
+    "rating": 4.9,
+    "topAgent": true,
+    "phone": "+91 98765 43213",
+    "email": "sneha@vertexliving.in"
+  }
+]

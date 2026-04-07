@@ -1,0 +1,182 @@
+[
+  {
+    "id": "admin-001",
+    "name": "Admin",
+    "email": "admin@vertexliving.in",
+    "password": "VxAdmin@2024",
+    "phone": "",
+    "role": "admin",
+    "avatar": "A",
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "admin-002",
+    "name": "Backend Team",
+    "email": "backend@vertexliving.in",
+    "password": "VxBackend@2024",
+    "phone": "",
+    "role": "admin",
+    "avatar": "B",
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": 1775101637313,
+    "name": "kuldeep",
+    "email": "ghhffhy@gmail.com",
+    "password": "SHPEPUVEz8ypEqj",
+    "phone": "475758242586",
+    "role": "builder",
+    "avatar": "K",
+    "createdAt": "2026-04-02T03:47:17.313Z"
+  },
+  {
+    "id": 1775101983672,
+    "name": "sahil",
+    "email": "fgghjhfbn@gmail.com",
+    "password": "kuldeeo@345",
+    "phone": "9466224960",
+    "role": "buyer",
+    "avatar": "S",
+    "createdAt": "2026-04-02T03:53:03.672Z"
+  },
+  {
+    "id": 1775106835838,
+    "name": "ankit",
+    "email": "dfhgvff@gmail.com",
+    "password": "ankit@123g",
+    "phone": "9468232652",
+    "role": "buyer",
+    "avatar": "A",
+    "createdAt": "2026-04-02T05:13:55.838Z"
+  },
+  {
+    "id": 1775126309236,
+    "name": "fbgngng",
+    "email": "dsfggggr@gmail.com",
+    "password": "HUcsQ2z9vdyARbC",
+    "phone": "95489251431",
+    "role": "buyer",
+    "avatar": "F",
+    "createdAt": "2026-04-02T10:38:29.236Z"
+  },
+  {
+    "id": 1775132843896,
+    "name": "monu",
+    "email": "ghfdfdfhjyf@gmail.com",
+    "password": "kudeep@1234",
+    "phone": "95861742237",
+    "role": "buyer",
+    "avatar": "M",
+    "createdAt": "2026-04-02T12:27:23.896Z"
+  },
+  {
+    "id": 1775135936748,
+    "name": "sonu",
+    "email": "cfhtgdvnmuktfh@gmail.com",
+    "password": "kuldeeo@`123",
+    "phone": "9854247227",
+    "role": "buyer",
+    "avatar": "S",
+    "createdAt": "2026-04-02T13:18:56.748Z"
+  },
+  {
+    "id": 1775187409172,
+    "name": "dghjyj",
+    "email": "sdghttrevhht@gmail.com",
+    "password": "sdsfgrty!234",
+    "phone": "9563369322",
+    "role": "builder",
+    "avatar": "D",
+    "createdAt": "2026-04-03T03:36:49.172Z"
+  },
+  {
+    "id": 1775188698342,
+    "name": "rghdvbvbg",
+    "email": "jhhrfttxs@gmail.com",
+    "password": "kgggdods@123",
+    "phone": "89212662366",
+    "role": "buyer",
+    "avatar": "R",
+    "createdAt": "2026-04-03T03:58:18.342Z"
+  },
+  {
+    "id": 1775200918077,
+    "name": "ankit f",
+    "email": "rddfghyjuca@gmail.com",
+    "password": "scdvbthyd@123",
+    "phone": "6984136474",
+    "role": "buyer",
+    "avatar": "A",
+    "createdAt": "2026-04-03T07:21:58.077Z"
+  },
+  {
+    "id": 1775202517772,
+    "name": "dlf",
+    "email": "vfhhyfdh@gmail.com",
+    "password": "gemFn8MJLZJRZ2R",
+    "phone": "8025869341",
+    "role": "builder",
+    "avatar": "D",
+    "createdAt": "2026-04-03T07:48:37.772Z"
+  },
+  {
+    "id": 1775202635259,
+    "name": "Mohit",
+    "email": "sushilyvd@gmail.com",
+    "password": "ryjCov-pystys-wojbo7",
+    "phone": "9851643784",
+    "role": "buyer",
+    "avatar": "M",
+    "createdAt": "2026-04-03T07:50:35.259Z"
+  },
+  {
+    "id": 1775289896415,
+    "name": "vjbiggu",
+    "email": "325ffdscdb@gmail.com",
+    "password": "tV46Nhe4kYJ4DzU",
+    "phone": "95356535625",
+    "role": "buyer",
+    "avatar": "V",
+    "createdAt": "2026-04-04T08:04:56.415Z"
+  },
+  {
+    "id": 1775292215182,
+    "name": "wdetru",
+    "email": "wet54wf@gmail.com",
+    "password": "rfhtdfg@1123",
+    "phone": "93252512568",
+    "role": "builder",
+    "avatar": "W",
+    "createdAt": "2026-04-04T08:43:35.182Z"
+  },
+  {
+    "id": 1775365275647,
+    "name": "ghghtgtr",
+    "email": "cvfvfgffed@gmail.com",
+    "password": "xcdffsd@`12",
+    "phone": "962356259",
+    "role": "buyer",
+    "avatar": "G",
+    "createdAt": "2026-04-05T05:01:15.647Z"
+  },
+  {
+    "id": 1775365600683,
+    "name": "bngty",
+    "email": "cgghhyd@gmail.com",
+    "password": "kulvcgr@1133",
+    "phone": "745862561485",
+    "role": "builder",
+    "avatar": "B",
+    "createdAt": "2026-04-05T05:06:40.683Z"
+  },
+  {
+    "id": 1775528157989,
+    "name": "nitya",
+    "email": "fghtheff@gmail.com",
+    "password": "dfgtuigdr@123",
+    "phone": "8521436974",
+    "role": "builder",
+    "avatar": "N",
+    "createdAt": "2026-04-07T02:15:57.989Z"
+  }
+]
