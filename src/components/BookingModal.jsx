@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import './BookingModal.css';
 
-const API = import.meta.env.VITE_API_URL || '';
+const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.vercel.app';
 
 // Parse a price value that might be a number (crores) or string like "₹4.5 Cr"
 function parsePrice(price) {

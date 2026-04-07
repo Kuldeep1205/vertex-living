@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { useRentalAuth } from '../context/RentalAuthContext';
 import './RentalPage.css';
 
-const API = import.meta.env.VITE_API_URL || '';
+const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.vercel.app';
 
 // ─── Utility ──────────────────────────────────────────────────────────────────
 

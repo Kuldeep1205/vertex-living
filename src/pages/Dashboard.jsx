@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import './Dashboard.css'
 
-const API = import.meta.env.VITE_API_URL || ''
+const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.vercel.app'
 
 // ─── SVG Icons ───────────────────────────────────────────────────────────────
 const Icon = {
