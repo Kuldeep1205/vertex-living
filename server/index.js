@@ -67,7 +67,7 @@ app.use('/uploads', express.static(UPLOADS_DIR));
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const PORT = process.env.PORT || 5000;
 
-const openaiClient = new OpenAI({ apiKey: OPENAI_API_KEY });
+const openaiClient = OPENAI_API_KEY ? new OpenAI({ apiKey: OPENAI_API_KEY }) : null;
 
 const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
 const TWILIO_AUTH_TOKEN  = process.env.TWILIO_AUTH_TOKEN;
@@ -79,9 +79,15 @@ if (TWILIO_ACCOUNT_SID && TWILIO_AUTH_TOKEN) {
 
 // ─── File helpers ───────────────────────────────────────────────────────────
 
-const CALLS_FILE = path.join(__dirname, 'calls.json');
-const CONFIG_FILE = path.join(__dirname, 'config.json');
-const USERS_FILE  = path.join(__dirname, 'data', 'users.json');
+const DATA_DIR = process.env.VERCEL ? '/tmp' : __dirname;
+const DATA_DIR_DATA = process.env.VERCEL ? '/tmp' : path.join(__dirname, 'data');
+
+const CALLS_FILE = path.join(DATA_DIR, 'calls.json');
+const CONFIG_FILE = path.join(__dirname, 'config.json'); // read-only config stays in source
+const USERS_FILE  = path.join(DATA_DIR_DATA, 'users.json');
+
+// Ensure data dir exists
+if (!fs.existsSync(DATA_DIR_DATA)) fs.mkdirSync(DATA_DIR_DATA, { recursive: true });
 
 function loadJSON(file, fallback) {
   try {
@@ -95,7 +101,7 @@ function saveJSON(file, data) {
   fs.writeFileSync(file, JSON.stringify(data, null, 2));
 }
 
-const WA_FILE = path.join(__dirname, 'whatsapp.json');
+const WA_FILE = path.join(DATA_DIR, 'whatsapp.json');
 
 let calls = loadJSON(CALLS_FILE, []);
 let aiConfig = loadJSON(CONFIG_FILE, {});
