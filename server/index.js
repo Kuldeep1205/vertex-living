@@ -870,13 +870,12 @@ Critical rules:
 
 // ─── Razorpay Setup ──────────────────────────────────────────────────────────
 
-const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID,
-  key_secret: process.env.RAZORPAY_KEY_SECRET,
-});
+const razorpay = (process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET)
+  ? new Razorpay({ key_id: process.env.RAZORPAY_KEY_ID, key_secret: process.env.RAZORPAY_KEY_SECRET })
+  : null;
 
-const BOOKINGS_FILE = path.join(__dirname, 'data', 'bookings.json');
-const INVOICES_DIR  = path.join(__dirname, 'data', 'invoices');
+const BOOKINGS_FILE = path.join(DATA_DIR, 'bookings.json');
+const INVOICES_DIR  = path.join(DATA_DIR, 'invoices');
 if (!fs.existsSync(INVOICES_DIR)) fs.mkdirSync(INVOICES_DIR, { recursive: true });
 
 function saveInvoiceFile(booking) {
@@ -890,6 +889,7 @@ function saveInvoiceFile(booking) {
 app.post('/api/payment/create-order', async (req, res) => {
   const { amount, currency = 'INR', propertyId, propertyName, userName, userEmail, userPhone } = req.body;
   if (!amount) return res.status(400).json({ error: 'Amount is required' });
+  if (!razorpay) return res.status(503).json({ error: 'Payment service not configured' });
 
   try {
     const order = await razorpay.orders.create({
