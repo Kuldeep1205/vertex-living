@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import './BuilderCTA.css';
 
-const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.vercel.app';
+const API = import.meta.env.VITE_API_URL || 'https://vertex-living.onrender.com';
 
 const STATUS_CONFIG = {
   'Ready to Move':      { color: '#22c55e', bg: 'rgba(34,197,94,0.12)',  icon: '✅' },

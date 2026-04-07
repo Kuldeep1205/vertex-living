@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, useCallback, useEffect } fr
 const AuthContext = createContext(null);
 
 const SESSION_KEY = 'vl_session';
-const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.vercel.app';
+const API = import.meta.env.VITE_API_URL || 'https://vertex-living.onrender.com';
 
 function getSession() {
   try { return JSON.parse(localStorage.getItem(SESSION_KEY)); } catch { return null; }

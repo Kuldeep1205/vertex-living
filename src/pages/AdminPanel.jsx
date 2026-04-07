@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import './AdminPanel.css'
 
-const API = (import.meta.env.VITE_API_URL || 'https://vertex-living-server.vercel.app') + '/api/admin'
+const API = (import.meta.env.VITE_API_URL || 'https://vertex-living.onrender.com') + '/api/admin'
 const RENTAL_API = '/api/rental'
 
 // ─── Icons ───────────────────────────────────────────────────────────────────
