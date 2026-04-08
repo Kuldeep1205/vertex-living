@@ -9,5 +9,16 @@
     "tenantPhone": "8924245232",
     "message": "i am interested",
     "createdAt": "2026-04-05T05:21:10.415Z"
+  },
+  {
+    "id": 1775623206847,
+    "propertyId": 1001,
+    "propertyTitle": "Spacious 3BHK in Koramangala with Gym & Pool",
+    "ownerId": 9001,
+    "tenantName": "annu",
+    "tenantEmail": "mk7777638@gmail.com",
+    "tenantPhone": "8525269112",
+    "message": "zcvbn",
+    "createdAt": "2026-04-08T04:40:06.847Z"
   }
 ]

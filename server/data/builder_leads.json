@@ -66,5 +66,22 @@
     "builderName": "DLF Ltd.",
     "status": "new",
     "createdAt": "2026-04-04T08:16:45.880Z"
+  },
+  {
+    "id": 1775623015846,
+    "clientName": "xdvhf",
+    "clientPhone": "9864326625",
+    "clientEmail": "asxdcfvgb@gmail.com",
+    "clientMessage": "",
+    "propertyId": 4,
+    "propertyName": "Emaar DigiHomes",
+    "propertyPrice": "₹85 L – ₹1.9 Cr",
+    "propertyConfig": "2 & 3 BHK Smart Homes",
+    "propertyLocation": "Sector 62, Gurgaon",
+    "propertyStatus": "Under Construction",
+    "propertyRera": "HRERA-GGN-2023-0554",
+    "builderName": "Emaar India",
+    "status": "new",
+    "createdAt": "2026-04-08T04:36:55.846Z"
   }
 ]

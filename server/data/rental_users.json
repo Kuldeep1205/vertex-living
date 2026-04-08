@@ -8,5 +8,15 @@
     "role": "owner",
     "avatar": "A",
     "createdAt": "2026-04-05T05:10:10.815Z"
+  },
+  {
+    "id": 1775623192196,
+    "name": "annu",
+    "email": "mk7777638@gmail.com",
+    "password": "SHPEPUVEz8ypEqj",
+    "phone": "8525269112",
+    "role": "tenant",
+    "avatar": "A",
+    "createdAt": "2026-04-08T04:39:52.196Z"
   }
 ]
