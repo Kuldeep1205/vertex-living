@@ -20,5 +20,49 @@
     "tenantPhone": "8525269112",
     "message": "zcvbn",
     "createdAt": "2026-04-08T04:40:06.847Z"
+  },
+  {
+    "id": 1775707047526,
+    "propertyId": 1002,
+    "propertyTitle": "Modern 2BHK Near Cyber City, Gurgaon",
+    "ownerId": 9002,
+    "tenantName": "ankit",
+    "tenantEmail": "dsfggggr@gmail.com",
+    "tenantPhone": "8924245232",
+    "message": "csfghyjul",
+    "createdAt": "2026-04-09T03:57:27.526Z"
+  },
+  {
+    "id": 1775707057573,
+    "propertyId": 1011,
+    "propertyTitle": "1BHK Studio in HSR Layout, Bengaluru",
+    "ownerId": 9011,
+    "tenantName": "ankit",
+    "tenantEmail": "dsfggggr@gmail.com",
+    "tenantPhone": "8924245232",
+    "message": "sdhjyuli",
+    "createdAt": "2026-04-09T03:57:37.573Z"
+  },
+  {
+    "id": 1775707068429,
+    "propertyId": 1026,
+    "propertyTitle": "2BHK in New Town, Kolkata",
+    "ownerId": 9026,
+    "tenantName": "ankit",
+    "tenantEmail": "dsfggggr@gmail.com",
+    "tenantPhone": "8924245232",
+    "message": "sdfdhyju",
+    "createdAt": "2026-04-09T03:57:48.429Z"
+  },
+  {
+    "id": 1775712446019,
+    "propertyId": 1039,
+    "propertyTitle": "3BHK in Jaipur Near Malviya Nagar",
+    "ownerId": 9039,
+    "tenantName": "ankit",
+    "tenantEmail": "dsfggggr@gmail.com",
+    "tenantPhone": "8924245232",
+    "message": "fhtj",
+    "createdAt": "2026-04-09T05:27:26.019Z"
   }
 ]

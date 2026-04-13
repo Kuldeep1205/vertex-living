@@ -1,5 +1,35 @@
 [
   {
+    "id": 1775707517310,
+    "name": "Newsletter",
+    "email": "sdfgh@gmail.com",
+    "enquiry": "Newsletter Subscription",
+    "type": "Newsletter",
+    "createdAt": "2026-04-09T04:05:17.310Z",
+    "read": false
+  },
+  {
+    "id": 1775706869286,
+    "name": "Test User",
+    "phone": "9999999999",
+    "email": "test@example.com",
+    "budget": "",
+    "type": "",
+    "sector": "",
+    "message": "",
+    "formType": "buyer",
+    "createdAt": "2026-04-09T03:54:29.286Z",
+    "read": false
+  },
+  {
+    "id": 1775706626545,
+    "name": "Test",
+    "email": "test@test.com",
+    "message": "Test inquiry",
+    "createdAt": "2026-04-09T03:50:26.545Z",
+    "read": false
+  },
+  {
     "id": 1775623131545,
     "subject": "ddfegh",
     "budget": "₹50L – ₹1 Cr",

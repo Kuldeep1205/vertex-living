@@ -72,6 +72,8 @@ export default function AdminPanel() {
   const [rentalStats,     setRentalStats]     = useState({})
   const [rentalSearch,    setRentalSearch]    = useState('')
   const [rentalTab,       setRentalTab]       = useState('properties') // sub-tab
+  const [visits,          setVisits]          = useState([])
+  const [visitSearch,     setVisitSearch]     = useState('')
 
   useEffect(() => {
     loadAll()
@@ -89,7 +91,8 @@ export default function AdminPanel() {
       fetch('/api/admin/bookings').then(r => r.json()).catch(() => []),
       fetch('/api/admin/builder-registrations').then(r => r.json()).catch(() => []),
       fetch('/api/admin/builder-leads').then(r => r.json()).catch(() => []),
-    ]).then(([props, agts, inqs, stgs, usrs, pending, bkgs, bregs, bleads]) => {
+      fetch('/api/admin/visits').then(r => r.json()).catch(() => []),
+    ]).then(([props, agts, inqs, stgs, usrs, pending, bkgs, bregs, bleads, vsts]) => {
       setProperties(props)
       setAgents(agts)
       setInquiries(inqs)
@@ -100,6 +103,7 @@ export default function AdminPanel() {
       setBookings(Array.isArray(bkgs) ? bkgs : [])
       setBuilderRegs(Array.isArray(bregs) ? bregs : [])
       setBuilderLeads(Array.isArray(bleads) ? bleads : [])
+      setVisits(Array.isArray(vsts) ? vsts : [])
       setLoading(false)
     })
     // Rental data
@@ -328,6 +332,7 @@ export default function AdminPanel() {
             { key: 'inquiries',     icon: Ico.inq,   label: 'Inquiries', badge: unreadCount || null, badgeAlert: true },
             { key: 'users',         icon: Ico.agent, label: 'Users',     badge: users.filter(u => u.role === 'buyer').length || null },
             { key: 'payments',      icon: Ico.pay,   label: 'Payments',  badge: bookings.length || null },
+            { key: 'visits',        icon: Ico.eye,   label: 'Visits',    badge: visits.filter(v => v.status === 'pending').length || null, badgeAlert: visits.some(v => v.status === 'pending') },
             { key: 'rental',        icon: Ico.home,  label: 'Rental', badge: rentalProps.length || null },
             { key: 'settings',      icon: Ico.stg,   label: 'Settings' },
           ].map(item => (
@@ -1138,6 +1143,121 @@ export default function AdminPanel() {
             })()}
           </div>
         )}
+
+        {/* ── Site Visits ── */}
+        {tab === 'visits' && (() => {
+          const q = visitSearch.toLowerCase();
+          const filtered = visits.filter(v =>
+            !q || `${v.name} ${v.phone} ${v.email} ${v.propertyName}`.toLowerCase().includes(q)
+          );
+          const STATUS_COLORS = {
+            pending:   { bg: 'rgba(245,158,11,0.12)',  color: '#fbbf24', border: 'rgba(245,158,11,0.3)',  label: '⏳ Pending' },
+            contacted: { bg: 'rgba(99,102,241,0.12)',  color: '#818cf8', border: 'rgba(99,102,241,0.3)', label: '📞 Contacted' },
+            confirmed: { bg: 'rgba(34,197,94,0.12)',   color: '#4ade80', border: 'rgba(34,197,94,0.25)', label: '✅ Confirmed' },
+            done:      { bg: 'rgba(100,116,139,0.12)', color: '#94a3b8', border: 'rgba(100,116,139,0.3)', label: '✓ Done' },
+          };
+          return (
+            <div className="ap-section">
+              <div className="ap-section-header">
+                <div>
+                  <h1 className="ap-title">Site Visit Bookings</h1>
+                  <p className="ap-subtitle">{visits.filter(v => v.status === 'pending').length} pending · {visits.length} total</p>
+                </div>
+                <input className="ap-search" placeholder="Search by name, phone, property…" value={visitSearch} onChange={e => setVisitSearch(e.target.value)} />
+              </div>
+              {filtered.length === 0 ? (
+                <div className="ap-empty">No visit bookings yet.</div>
+              ) : (
+                <div className="ap-table-wrap">
+                  <table className="ap-table">
+                    <thead><tr>
+                      <th>Customer</th><th>Contact</th><th>Property</th>
+                      <th>Date & Time</th><th>Message</th><th>Status</th><th>Actions</th>
+                    </tr></thead>
+                    <tbody>
+                      {filtered.map(v => {
+                        const sc = STATUS_COLORS[v.status] || STATUS_COLORS.pending;
+                        return (
+                          <tr key={v.id}>
+                            <td>
+                              <div style={{ fontWeight: 600, color: '#f1f5f9' }}>{v.name}</div>
+                              <div style={{ fontSize: 11, color: '#64748b' }}>{new Date(v.createdAt).toLocaleDateString('en-IN')}</div>
+                            </td>
+                            <td>
+                              <div style={{ fontWeight: 500 }}>
+                                <a href={`tel:${v.phone}`} style={{ color: '#6366f1', textDecoration: 'none' }}>{v.phone}</a>
+                              </div>
+                              <div style={{ fontSize: 11, color: '#64748b' }}>{v.email || '—'}</div>
+                            </td>
+                            <td>
+                              <div style={{ fontWeight: 600, fontSize: 13 }}>{v.propertyName || '—'}</div>
+                              <div style={{ fontSize: 11, color: '#64748b' }}>{v.propertyLocation || ''}</div>
+                            </td>
+                            <td>
+                              <div style={{ fontWeight: 600, color: '#f1f5f9', fontSize: 13 }}>
+                                {v.date ? new Date(v.date + 'T00:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '—'}
+                              </div>
+                              <div style={{ fontSize: 11, color: '#94a3b8' }}>{v.timeSlot}</div>
+                            </td>
+                            <td style={{ maxWidth: 180, fontSize: 12, color: '#94a3b8', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                              {v.message || '—'}
+                            </td>
+                            <td>
+                              <select
+                                value={v.status}
+                                onChange={async e => {
+                                  const newStatus = e.target.value;
+                                  try {
+                                    const res = await fetch(`/api/admin/visits/${v.id}/status`, {
+                                      method: 'PATCH',
+                                      headers: { 'Content-Type': 'application/json' },
+                                      body: JSON.stringify({ status: newStatus }),
+                                    });
+                                    if (res.ok) {
+                                      setVisits(prev => prev.map(x => x.id === v.id ? { ...x, status: newStatus } : x));
+                                      showToast(`Status updated to "${newStatus}"`);
+                                    }
+                                  } catch { showToast('Update failed', 'error'); }
+                                }}
+                                style={{
+                                  background: sc.bg, color: sc.color,
+                                  border: `1px solid ${sc.border}`,
+                                  borderRadius: 8, padding: '4px 8px',
+                                  fontSize: 12, fontWeight: 700, cursor: 'pointer',
+                                }}
+                              >
+                                <option value="pending">⏳ Pending</option>
+                                <option value="contacted">📞 Contacted</option>
+                                <option value="confirmed">✅ Confirmed</option>
+                                <option value="done">✓ Done</option>
+                              </select>
+                            </td>
+                            <td>
+                              <div style={{ display: 'flex', gap: 6 }}>
+                                <a href={`tel:${v.phone}`} className="ap-btn ap-btn-sm ap-btn-primary" title="Call customer">📞</a>
+                                {v.email && (
+                                  <a href={`mailto:${v.email}?subject=Site Visit Confirmation – ${v.propertyName}&body=Dear ${v.name},%0A%0AYour site visit for ${v.propertyName} on ${v.date} (${v.timeSlot}) has been confirmed.%0A%0ARegards,%0AVertex Living Team`}
+                                    className="ap-btn ap-btn-sm ap-btn-outline" title="Send email">✉️</a>
+                                )}
+                                <button className="ap-btn ap-btn-sm ap-btn-danger" title="Delete"
+                                  onClick={async () => {
+                                    if (!window.confirm(`Delete visit booking by ${v.name}?`)) return;
+                                    await fetch(`/api/admin/visits/${v.id}`, { method: 'DELETE' });
+                                    setVisits(prev => prev.filter(x => x.id !== v.id));
+                                    showToast('Deleted');
+                                  }}>{Ico.del}</button>
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          );
+        })()}
 
         {/* Settings */}
         {tab === 'settings' && (

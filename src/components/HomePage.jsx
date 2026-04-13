@@ -1342,7 +1342,16 @@ const HomePage = () => {
   const [showRoomPlanner, setShowRoomPlanner] = useState(false);
   const [showQuiz, setShowQuiz] = useState(false);
   const [expandedSections, setExpandedSections] = useState({});
-  const toggleSection = (id) => setExpandedSections(prev => ({ ...prev, [id]: !prev[id] }));
+  const toggleSection = (id) => {
+    const isCurrentlyExpanded = !!expandedSections[id];
+    setExpandedSections(prev => ({ ...prev, [id]: !prev[id] }));
+    if (isCurrentlyExpanded) {
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 0);
+    }
+  };
   const [homeTod, setHomeTod] = useState(() => {
     const h = new Date().getHours();
     return h >= 5 && h < 12 ? 'morning' : h >= 12 && h < 19 ? 'evening' : 'night';

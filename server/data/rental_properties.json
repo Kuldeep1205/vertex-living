@@ -15,8 +15,19 @@
     "totalFloors": "14",
     "availableFrom": "2026-04-15",
     "description": "Premium 3BHK in the heart of Koramangala with modern interiors, fully furnished with branded appliances. Walking distance to tech parks and malls.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Gym", "Swimming Pool", "Power Backup", "CCTV", "Gated Community"],
-    "photos": ["https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Gym",
+      "Swimming Pool",
+      "Power Backup",
+      "CCTV",
+      "Gated Community"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80"
+    ],
     "ownerId": 9001,
     "ownerName": "Rahul Sharma",
     "ownerPhone": "9876543210",
@@ -40,8 +51,18 @@
     "totalFloors": "10",
     "availableFrom": "2026-04-10",
     "description": "Well-maintained 2BHK in a premium society with metro connectivity. Minutes from Cyber City and Golf Course Road.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "Club House", "CCTV", "Gated Community"],
-    "photos": ["https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "Club House",
+      "CCTV",
+      "Gated Community"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80"
+    ],
     "ownerId": 9002,
     "ownerName": "Priya Mehta",
     "ownerPhone": "9812345678",
@@ -65,8 +86,21 @@
     "totalFloors": "3",
     "availableFrom": "2026-05-01",
     "description": "Stunning independent villa with private garden, terrace and modular kitchen. Close to Film Nagar and top schools.",
-    "amenities": ["Parking", "24/7 Security", "Gym", "Swimming Pool", "Power Backup", "CCTV", "Gated Community", "Terrace", "Modular Kitchen", "Balcony"],
-    "photos": ["https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "24/7 Security",
+      "Gym",
+      "Swimming Pool",
+      "Power Backup",
+      "CCTV",
+      "Gated Community",
+      "Terrace",
+      "Modular Kitchen",
+      "Balcony"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80"
+    ],
     "ownerId": 9003,
     "ownerName": "Kiran Reddy",
     "ownerPhone": "9700123456",
@@ -90,8 +124,16 @@
     "totalFloors": "8",
     "availableFrom": "2026-04-20",
     "description": "Compact furnished 1BHK in prime Lokhandwala area. Metro station 5 min walk, all amenities nearby.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "CCTV"],
-    "photos": ["https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "CCTV"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80"
+    ],
     "ownerId": 9004,
     "ownerName": "Sneha Joshi",
     "ownerPhone": "9820987654",
@@ -115,8 +157,17 @@
     "totalFloors": "6",
     "availableFrom": "2026-04-25",
     "description": "Elegant apartment with large balcony and city view. Proximity to GVK One Mall and top restaurants.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "Balcony", "Modular Kitchen"],
-    "photos": ["https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "Balcony",
+      "Modular Kitchen"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&q=80"
+    ],
     "ownerId": 9005,
     "ownerName": "Suresh Rao",
     "ownerPhone": "9848012345",
@@ -140,8 +191,17 @@
     "totalFloors": "5",
     "availableFrom": "2026-04-12",
     "description": "Spacious unfurnished 2BHK in IT corridor. Ideal for families and IT professionals. Society with good amenities.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "CCTV", "Gated Community"],
-    "photos": ["https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "CCTV",
+      "Gated Community"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80"
+    ],
     "ownerId": 9006,
     "ownerName": "Anitha Kumar",
     "ownerPhone": "9741234567",
@@ -165,8 +225,16 @@
     "totalFloors": "4",
     "availableFrom": "2026-04-08",
     "description": "Well-furnished PG with meals included. Safe locality near Delhi University South Campus. WiFi included.",
-    "amenities": ["24/7 Security", "Power Backup", "CCTV", "Modular Kitchen", "Lift"],
-    "photos": ["https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800&q=80"],
+    "amenities": [
+      "24/7 Security",
+      "Power Backup",
+      "CCTV",
+      "Modular Kitchen",
+      "Lift"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800&q=80"
+    ],
     "ownerId": 9007,
     "ownerName": "Vikram Singh",
     "ownerPhone": "9811234567",
@@ -190,8 +258,21 @@
     "totalFloors": "28",
     "availableFrom": "2026-05-15",
     "description": "Breathtaking sea view apartment in premium high-rise. Fully furnished with imported furniture and modular kitchen.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Gym", "Swimming Pool", "Power Backup", "CCTV", "Gated Community", "Balcony", "Club House"],
-    "photos": ["https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Gym",
+      "Swimming Pool",
+      "Power Backup",
+      "CCTV",
+      "Gated Community",
+      "Balcony",
+      "Club House"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80"
+    ],
     "ownerId": 9008,
     "ownerName": "Aarav Kapoor",
     "ownerPhone": "9930123456",
@@ -215,8 +296,20 @@
     "totalFloors": "12",
     "availableFrom": "2026-04-18",
     "description": "Spacious 3BHK in premium DLF society. Close to MG Road metro and Ambience Mall.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Gym", "Power Backup", "Club House", "CCTV", "Gated Community", "Visitors Parking"],
-    "photos": ["https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Gym",
+      "Power Backup",
+      "Club House",
+      "CCTV",
+      "Gated Community",
+      "Visitors Parking"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&q=80"
+    ],
     "ownerId": 9009,
     "ownerName": "Neha Gupta",
     "ownerPhone": "9810567890",
@@ -240,8 +333,17 @@
     "totalFloors": "7",
     "availableFrom": "2026-04-14",
     "description": "Neat 2BHK near airport and IT hubs. Society with garden and kids play area.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "Gated Community", "Balcony"],
-    "photos": ["https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "Gated Community",
+      "Balcony"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80"
+    ],
     "ownerId": 9010,
     "ownerName": "Amit Desai",
     "ownerPhone": "9823456789",
@@ -265,8 +367,16 @@
     "totalFloors": "6",
     "availableFrom": "2026-04-10",
     "description": "Compact studio apartment perfect for working professionals. Near Agara Lake and HSR metro.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "CCTV"],
-    "photos": ["https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "CCTV"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&q=80"
+    ],
     "ownerId": 9011,
     "ownerName": "Divya Nair",
     "ownerPhone": "9742012345",
@@ -290,8 +400,21 @@
     "totalFloors": "12",
     "availableFrom": "2026-05-01",
     "description": "Exclusive penthouse with 360-degree city views, private terrace and jacuzzi. Top-of-the-line furnishings.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Gym", "Swimming Pool", "Power Backup", "CCTV", "Terrace", "Balcony", "Club House"],
-    "photos": ["https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Gym",
+      "Swimming Pool",
+      "Power Backup",
+      "CCTV",
+      "Terrace",
+      "Balcony",
+      "Club House"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
+    ],
     "ownerId": 9012,
     "ownerName": "Rohit Patil",
     "ownerPhone": "9765432198",
@@ -315,8 +438,16 @@
     "totalFloors": "8",
     "availableFrom": "2026-04-16",
     "description": "Good locality in IT hub Sector V. Near Nicco Park, DLF IT Park and metro.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "CCTV"],
-    "photos": ["https://images.unsplash.com/photo-1571055107559-3e67626fa8be?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "CCTV"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1571055107559-3e67626fa8be?w=800&q=80"
+    ],
     "ownerId": 9013,
     "ownerName": "Subroto Das",
     "ownerPhone": "9831234567",
@@ -340,8 +471,16 @@
     "totalFloors": "10",
     "availableFrom": "2026-05-01",
     "description": "Prime commercial office in CP with excellent connectivity. Suitable for corporate offices, co-working spaces.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "CCTV"],
-    "photos": ["https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "CCTV"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
+    ],
     "ownerId": 9014,
     "ownerName": "Manish Agarwal",
     "ownerPhone": "9818765432",
@@ -365,8 +504,16 @@
     "totalFloors": "4",
     "availableFrom": "2026-04-20",
     "description": "Peaceful residential area near Adyar river. Close to Besant Nagar beach and reputed schools.",
-    "amenities": ["Parking", "24/7 Security", "Power Backup", "Balcony", "Gated Community"],
-    "photos": ["https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "24/7 Security",
+      "Power Backup",
+      "Balcony",
+      "Gated Community"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
+    ],
     "ownerId": 9015,
     "ownerName": "Ramesh Iyer",
     "ownerPhone": "9841012345",
@@ -390,8 +537,18 @@
     "totalFloors": "10",
     "availableFrom": "2026-04-15",
     "description": "Modern 2BHK in fast developing Wakad area. Near Hinjawadi IT park with express highway access.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "Gym", "Club House", "Gated Community"],
-    "photos": ["https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "Gym",
+      "Club House",
+      "Gated Community"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80"
+    ],
     "ownerId": 9016,
     "ownerName": "Prashant Kulkarni",
     "ownerPhone": "9822345678",
@@ -415,8 +572,22 @@
     "totalFloors": "30",
     "availableFrom": "2026-05-01",
     "description": "Ultra-luxury 3BHK in DLF The Crest. Floor-to-ceiling windows, premium fittings and world-class amenities.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Gym", "Swimming Pool", "Power Backup", "Club House", "CCTV", "Gated Community", "Modular Kitchen", "Balcony"],
-    "photos": ["https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Gym",
+      "Swimming Pool",
+      "Power Backup",
+      "Club House",
+      "CCTV",
+      "Gated Community",
+      "Modular Kitchen",
+      "Balcony"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
+    ],
     "ownerId": 9017,
     "ownerName": "Arjun Malhotra",
     "ownerPhone": "9810123456",
@@ -440,8 +611,17 @@
     "totalFloors": "9",
     "availableFrom": "2026-04-22",
     "description": "Chic 1BHK in the most sought-after Bandra West. Stylish interiors, walking distance to Linking Road.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "CCTV", "Intercom"],
-    "photos": ["https://images.unsplash.com/photo-1536376072261-38c75010e6c9?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "CCTV",
+      "Intercom"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?w=800&q=80"
+    ],
     "ownerId": 9018,
     "ownerName": "Pooja Shah",
     "ownerPhone": "9930567890",
@@ -465,8 +645,18 @@
     "totalFloors": "2",
     "availableFrom": "2026-04-28",
     "description": "Independent house on prime 12th Main Indiranagar. Private parking, garden and terrace. Very quiet lane.",
-    "amenities": ["Parking", "24/7 Security", "Power Backup", "Balcony", "Terrace", "Pet Friendly", "Gas Pipeline"],
-    "photos": ["https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "24/7 Security",
+      "Power Backup",
+      "Balcony",
+      "Terrace",
+      "Pet Friendly",
+      "Gas Pipeline"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&q=80"
+    ],
     "ownerId": 9019,
     "ownerName": "Shivam Gowda",
     "ownerPhone": "9743456789",
@@ -490,8 +680,16 @@
     "totalFloors": "6",
     "availableFrom": "2026-04-12",
     "description": "Spacious 2BHK in posh Satellite area. Vastu-compliant flat with good ventilation and natural light.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "Gated Community"],
-    "photos": ["https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "Gated Community"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=800&q=80"
+    ],
     "ownerId": 9020,
     "ownerName": "Chirag Patel",
     "ownerPhone": "9879012345",
@@ -515,8 +713,19 @@
     "totalFloors": "5",
     "availableFrom": "2026-05-10",
     "description": "Luxurious 4BHK flat near Elliots Beach. Fully furnished with top appliances, sea breeze throughout the day.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "CCTV", "Gated Community", "Balcony", "Modular Kitchen"],
-    "photos": ["https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "CCTV",
+      "Gated Community",
+      "Balcony",
+      "Modular Kitchen"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800&q=80"
+    ],
     "ownerId": 9021,
     "ownerName": "Nivetha Rajan",
     "ownerPhone": "9841987654",
@@ -540,8 +749,15 @@
     "totalFloors": "4",
     "availableFrom": "2026-04-08",
     "description": "Well-furnished PG near Sector 62 metro. Meals available, WiFi included, laundry on premises.",
-    "amenities": ["24/7 Security", "Power Backup", "CCTV", "Lift"],
-    "photos": ["https://images.unsplash.com/photo-1541123437800-1bb1317badc2?w=800&q=80"],
+    "amenities": [
+      "24/7 Security",
+      "Power Backup",
+      "CCTV",
+      "Lift"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1541123437800-1bb1317badc2?w=800&q=80"
+    ],
     "ownerId": 9022,
     "ownerName": "Rekha Verma",
     "ownerPhone": "9312345678",
@@ -565,8 +781,19 @@
     "totalFloors": "8",
     "availableFrom": "2026-04-18",
     "description": "Prime location in Kalyani Nagar with great nightlife and restaurants. Walking distance to Koregaon Park.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "Club House", "CCTV", "Gated Community", "Balcony"],
-    "photos": ["https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "Club House",
+      "CCTV",
+      "Gated Community",
+      "Balcony"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80"
+    ],
     "ownerId": 9023,
     "ownerName": "Mayur Joshi",
     "ownerPhone": "9823901234",
@@ -590,8 +817,15 @@
     "totalFloors": "3",
     "availableFrom": "2026-04-10",
     "description": "Comfortable 1BHK in South Delhi's Malviya Nagar. Close to metro, markets and Saket mall.",
-    "amenities": ["Parking", "24/7 Security", "Power Backup", "CCTV"],
-    "photos": ["https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "24/7 Security",
+      "Power Backup",
+      "CCTV"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?w=800&q=80"
+    ],
     "ownerId": 9024,
     "ownerName": "Tarun Khanna",
     "ownerPhone": "9810987654",
@@ -615,8 +849,19 @@
     "totalFloors": "2",
     "availableFrom": "2026-05-01",
     "description": "Beautiful Goa villa with private pool and garden. Perfect for remote workers. Near Calangute and Candolim beaches.",
-    "amenities": ["Parking", "24/7 Security", "Swimming Pool", "Power Backup", "Balcony", "Terrace", "Pet Friendly", "Gated Community"],
-    "photos": ["https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "24/7 Security",
+      "Swimming Pool",
+      "Power Backup",
+      "Balcony",
+      "Terrace",
+      "Pet Friendly",
+      "Gated Community"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80"
+    ],
     "ownerId": 9025,
     "ownerName": "Saisha Borkar",
     "ownerPhone": "9823000111",
@@ -640,8 +885,18 @@
     "totalFloors": "12",
     "availableFrom": "2026-04-20",
     "description": "Modern apartment in planned township New Town near Eco Park. Good connectivity to airport and IT hubs.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "Club House", "CCTV", "Gated Community"],
-    "photos": ["https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "Club House",
+      "CCTV",
+      "Gated Community"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=800&q=80"
+    ],
     "ownerId": 9026,
     "ownerName": "Debarghya Roy",
     "ownerPhone": "9831987654",
@@ -665,8 +920,17 @@
     "totalFloors": "8",
     "availableFrom": "2026-04-15",
     "description": "Affordable 2BHK near HITECH City and Gachibowli. Great for IT professionals with easy commute.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "Gated Community", "CCTV"],
-    "photos": ["https://images.unsplash.com/photo-1619292559372-0d63d2185395?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "Gated Community",
+      "CCTV"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1619292559372-0d63d2185395?w=800&q=80"
+    ],
     "ownerId": 9027,
     "ownerName": "Venkat Prasad",
     "ownerPhone": "9848765432",
@@ -690,8 +954,20 @@
     "totalFloors": "15",
     "availableFrom": "2026-04-25",
     "description": "Well-planned 3BHK in a green township. Good schools and hospitals within 2 km.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Gym", "Power Backup", "Club House", "CCTV", "Gated Community", "Visitors Parking"],
-    "photos": ["https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Gym",
+      "Power Backup",
+      "Club House",
+      "CCTV",
+      "Gated Community",
+      "Visitors Parking"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80"
+    ],
     "ownerId": 9028,
     "ownerName": "Shruti Bhatia",
     "ownerPhone": "9811654321",
@@ -715,8 +991,14 @@
     "totalFloors": "5",
     "availableFrom": "2026-04-10",
     "description": "Budget-friendly 1BHK in Old Delhi's bustling Chandni Chowk area. Perfect for businessmen and traders.",
-    "amenities": ["Parking", "24/7 Security", "Power Backup"],
-    "photos": ["https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "24/7 Security",
+      "Power Backup"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&q=80"
+    ],
     "ownerId": 9029,
     "ownerName": "Rajesh Bansal",
     "ownerPhone": "9811001122",
@@ -740,8 +1022,17 @@
     "totalFloors": "9",
     "availableFrom": "2026-04-18",
     "description": "Peaceful 2BHK in upcoming Bopal area. Near SG Highway and easy commute to city center.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "Gated Community", "Balcony"],
-    "photos": ["https://images.unsplash.com/photo-1574362848149-11496d93a7c7?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "Gated Community",
+      "Balcony"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?w=800&q=80"
+    ],
     "ownerId": 9030,
     "ownerName": "Krunal Shah",
     "ownerPhone": "9879876543",
@@ -765,8 +1056,20 @@
     "totalFloors": "18",
     "availableFrom": "2026-04-22",
     "description": "Spacious 3BHK in green Kharghar with hills view. Close to Central Park and Kharghar golf course.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Gym", "Power Backup", "Club House", "CCTV", "Gated Community", "Balcony"],
-    "photos": ["https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Gym",
+      "Power Backup",
+      "Club House",
+      "CCTV",
+      "Gated Community",
+      "Balcony"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80"
+    ],
     "ownerId": 9031,
     "ownerName": "Nilesh More",
     "ownerPhone": "9819234567",
@@ -790,8 +1093,18 @@
     "totalFloors": "16",
     "availableFrom": "2026-04-12",
     "description": "Stylish studio apartment steps from Cyber Hub. Perfect for MNCs professionals. IFFCO metro within 500m.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Gym", "Power Backup", "CCTV", "Gated Community"],
-    "photos": ["https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Gym",
+      "Power Backup",
+      "CCTV",
+      "Gated Community"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=800&q=80"
+    ],
     "ownerId": 9032,
     "ownerName": "Ritika Arora",
     "ownerPhone": "9810321654",
@@ -815,8 +1128,17 @@
     "totalFloors": "6",
     "availableFrom": "2026-04-10",
     "description": "Budget-friendly 2BHK inside Electronics City. Perfect for Infosys, Wipro and Tech Mahindra employees.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "CCTV", "Gated Community"],
-    "photos": ["https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "CCTV",
+      "Gated Community"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=800&q=80"
+    ],
     "ownerId": 9033,
     "ownerName": "Sangeetha Murthy",
     "ownerPhone": "9740012345",
@@ -840,8 +1162,23 @@
     "totalFloors": "24",
     "availableFrom": "2026-05-01",
     "description": "Stunning 4BHK with double balcony and servant quarter. Premium society with all facilities.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Gym", "Swimming Pool", "Power Backup", "Club House", "CCTV", "Gated Community", "Visitors Parking", "Modular Kitchen", "Balcony"],
-    "photos": ["https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Gym",
+      "Swimming Pool",
+      "Power Backup",
+      "Club House",
+      "CCTV",
+      "Gated Community",
+      "Visitors Parking",
+      "Modular Kitchen",
+      "Balcony"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80"
+    ],
     "ownerId": 9034,
     "ownerName": "Pankaj Taneja",
     "ownerPhone": "9810444555",
@@ -865,8 +1202,18 @@
     "totalFloors": "7",
     "availableFrom": "2026-04-16",
     "description": "Prime location in Thaltej near SG Highway and GIFT City. Great connectivity and upcoming metro route.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "Gated Community", "Club House", "Balcony"],
-    "photos": ["https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "Gated Community",
+      "Club House",
+      "Balcony"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80"
+    ],
     "ownerId": 9035,
     "ownerName": "Hardik Gandhi",
     "ownerPhone": "9825012345",
@@ -890,8 +1237,20 @@
     "totalFloors": "3",
     "availableFrom": "2026-05-05",
     "description": "Elegant independent villa in gated community on Sarjapur Road. Near top international schools and Amazon, Flipkart offices.",
-    "amenities": ["Parking", "24/7 Security", "Swimming Pool", "Power Backup", "Gated Community", "Terrace", "Balcony", "CCTV", "Club House"],
-    "photos": ["https://images.unsplash.com/photo-1599427303058-f04cbcf4756f?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "24/7 Security",
+      "Swimming Pool",
+      "Power Backup",
+      "Gated Community",
+      "Terrace",
+      "Balcony",
+      "CCTV",
+      "Club House"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1599427303058-f04cbcf4756f?w=800&q=80"
+    ],
     "ownerId": 9036,
     "ownerName": "Anand Krishnaswamy",
     "ownerPhone": "9741987654",
@@ -915,8 +1274,18 @@
     "totalFloors": "8",
     "availableFrom": "2026-04-20",
     "description": "Centrally located 3BHK in T Nagar, Chennai's shopping hub. Near Pondy Bazaar and Saravana Stores.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "CCTV", "Gated Community", "Balcony"],
-    "photos": ["https://images.unsplash.com/photo-1600047509782-20d39509f26d?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "CCTV",
+      "Gated Community",
+      "Balcony"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1600047509782-20d39509f26d?w=800&q=80"
+    ],
     "ownerId": 9037,
     "ownerName": "Karthik Chandran",
     "ownerPhone": "9841543210",
@@ -940,8 +1309,17 @@
     "totalFloors": "5",
     "availableFrom": "2026-04-15",
     "description": "Affordable 2BHK in rapidly growing Zirakpur. Easy access to Chandigarh city, Delhi highway.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "Gated Community", "CCTV"],
-    "photos": ["https://images.unsplash.com/photo-1603792907191-89e55f70099a?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "Gated Community",
+      "CCTV"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1603792907191-89e55f70099a?w=800&q=80"
+    ],
     "ownerId": 9038,
     "ownerName": "Gurpreet Singh",
     "ownerPhone": "9876001122",
@@ -965,8 +1343,16 @@
     "totalFloors": "4",
     "availableFrom": "2026-04-18",
     "description": "Spacious 3BHK in upscale Malviya Nagar Jaipur. Near World Trade Park and city center.",
-    "amenities": ["Parking", "24/7 Security", "Power Backup", "Balcony", "Gated Community"],
-    "photos": ["https://images.unsplash.com/photo-1561753757-d8880c5a3551?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "24/7 Security",
+      "Power Backup",
+      "Balcony",
+      "Gated Community"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1561753757-d8880c5a3551?w=800&q=80"
+    ],
     "ownerId": 9039,
     "ownerName": "Deepak Sharma",
     "ownerPhone": "9414012345",
@@ -990,8 +1376,16 @@
     "totalFloors": "8",
     "availableFrom": "2026-05-01",
     "description": "Commercial space in prime Vashi CBD area. Suitable for retail, showroom or office. High footfall location.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "CCTV"],
-    "photos": ["https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "CCTV"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80"
+    ],
     "ownerId": 9040,
     "ownerName": "Tushar Doshi",
     "ownerPhone": "9821007654",
@@ -1015,8 +1409,16 @@
     "totalFloors": "6",
     "availableFrom": "2026-04-12",
     "description": "Affordable 1BHK near Bangalore International Airport. Good for airline staff and IT professionals.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "CCTV"],
-    "photos": ["https://images.unsplash.com/photo-1554995207-c18c203602cb?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "CCTV"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=800&q=80"
+    ],
     "ownerId": 9041,
     "ownerName": "Ravi Shankar",
     "ownerPhone": "9743210987",
@@ -1040,8 +1442,21 @@
     "totalFloors": "20",
     "availableFrom": "2026-04-28",
     "description": "Premium 2BHK in Hiranandani Gardens with lake view. Walking distance to IIT Bombay and Powai lake.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Gym", "Swimming Pool", "Power Backup", "Club House", "CCTV", "Gated Community", "Balcony"],
-    "photos": ["https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Gym",
+      "Swimming Pool",
+      "Power Backup",
+      "Club House",
+      "CCTV",
+      "Gated Community",
+      "Balcony"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80"
+    ],
     "ownerId": 9042,
     "ownerName": "Harsh Trivedi",
     "ownerPhone": "9920345678",
@@ -1065,8 +1480,18 @@
     "totalFloors": "6",
     "availableFrom": "2026-04-20",
     "description": "Spacious 3BHK in Lucknow's most premium residential area. Near malls, hospitals and administrative offices.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "Gated Community", "Balcony", "CCTV"],
-    "photos": ["https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "Gated Community",
+      "Balcony",
+      "CCTV"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=800&q=80"
+    ],
     "ownerId": 9043,
     "ownerName": "Alok Srivastava",
     "ownerPhone": "9839012345",
@@ -1090,8 +1515,20 @@
     "totalFloors": "5",
     "availableFrom": "2026-05-10",
     "description": "Luxurious 4BHK apartment with sea view near Mandovi River. Fully furnished with premium interiors.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Swimming Pool", "Power Backup", "Balcony", "Gated Community", "CCTV", "Gym"],
-    "photos": ["https://images.unsplash.com/photo-1600607688969-a5bfcd646154?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Swimming Pool",
+      "Power Backup",
+      "Balcony",
+      "Gated Community",
+      "CCTV",
+      "Gym"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?w=800&q=80"
+    ],
     "ownerId": 9044,
     "ownerName": "Antonio Fernandes",
     "ownerPhone": "9822123456",
@@ -1115,8 +1552,14 @@
     "totalFloors": "4",
     "availableFrom": "2026-04-10",
     "description": "Budget-friendly 2BHK with easy metro and rail connectivity to Kolkata city center.",
-    "amenities": ["Parking", "24/7 Security", "Power Backup"],
-    "photos": ["https://images.unsplash.com/photo-1556020685-ae41abfc9365?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "24/7 Security",
+      "Power Backup"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1556020685-ae41abfc9365?w=800&q=80"
+    ],
     "ownerId": 9045,
     "ownerName": "Bimal Ghosh",
     "ownerPhone": "9830012345",
@@ -1140,8 +1583,18 @@
     "totalFloors": "10",
     "availableFrom": "2026-04-16",
     "description": "Neat 3BHK near Noida City Centre metro. Good schools and hospitals nearby. Well-connected to Delhi.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "Club House", "CCTV", "Gated Community"],
-    "photos": ["https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "Club House",
+      "CCTV",
+      "Gated Community"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80"
+    ],
     "ownerId": 9046,
     "ownerName": "Sunita Yadav",
     "ownerPhone": "9313456789",
@@ -1165,8 +1618,17 @@
     "totalFloors": "6",
     "availableFrom": "2026-04-18",
     "description": "Well-maintained 2BHK in Jaipur's cleanest residential area. Close to SMS Hospital and metro.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "Gated Community", "Balcony"],
-    "photos": ["https://images.unsplash.com/photo-1598902108854-10e335adac99?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "Gated Community",
+      "Balcony"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1598902108854-10e335adac99?w=800&q=80"
+    ],
     "ownerId": 9047,
     "ownerName": "Kavita Meena",
     "ownerPhone": "9414987654",
@@ -1190,8 +1652,18 @@
     "totalFloors": "8",
     "availableFrom": "2026-04-22",
     "description": "Family-friendly 2BHK in Kothrud with many schools and hospitals nearby. Peaceful area with good connectivity.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "Gated Community", "Balcony", "CCTV"],
-    "photos": ["https://images.unsplash.com/photo-1600121848594-d8644e57abab?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "Gated Community",
+      "Balcony",
+      "CCTV"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1600121848594-d8644e57abab?w=800&q=80"
+    ],
     "ownerId": 9048,
     "ownerName": "Sameer Kulkarni",
     "ownerPhone": "9890123456",
@@ -1215,8 +1687,15 @@
     "totalFloors": "3",
     "availableFrom": "2026-04-10",
     "description": "Safe, hygienic PG for working women. CCTV, meals, WiFi and laundry included. No curfew.",
-    "amenities": ["24/7 Security", "Power Backup", "CCTV", "Modular Kitchen"],
-    "photos": ["https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=800&q=80"],
+    "amenities": [
+      "24/7 Security",
+      "Power Backup",
+      "CCTV",
+      "Modular Kitchen"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=800&q=80"
+    ],
     "ownerId": 9049,
     "ownerName": "Meena Acharya",
     "ownerPhone": "9743987654",
@@ -1240,8 +1719,21 @@
     "totalFloors": "9",
     "availableFrom": "2026-04-25",
     "description": "Upscale 3BHK in Alwarpet, Chennai's premium residential locality. Close to US consulate, top hospitals.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Gym", "Power Backup", "Club House", "CCTV", "Gated Community", "Balcony", "Modular Kitchen"],
-    "photos": ["https://images.unsplash.com/photo-1600489000022-c2086d79f9d4?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Gym",
+      "Power Backup",
+      "Club House",
+      "CCTV",
+      "Gated Community",
+      "Balcony",
+      "Modular Kitchen"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1600489000022-c2086d79f9d4?w=800&q=80"
+    ],
     "ownerId": 9050,
     "ownerName": "Prabhakaran V",
     "ownerPhone": "9840123456",
@@ -1265,8 +1757,20 @@
     "totalFloors": "12",
     "availableFrom": "2026-04-18",
     "description": "Ideal for IT professionals at Hinjawadi IT Park. Premium township with all amenities.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Gym", "Power Backup", "Club House", "CCTV", "Gated Community", "Swimming Pool"],
-    "photos": ["https://images.unsplash.com/photo-1600566752229-250ed79470f8?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Gym",
+      "Power Backup",
+      "Club House",
+      "CCTV",
+      "Gated Community",
+      "Swimming Pool"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1600566752229-250ed79470f8?w=800&q=80"
+    ],
     "ownerId": 9051,
     "ownerName": "Vaibhav Jadhav",
     "ownerPhone": "9823765432",
@@ -1290,8 +1794,17 @@
     "totalFloors": "3",
     "availableFrom": "2026-04-14",
     "description": "Spacious ground floor 3BHK with private garden. Quiet residential colony near Dwarka Expressway.",
-    "amenities": ["Parking", "24/7 Security", "Power Backup", "Balcony", "Gated Community", "Pet Friendly"],
-    "photos": ["https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "24/7 Security",
+      "Power Backup",
+      "Balcony",
+      "Gated Community",
+      "Pet Friendly"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=800&q=80"
+    ],
     "ownerId": 9052,
     "ownerName": "Kavita Rana",
     "ownerPhone": "9810765432",
@@ -1315,8 +1828,16 @@
     "totalFloors": "8",
     "availableFrom": "2026-04-10",
     "description": "Compact furnished studio in Noida. Near Sector 52 metro station, ideal for single professionals.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "CCTV"],
-    "photos": ["https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "CCTV"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=800&q=80"
+    ],
     "ownerId": 9053,
     "ownerName": "Mohit Saxena",
     "ownerPhone": "9310123456",
@@ -1340,8 +1861,18 @@
     "totalFloors": "7",
     "availableFrom": "2026-04-20",
     "description": "Modern 2BHK in booming Baner. Close to Symbiosis and many MNCs. Vibrant neighborhood.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "Gym", "CCTV", "Gated Community"],
-    "photos": ["https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "Gym",
+      "CCTV",
+      "Gated Community"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=800&q=80"
+    ],
     "ownerId": 9054,
     "ownerName": "Aditya Bhosale",
     "ownerPhone": "9822654321",
@@ -1365,8 +1896,17 @@
     "totalFloors": "5",
     "availableFrom": "2026-04-15",
     "description": "Stylish furnished 1BHK on the famous 100 Feet Road. Walking distance to Indiranagar metro.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Power Backup", "CCTV", "Intercom"],
-    "photos": ["https://images.unsplash.com/photo-1533779183510-8748e917d42e?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Power Backup",
+      "CCTV",
+      "Intercom"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1533779183510-8748e917d42e?w=800&q=80"
+    ],
     "ownerId": 9055,
     "ownerName": "Preethi Suresh",
     "ownerPhone": "9740765432",
@@ -1390,8 +1930,20 @@
     "totalFloors": "14",
     "availableFrom": "2026-04-20",
     "description": "Premium 2BHK in the heart of Cyber City. Walking distance from HITECH City metro and top IT offices.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Gym", "Power Backup", "Club House", "CCTV", "Gated Community", "Swimming Pool"],
-    "photos": ["https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Gym",
+      "Power Backup",
+      "Club House",
+      "CCTV",
+      "Gated Community",
+      "Swimming Pool"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80"
+    ],
     "ownerId": 9056,
     "ownerName": "Sanjay Kumar",
     "ownerPhone": "9849876543",
@@ -1415,8 +1967,20 @@
     "totalFloors": "20",
     "availableFrom": "2026-04-28",
     "description": "Well-spacious 3BHK in Mulund with Eastern Express Highway access. Near Mulund metro station.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Gym", "Power Backup", "Club House", "CCTV", "Gated Community", "Balcony"],
-    "photos": ["https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Gym",
+      "Power Backup",
+      "Club House",
+      "CCTV",
+      "Gated Community",
+      "Balcony"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&q=80"
+    ],
     "ownerId": 9057,
     "ownerName": "Hemant Thakkar",
     "ownerPhone": "9892456789",
@@ -1440,8 +2004,15 @@
     "totalFloors": "3",
     "availableFrom": "2026-04-15",
     "description": "Good locality in Civil Lines, Prayagraj. Near High Court and administrative offices. Vastu-compliant.",
-    "amenities": ["Parking", "24/7 Security", "Power Backup", "Balcony"],
-    "photos": ["https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "24/7 Security",
+      "Power Backup",
+      "Balcony"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&q=80"
+    ],
     "ownerId": 9058,
     "ownerName": "Vinay Mishra",
     "ownerPhone": "9415012345",
@@ -1465,8 +2036,18 @@
     "totalFloors": "2",
     "availableFrom": "2026-05-01",
     "description": "Gorgeous beach villa 200 meters from Calangute beach. Private pool, lush garden and outdoor dining.",
-    "amenities": ["Parking", "24/7 Security", "Swimming Pool", "Power Backup", "Balcony", "Terrace", "Pet Friendly"],
-    "photos": ["https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "24/7 Security",
+      "Swimming Pool",
+      "Power Backup",
+      "Balcony",
+      "Terrace",
+      "Pet Friendly"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=800&q=80"
+    ],
     "ownerId": 9059,
     "ownerName": "Maria D'Souza",
     "ownerPhone": "9823456700",
@@ -1490,8 +2071,21 @@
     "totalFloors": "15",
     "availableFrom": "2026-04-20",
     "description": "Modern 2BHK in the new-age IT hub Kharadi. Near EON Free Zone and World Trade Centre Pune.",
-    "amenities": ["Parking", "Lift", "24/7 Security", "Gym", "Power Backup", "Club House", "CCTV", "Gated Community", "Swimming Pool", "Balcony"],
-    "photos": ["https://images.unsplash.com/photo-1601084881623-cbe9ac5e54a1?w=800&q=80"],
+    "amenities": [
+      "Parking",
+      "Lift",
+      "24/7 Security",
+      "Gym",
+      "Power Backup",
+      "Club House",
+      "CCTV",
+      "Gated Community",
+      "Swimming Pool",
+      "Balcony"
+    ],
+    "photos": [
+      "https://images.unsplash.com/photo-1601084881623-cbe9ac5e54a1?w=800&q=80"
+    ],
     "ownerId": 9060,
     "ownerName": "Nilima Deshpande",
     "ownerPhone": "9822987654",

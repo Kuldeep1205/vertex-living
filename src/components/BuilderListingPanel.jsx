@@ -208,9 +208,9 @@ export default function BuilderListingPanel() {
         <div className="blp-form-wrap">
           {status === 'saved' ? (
             <div className="blp-success">
-              <div className="blp-success-icon">✅</div>
-              <h4>Property Listed Successfully!</h4>
-              <p>Your property is now visible on Vertex Living and the AI assistant will include it in recommendations.</p>
+              <div className="blp-success-icon">⏳</div>
+              <h4>Property Submitted for Review!</h4>
+              <p>Your property has been saved and is <strong>pending admin approval</strong>. It will go live on Vertex Living within 24 hours after verification. You can track the status below in "My Listings".</p>
             </div>
           ) : (
             <form className="blp-form" onSubmit={handleSubmit} noValidate>

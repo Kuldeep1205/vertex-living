@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getPropertyDetail } from '../data/properties';
 import { useAuth } from '../context/AuthContext';
+import ScheduleVisitModal from '../components/ScheduleVisitModal';
 import './PropertyDetail.css';
 
 // Auto-detect time of day
@@ -261,6 +262,7 @@ export default function PropertyDetail() {
   const [shareToast, setShareToast] = useState(false);
   const [payLoading, setPayLoading] = useState(false);
   const [paySuccess, setPaySuccess] = useState(false);
+  const [showVisitModal, setShowVisitModal] = useState(false);
 
   const sectionRefs = {
     overview:  useRef(null),
@@ -1133,7 +1135,7 @@ export default function PropertyDetail() {
             >
               {payLoading ? '⏳ Processing…' : `🔐 Book Now · ${tokenDisplay} Token`}
             </button>
-            <button className="pd-sticky-btn" onClick={() => navigate('/#contact')}>Schedule Site Visit</button>
+            <button className="pd-sticky-btn" onClick={() => setShowVisitModal(true)}>📅 Schedule Site Visit</button>
             <a href="https://wa.me/919671009931" target="_blank" rel="noopener noreferrer" className="pd-wa-btn-sm">💬 Chat Now</a>
           </div>
         </div>
@@ -1240,6 +1242,14 @@ export default function PropertyDetail() {
           </div>
         );
       })()}
+
+      {/* ── Schedule Visit Modal ── */}
+      {showVisitModal && (
+        <ScheduleVisitModal
+          property={property}
+          onClose={() => setShowVisitModal(false)}
+        />
+      )}
 
     </div>
   );

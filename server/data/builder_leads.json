@@ -83,5 +83,22 @@
     "builderName": "Emaar India",
     "status": "new",
     "createdAt": "2026-04-08T04:36:55.846Z"
+  },
+  {
+    "id": 1775706414946,
+    "clientName": "fbgngng",
+    "clientPhone": "95489251431",
+    "clientEmail": "dsfggggr@gmail.com",
+    "clientMessage": "",
+    "propertyId": 1,
+    "propertyName": "DLF The Camellias – Phase 2",
+    "propertyPrice": "₹12 Cr – ₹22 Cr",
+    "propertyConfig": "4 & 5 BHK Ultra-Luxury",
+    "propertyLocation": "Sector 42, Gurgaon",
+    "propertyStatus": "Ready to Move",
+    "propertyRera": "HRERA-PKL-2022-0041",
+    "builderName": "DLF Ltd.",
+    "status": "new",
+    "createdAt": "2026-04-09T03:46:54.946Z"
   }
 ]

@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1775707838215,
+    "name": "zxcv",
+    "phone": "9856425541",
+    "email": "xcvgfbh@gmail.com",
+    "propertyId": 2,
+    "propertyName": "DLF Magnolias",
+    "propertyLocation": "DLF Phase 5, Sector 42, Gurgaon",
+    "date": "2026-04-30",
+    "timeSlot": "1:00 PM – 3:00 PM",
+    "message": "sdfgfgj",
+    "status": "pending",
+    "adminNote": "",
+    "createdAt": "2026-04-09T04:10:38.215Z"
+  },
+  {
+    "id": 1775707697904,
+    "name": "Rahul Sharma",
+    "phone": "9876543210",
+    "email": "rahul@test.com",
+    "propertyId": 1,
+    "propertyName": "DLF The Camellias",
+    "propertyLocation": "Sector 42, Gurgaon",
+    "date": "2026-04-15",
+    "timeSlot": "11:00 AM � 1:00 PM",
+    "message": "Interested in 4BHK",
+    "status": "pending",
+    "adminNote": "",
+    "createdAt": "2026-04-09T04:08:17.904Z"
+  }
+]

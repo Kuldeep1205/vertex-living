@@ -580,7 +580,10 @@ export default function BuilderCTA() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <p>Seeing only 6? There are <strong>2,500+ live listings</strong> on the platform.</p>
-          <button className="bcta-view-all-btn">View All Properties →</button>
+          <button className="bcta-view-all-btn" onClick={() => {
+            const el = document.getElementById('pre-launch') || document.getElementById('apartments') || document.getElementById('featured-section');
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }}>View All Properties →</button>
         </motion.div>
 
       </div>

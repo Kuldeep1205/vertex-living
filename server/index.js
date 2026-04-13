@@ -28,6 +28,11 @@ app.use(cors({
   origin: [
     'https://vertexliving.netlify.app',
     'http://localhost:3000',
+    'http://localhost:3001',
+    'http://localhost:3002',
+    'http://localhost:3003',
+    'http://localhost:3004',
+    'http://localhost:3005',
     'http://localhost:5173',
   ],
   credentials: true,
@@ -82,9 +87,10 @@ if (TWILIO_ACCOUNT_SID && TWILIO_AUTH_TOKEN) {
 const DATA_DIR = process.env.VERCEL ? '/tmp' : __dirname;
 const DATA_DIR_DATA = process.env.VERCEL ? '/tmp' : path.join(__dirname, 'data');
 
-const CALLS_FILE = path.join(DATA_DIR, 'calls.json');
-const CONFIG_FILE = path.join(__dirname, 'config.json'); // read-only config stays in source
+const CALLS_FILE  = path.join(DATA_DIR, 'calls.json');
+const CONFIG_FILE = path.join(__dirname, 'config.json');
 const USERS_FILE  = path.join(DATA_DIR_DATA, 'users.json');
+const VISITS_FILE = path.join(DATA_DIR_DATA, 'visits.json');
 
 // Ensure data dir exists
 if (!fs.existsSync(DATA_DIR_DATA)) fs.mkdirSync(DATA_DIR_DATA, { recursive: true });
@@ -1337,6 +1343,59 @@ app.get('/api/admin/bookings', (req, res) => {
   const bookings = loadJSON(BOOKINGS_FILE, []);
   const sorted = [...bookings].sort((a, b) => new Date(b.bookedAt) - new Date(a.bookedAt));
   res.json(sorted);
+});
+
+// ─── Site Visit Scheduling ────────────────────────────────────────────────────
+
+// POST /api/visits  — customer books a site visit
+app.post('/api/visits', (req, res) => {
+  const { name, phone, email, propertyId, propertyName, propertyLocation, date, timeSlot, message } = req.body;
+  if (!name || !phone || !date || !timeSlot) {
+    return res.status(400).json({ error: 'Name, phone, date and time slot are required.' });
+  }
+  const visits = loadJSON(VISITS_FILE, []);
+  const visit = {
+    id:               Date.now(),
+    name:             name.trim(),
+    phone:            phone.trim(),
+    email:            (email || '').trim(),
+    propertyId:       propertyId || '',
+    propertyName:     propertyName || '',
+    propertyLocation: propertyLocation || '',
+    date,
+    timeSlot,
+    message:          (message || '').trim(),
+    status:           'pending',   // pending | contacted | confirmed | done
+    adminNote:        '',
+    createdAt:        new Date().toISOString(),
+  };
+  visits.unshift(visit);
+  saveJSON(VISITS_FILE, visits);
+  res.json({ success: true, visit });
+});
+
+// GET /api/admin/visits
+app.get('/api/admin/visits', (req, res) => {
+  const visits = loadJSON(VISITS_FILE, []);
+  res.json([...visits].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
+});
+
+// PATCH /api/admin/visits/:id/status
+app.patch('/api/admin/visits/:id/status', (req, res) => {
+  const visits = loadJSON(VISITS_FILE, []);
+  const idx = visits.findIndex(v => String(v.id) === String(req.params.id));
+  if (idx === -1) return res.status(404).json({ error: 'Not found' });
+  visits[idx].status    = req.body.status    || visits[idx].status;
+  visits[idx].adminNote = req.body.adminNote !== undefined ? req.body.adminNote : visits[idx].adminNote;
+  saveJSON(VISITS_FILE, visits);
+  res.json(visits[idx]);
+});
+
+// DELETE /api/admin/visits/:id
+app.delete('/api/admin/visits/:id', (req, res) => {
+  const visits = loadJSON(VISITS_FILE, []).filter(v => String(v.id) !== String(req.params.id));
+  saveJSON(VISITS_FILE, visits);
+  res.json({ ok: true });
 });
 
 // ─── Start Server ────────────────────────────────────────────────────────────

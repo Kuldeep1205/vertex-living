@@ -1,0 +1,220 @@
+.svm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.svm-modal {
+  background: var(--card-bg, #1a1f2e);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 540px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+}
+
+.svm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.svm-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.svm-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.svm-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary, #f1f5f9);
+  margin: 0;
+}
+
+.svm-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-secondary, #94a3b8);
+  margin: 2px 0 0;
+}
+
+.svm-close {
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  color: var(--text-secondary, #94a3b8);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.svm-close:hover { background: rgba(255, 255, 255, 0.15); }
+
+/* ── Form ── */
+.svm-form {
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.svm-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.svm-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.svm-field label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary, #94a3b8);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.svm-field input,
+.svm-field select,
+.svm-field textarea {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: var(--text-primary, #f1f5f9);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+  resize: none;
+  font-family: inherit;
+}
+
+.svm-field input:focus,
+.svm-field select:focus,
+.svm-field textarea:focus {
+  border-color: #6366f1;
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.svm-field select option {
+  background: #1a1f2e;
+  color: #f1f5f9;
+}
+
+.svm-field input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.7);
+  cursor: pointer;
+}
+
+.svm-field input:disabled,
+.svm-field select:disabled,
+.svm-field textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.svm-error {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: #fca5a5;
+  font-size: 0.85rem;
+}
+
+.svm-trust {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 10px 14px;
+  background: rgba(99, 102, 241, 0.06);
+  border-radius: 10px;
+  border: 1px solid rgba(99, 102, 241, 0.15);
+}
+
+.svm-trust span {
+  font-size: 0.78rem;
+  color: var(--text-secondary, #94a3b8);
+}
+
+.svm-submit-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.svm-submit-btn:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
+.svm-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ── Success ── */
+.svm-success {
+  padding: 32px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.svm-success-icon { font-size: 3.5rem; line-height: 1; }
+
+.svm-success h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary, #f1f5f9);
+  margin: 0;
+}
+
+.svm-success p {
+  font-size: 0.9rem;
+  color: var(--text-secondary, #94a3b8);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 380px;
+}
+
+.svm-success-note {
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: 10px;
+  padding: 10px 16px;
+  color: #86efac !important;
+  font-size: 0.85rem !important;
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .svm-row { grid-template-columns: 1fr; }
+  .svm-trust { gap: 8px; }
+  .svm-trust span { font-size: 0.72rem; }
+}

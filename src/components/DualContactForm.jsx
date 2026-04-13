@@ -26,17 +26,23 @@ export default function DualContactForm() {
   const handleBuyer   = e => setBuyer(f  => ({ ...f,  [e.target.name]: e.target.value }));
   const handleBuilder = e => setBuilder(f => ({ ...f, [e.target.name]: e.target.value }));
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
     setStatus('submitting');
     const payload = tab === 'buyer'
       ? { ...buyer, formType: 'buyer' }
       : { ...builder, formType: 'builder' };
-    fetch('/api/admin/inquiries', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    }).catch(() => {}).finally(() => setStatus('success'));
+    try {
+      const res = await fetch('/api/admin/inquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error('Server error');
+      setStatus('success');
+    } catch {
+      setStatus('error');
+    }
   };
 
   const reset = () => {
@@ -71,7 +77,22 @@ export default function DualContactForm() {
       </div>
 
       <AnimatePresence mode="wait">
-        {status === 'success' ? (
+        {status === 'error' ? (
+          <motion.div
+            key="error"
+            className="dcf-success"
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1,   y: 0  }}
+            exit={{    opacity: 0, scale: 0.9, y: -10 }}
+            transition={{ duration: 0.4 }}
+            style={{ background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.3)' }}
+          >
+            <div className="dcf-success-icon">❌</div>
+            <h3 style={{ color: '#ef4444' }}>Server not reachable</h3>
+            <p>Please make sure the server is running and try again.</p>
+            <button className="dcf-reset-btn" onClick={() => setStatus('idle')}>Try Again</button>
+          </motion.div>
+        ) : status === 'success' ? (
           <motion.div
             key="success"
             className="dcf-success"
