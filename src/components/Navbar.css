@@ -52,6 +52,29 @@
   letter-spacing: -0.5px;
 }
 
+/* Logo image */
+.navbar-logo img {
+  height: 50px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  transition: filter 0.3s ease;
+}
+
+/* Scrolled — always show original colors */
+.navbar.scrolled .navbar-logo img {
+  filter: none;
+}
+
+/* Light mode hero — dark bg not present, show original */
+[data-theme="light"] .navbar-logo img {
+  filter: none;
+}
+
+/* Dark mode scrolled — navbar bg is dark, keep white */
+[data-theme="dark"] .navbar.scrolled .navbar-logo img {
+  filter: brightness(0) invert(1);
+}
+
 /* Desktop Navigation */
 .navbar-nav {
   display: flex;

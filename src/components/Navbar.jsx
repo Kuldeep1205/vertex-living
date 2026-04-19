@@ -124,12 +124,7 @@ const Navbar = ({ scrolled, scrollToSection }) => {
           {/* Logo */}
           <div className="navbar-logo">
             <a href="#hero" onClick={(e) => { e.preventDefault(); handleNavClick('hero'); }}>
-              <svg className="logo-icon" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                <rect width="40" height="40" rx="8" fill="currentColor"/>
-                <path d="M12 18l8-8 8 8v10a2 2 0 0 1-2 2H14a2 2 0 0 1-2-2V18z" stroke="white" strokeWidth="2"/>
-                <path d="M20 12v10M16 22h8" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-              </svg>
-              <span className="logo-text">Vertex Living</span>
+              <img src="/logo.png" alt="Vertex Living" />
             </a>
           </div>
 

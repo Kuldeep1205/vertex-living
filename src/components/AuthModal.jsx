@@ -66,10 +66,7 @@ function BrandPanel() {
       <div className="auth-brand-top">
         <div className="auth-brand-logo">
           <div className="auth-brand-logo-icon">
-            <svg width="22" height="22" viewBox="0 0 40 40" fill="none">
-              <path d="M12 18l8-8 8 8v10a2 2 0 0 1-2 2H14a2 2 0 0 1-2-2V18z" stroke="white" strokeWidth="2.5" strokeLinejoin="round"/>
-              <path d="M17 30v-7h6v7" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
+            <img src="/logo.png" alt="Vertex Living" width="28" height="28" style={{objectFit:'contain'}}/>
           </div>
           <div>
             <div className="auth-brand-logo-text">Vertex Living</div>

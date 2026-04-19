@@ -1174,8 +1174,8 @@ const MOODS = {
     emoji: '😎',
     label: 'Luxury',
     sectionTitle: 'Luxury Properties',
-    subtitle: 'Ultra-premium residences ₹7 Cr & above — curated for connoisseurs',
-    filter: p => p.price >= 7,
+    subtitle: 'Ultra-premium residences ₹5 Cr & above — curated for connoisseurs',
+    filter: p => p.price >= 5,
     badge: '👑 Luxury Pick',
     color: '#d4a853',
     colorRgb: '212,168,83',
@@ -1186,9 +1186,9 @@ const MOODS = {
   budget: {
     emoji: '💰',
     label: 'Budget Friendly',
-    sectionTitle: 'Smart Buys Under ₹7 Cr',
-    subtitle: 'Value-for-money homes under ₹7 Cr — great ROI for smart buyers',
-    filter: p => p.price < 7,
+    sectionTitle: 'Smart Buys Under ₹5 Cr',
+    subtitle: 'Value-for-money homes under ₹5 Cr — great ROI for smart buyers',
+    filter: p => p.price < 5,
     badge: '💚 Best Value',
     color: '#10b981',
     colorRgb: '16,185,129',
@@ -1276,7 +1276,7 @@ const HomePage = () => {
   const { settings: siteSettings } = useSiteSettings();
 
   // Also update priceCategory filter to use dynamic threshold
-  const luxuryThreshold = parseFloat(siteSettings.luxuryThreshold) || 7;
+  const luxuryThreshold = parseFloat(siteSettings.luxuryThreshold) || 5;
 
   // AI Chatbot States
   const [chatOpen, setChatOpen] = useState(false);
@@ -1312,7 +1312,7 @@ const HomePage = () => {
   const { mood: navbarMood } = useTheme();
   // Filter entire DB by current mood: luxury = ₹7 Cr+, budget = under ₹7 Cr
   const moodFilteredDB = React.useMemo(() => {
-    const threshold = parseFloat(siteSettings.luxuryThreshold) || 7;
+    const threshold = parseFloat(siteSettings.luxuryThreshold) || 5;
     return liveProperties.filter(p => navbarMood === 'luxury' ? p.price >= threshold : p.price < threshold);
   }, [navbarMood, liveProperties, siteSettings.luxuryThreshold]
   );
@@ -1320,8 +1320,8 @@ const HomePage = () => {
 
   const moodProperties = React.useMemo(() => {
     if (!activeMood || !MOODS[activeMood]) return [];
-    return liveProperties.filter(MOODS[activeMood].filter).slice(0, 9);
-  }, [activeMood, liveProperties]);
+    return moodFilteredDB.filter(MOODS[activeMood].filter).slice(0, 9);
+  }, [activeMood, moodFilteredDB]);
 
   const [interiorProp, setInteriorProp] = useState(null);
   const [cinematicData, setCinematicData] = useState(null);
@@ -3935,7 +3935,7 @@ What would you prefer? The clock is ticking! ⏰
             <p className="mood-selector-label">What are you looking for?</p>
             <div className="mood-pills">
               {Object.entries(MOODS).map(([key, mood]) => {
-                const count = liveProperties.filter(mood.filter).length;
+                const count = moodFilteredDB.filter(mood.filter).length;
                 const isActive = activeMood === key;
                 return (
                   <motion.button
@@ -4406,7 +4406,7 @@ What would you prefer? The clock is ticking! ⏰
           filter: p => p.status === 'Under Construction',
         },
       ].map(cfg => {
-        const props = liveProperties.filter(cfg.filter);
+        const props = moodFilteredDB.filter(cfg.filter);
         if (props.length === 0) return null;
         const isExpanded = !!expandedSections[cfg.id];
         const displayProps = isExpanded ? props : props.slice(0, 6);
@@ -4497,7 +4497,7 @@ What would you prefer? The clock is ticking! ⏰
         { id: 'warehouses',    label: 'Warehouses & Industrial', emoji: '🏭', color: '#94a3b8', bg: 'rgba(148,163,184,0.05)', border: 'rgba(148,163,184,0.15)', badge: '🏭 Warehouse', filter: p => p.type === 'Warehouse' || p.type === 'Industrial' },
         { id: 'shops-offices', label: 'Shops & Offices',      emoji: '💼', color: '#38bdf8', bg: 'rgba(56,189,248,0.05)',  border: 'rgba(56,189,248,0.15)',  badge: '💼 Shop/Office',  filter: p => p.type === 'Shop' || p.type === 'Office' },
       ].map(cfg => {
-        const props = liveProperties.filter(cfg.filter);
+        const props = moodFilteredDB.filter(cfg.filter);
         if (props.length === 0) return null;
         const isExpanded = !!expandedSections[cfg.id];
         const displayProps = isExpanded ? props : props.slice(0, 6);
@@ -5541,7 +5541,7 @@ What would you prefer? The clock is ticking! ⏰
 
       {/* Verified Properties Modal */}
       {showVerifiedModal && (() => {
-        const filtered = liveProperties.filter(p => {
+        const filtered = moodFilteredDB.filter(p => {
           const matchType   = verifiedFilter.type   === 'All' || p.type === verifiedFilter.type;
           const matchStatus = verifiedFilter.status === 'All' || p.status === verifiedFilter.status;
           const matchSearch = !verifiedFilter.search ||
@@ -5553,7 +5553,7 @@ What would you prefer? The clock is ticking! ⏰
             (verifiedFilter.priceCategory === 'Luxury'  && p.price >= luxuryThreshold);
           return matchType && matchStatus && matchSearch && matchPrice;
         });
-        const types    = ['All', ...new Set(liveProperties.map(p => p.type))];
+        const types    = ['All', ...new Set(moodFilteredDB.map(p => p.type))];
         const statuses = ['All', 'Ready to Move', 'Under Construction'];
         return (
           <div className="vp-modal-bg" onClick={() => setShowVerifiedModal(false)}>

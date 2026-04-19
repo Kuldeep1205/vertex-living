@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const DEFAULT = {
-  luxuryThreshold: 7,
+  luxuryThreshold: 5,
   luxuryLabel: 'Luxury',
   budgetLabel: 'Budget',
   companyName: 'Vertex Living',

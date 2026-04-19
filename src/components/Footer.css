@@ -41,6 +41,12 @@
   flex-shrink: 0;
 }
 
+.footer-logo img {
+  height: 46px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
 .footer-description {
   font-size: var(--text-base);
   color: rgba(255, 255, 255, 0.8);
