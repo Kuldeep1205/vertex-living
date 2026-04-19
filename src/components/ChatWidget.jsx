@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import './ChatWidget.css';
 
-const API = import.meta.env.VITE_API_URL || 'https://vertex-living.onrender.com';
+const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com';
 
 const WELCOME_TEXT = "👋 **Namaste!** Welcome to Vertex Living!\n\nI'm Vertex AI, your smart property assistant powered by real AI.\n\nAsk me anything — properties, budget, EMI, locations, site visits, or just explore!";
 const INITIAL_CHIPS = ['Browse Properties', 'Check Budget', 'Book Site Visit', 'EMI Calculator'];

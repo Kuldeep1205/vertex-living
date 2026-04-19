@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
 import './BuilderListingPanel.css';
 
-const API = import.meta.env.VITE_API_URL || 'https://vertex-living.onrender.com';
+const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com';
 
 const EMPTY_FORM = {
   name: '', developer: '', location: '', sector: '',

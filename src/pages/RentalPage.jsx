@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { useRentalAuth } from '../context/RentalAuthContext';
 import './RentalPage.css';
 
-const API = import.meta.env.VITE_API_URL || 'https://vertex-living.onrender.com';
+const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com';
 
 // ─── Utility ──────────────────────────────────────────────────────────────────
 

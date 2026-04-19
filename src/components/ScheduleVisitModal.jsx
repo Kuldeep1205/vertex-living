@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './ScheduleVisitModal.css';
 
-const API = import.meta.env.VITE_API_URL || 'https://vertex-living.onrender.com';
+const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com';
 
 const TIME_SLOTS = [
   '9:00 AM – 11:00 AM',

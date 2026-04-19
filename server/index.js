@@ -26,7 +26,10 @@ const wss = process.env.VERCEL ? null : new WebSocketServer({ server, path: '/me
 
 app.use(cors({
   origin: [
+    'https://vertexliving.in',
+    'https://www.vertexliving.in',
     'https://vertexliving.netlify.app',
+    'https://vertex-living-server.onrender.com',
     'http://localhost:3000',
     'http://localhost:3001',
     'http://localhost:3002',
