@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useRentalAuth } from '../context/RentalAuthContext';
 import './RentalPage.css';
 
@@ -992,10 +993,19 @@ export default function RentalPage() {
 
   return (
     <div className="rental-page">
+      <Helmet>
+        <title>Rent Property in Gurgaon | Flats & Apartments for Rent | Vertex Living</title>
+        <meta name="description" content="Rent flats, apartments & houses in Gurgaon, Delhi NCR. Zero brokerage, verified owners. 2BHK, 3BHK, furnished & unfurnished rentals in Sector 42, 65, Golf Course Road, New Gurgaon. Vertex Living." />
+        <meta name="keywords" content="rent property gurgaon, flats for rent gurgaon, apartments for rent gurugram, rental property delhi ncr, 2bhk rent gurgaon, 3bhk rent gurgaon, furnished flat gurgaon, pg gurgaon, vertex living rental" />
+        <link rel="canonical" href="https://vertexliving.in/rent" />
+        <meta property="og:title" content="Rent Property in Gurgaon | Zero Brokerage | Vertex Living" />
+        <meta property="og:description" content="Rent verified flats & apartments in Gurgaon. Zero brokerage. Direct from owners." />
+        <meta property="og:url" content="https://vertexliving.in/rent" />
+      </Helmet>
       {/* Hero */}
       <div className="rental-hero">
-        <h1 className="rental-hero-title">Find Your Perfect Rental</h1>
-        <p className="rental-hero-subtitle">Verified rental properties across India — direct from owners, zero brokerage</p>
+        <h1 className="rental-hero-title">Rent Property in Gurgaon — Zero Brokerage</h1>
+        <p className="rental-hero-subtitle">Verified rental properties in Gurgaon & Delhi NCR — direct from owners, zero brokerage</p>
         <div className="rental-hero-pills">
           <span className="rental-hero-pill">&#10003; Zero Brokerage</span>
           <span className="rental-hero-pill">&#10003; Verified Owners</span>

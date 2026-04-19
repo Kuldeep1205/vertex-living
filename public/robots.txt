@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+Disallow: /admin-panel
+Disallow: /dashboard
+Disallow: /rental-admin
+Disallow: /access-denied
+
+# Allow Google Image Bot
+User-agent: Googlebot-Image
+Allow: /
+
+# Sitemaps
+Sitemap: https://vertexliving.in/sitemap.xml
+Sitemap: https://vertexliving.in/sitemap-images.xml
+
+# Crawl delay for non-Google bots
+User-agent: AhrefsBot
+Crawl-delay: 10
+User-agent: SemrushBot
+Crawl-delay: 10
+User-agent: MJ12bot
+Disallow: /

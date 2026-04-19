@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import {
   motion, useScroll, useTransform, useSpring, useInView,
 } from 'framer-motion';
@@ -344,6 +345,15 @@ export default function StoryPage() {
 
   return (
     <div className="sp-root">
+      <Helmet>
+        <title>Vertex Living Story | Premium Properties in Gurgaon & Delhi NCR</title>
+        <meta name="description" content="Discover the Vertex Living story — Gurgaon's most prestigious real estate portfolio. RERA-verified luxury properties on Golf Course Road, Sector 65, New Gurgaon. 12% annual appreciation. 36+ premium properties." />
+        <meta name="keywords" content="vertex living story, luxury real estate gurgaon, DLF camellias, M3M golf estate, golf course road property, buy property gurgaon, rera verified gurgaon, vertex living properties" />
+        <link rel="canonical" href="https://vertexliving.in/story" />
+        <meta property="og:title" content="Vertex Living Story | Premium Properties in Gurgaon" />
+        <meta property="og:description" content="Gurgaon's most prestigious real estate portfolio. RERA-verified luxury properties with 12% annual appreciation." />
+        <meta property="og:url" content="https://vertexliving.in/story" />
+      </Helmet>
 
       {/* Side progress */}
       <div className="sp-progress-rail">
