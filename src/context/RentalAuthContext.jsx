@@ -5,6 +5,15 @@ const RentalAuthContext = createContext(null);
 const SESSION_KEY = 'vl_rental_session';
 const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com';
 
+async function apiFetch(url, options) {
+  try {
+    return await fetch(url, options);
+  } catch {
+    await new Promise(r => setTimeout(r, 4000));
+    return fetch(url, options);
+  }
+}
+
 function getSession() {
   try { return JSON.parse(localStorage.getItem(SESSION_KEY)); } catch { return null; }
 }
@@ -45,7 +54,7 @@ export function RentalAuthProvider({ children }) {
   /** Returns null on success, error string on failure */
   const rentalLogin = useCallback(async (email, password) => {
     try {
-      const res = await fetch(`${API}/api/rental/auth/login`, {
+      const res = await apiFetch(`${API}/api/rental/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -57,14 +66,14 @@ export function RentalAuthProvider({ children }) {
       setRentalAuthModal(false);
       return null;
     } catch {
-      return 'Server not reachable. Please make sure the server is running.';
+      return 'Server is starting up, please try again in a few seconds.';
     }
   }, []);
 
   /** Returns null on success, error string on failure */
   const rentalRegister = useCallback(async (name, email, password, phone, role) => {
     try {
-      const res = await fetch(`${API}/api/rental/auth/register`, {
+      const res = await apiFetch(`${API}/api/rental/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password, phone, role }),
@@ -76,7 +85,7 @@ export function RentalAuthProvider({ children }) {
       setRentalAuthModal(false);
       return null;
     } catch {
-      return 'Server not reachable. Please make sure the server is running.';
+      return 'Server is starting up, please try again in a few seconds.';
     }
   }, []);
 

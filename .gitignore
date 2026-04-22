@@ -6,3 +6,5 @@ dist/
 .DS_Store
 smooth-result.png
 skills-lock.json
+*.zip
+logo 1.png

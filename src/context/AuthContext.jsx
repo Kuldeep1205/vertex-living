@@ -5,6 +5,21 @@ const AuthContext = createContext(null);
 const SESSION_KEY = 'vl_session';
 const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com';
 
+// Retry once if network fails (handles Render free-tier cold start)
+async function apiFetch(url, options) {
+  try {
+    return await fetch(url, options);
+  } catch {
+    await new Promise(r => setTimeout(r, 4000));
+    return fetch(url, options);
+  }
+}
+
+// Silently wake the Render server in the background
+export function wakeServer() {
+  fetch(`${API}/health`).catch(() => {});
+}
+
 function getSession() {
   try { return JSON.parse(localStorage.getItem(SESSION_KEY)); } catch { return null; }
 }
@@ -45,7 +60,7 @@ export function AuthProvider({ children }) {
   /** Returns null on success, error string on failure */
   const register = useCallback(async (name, email, password, phone, role = 'buyer') => {
     try {
-      const res = await fetch(`${API}/api/auth/register`, {
+      const res = await apiFetch(`${API}/api/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password, phone, role }),
@@ -57,14 +72,14 @@ export function AuthProvider({ children }) {
       setAuthModal(false);
       return null;
     } catch {
-      return 'Server not reachable. Please make sure the server is running.';
+      return 'Server is starting up, please try again in a few seconds.';
     }
   }, []);
 
   /** Returns null on success, error string on failure */
   const login = useCallback(async (email, password) => {
     try {
-      const res = await fetch(`${API}/api/auth/login`, {
+      const res = await apiFetch(`${API}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -76,7 +91,7 @@ export function AuthProvider({ children }) {
       setAuthModal(false);
       return null;
     } catch {
-      return 'Server not reachable. Please make sure the server is running.';
+      return 'Server is starting up, please try again in a few seconds.';
     }
   }, []);
 

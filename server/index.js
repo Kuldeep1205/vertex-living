@@ -41,6 +41,10 @@ app.use(cors({
   credentials: true,
 }));
 app.use(express.json());
+
+// Health check — keeps Render awake + lets frontend test connectivity
+app.get('/health', (_req, res) => res.json({ status: 'ok', ts: Date.now() }));
+app.get('/', (_req, res) => res.json({ service: 'Vertex Living API', status: 'running' }));
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/admin', adminRouter);

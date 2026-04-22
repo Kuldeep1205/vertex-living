@@ -2,7 +2,7 @@ import React, { lazy, Suspense, useEffect, useState } from 'react'
 import { Routes, Route, useLocation, useNavigate, useNavigationType, Navigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ThemeProvider } from './context/ThemeContext'
-import { AuthProvider } from './context/AuthContext'
+import { AuthProvider, wakeServer } from './context/AuthContext'
 import { SiteSettingsProvider } from './context/SiteSettingsContext'
 import { RentalAuthProvider } from './context/RentalAuthContext'
 import { useAuth } from './context/AuthContext'
@@ -183,6 +183,9 @@ function AppInner() {
 }
 
 export default function App() {
+  // Wake the Render server as soon as the app loads (free tier sleeps when idle)
+  useEffect(() => { wakeServer(); }, []);
+
   return (
     <SiteSettingsProvider>
     <ThemeProvider>
