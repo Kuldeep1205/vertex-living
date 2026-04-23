@@ -78,7 +78,7 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
-  /** Returns null on success, error string on failure */
+  /** Returns null on success, { error, needsOtp?, email? } on failure */
   const login = useCallback(async (email, password) => {
     try {
       const res = await apiFetch(`${API}/api/auth/login`, {
@@ -87,13 +87,13 @@ export function AuthProvider({ children }) {
         body: JSON.stringify({ email, password }),
       });
       const data = await res.json();
-      if (!res.ok) return data.error || 'Invalid email or password.';
+      if (!res.ok) return { error: data.error || 'Invalid email or password.', needsOtp: data.needsOtp || false, email: data.email || email };
       saveSession(data.user);
       setUser(data.user);
       setAuthModal(false);
       return null;
     } catch {
-      return 'Server is starting up, please try again in a few seconds.';
+      return { error: 'Server is starting up, please try again in a few seconds.' };
     }
   }, []);
 

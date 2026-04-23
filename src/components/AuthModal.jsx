@@ -146,7 +146,10 @@ function LoginForm() {
   const [showPw, setShowPw]     = useState(false);
   const [error, setError]       = useState('');
   const [loading, setLoading]   = useState(false);
+  const [step, setStep]         = useState('form'); // 'form' | 'otp'
+  const [otpEmail, setOtpEmail] = useState('');
 
+  const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com';
   const isPropertyRedirect = returnTo && returnTo.startsWith('/property');
 
   const handleSubmit = async (e) => {
@@ -155,9 +158,40 @@ function LoginForm() {
     if (!password)     { setError('Please enter your password.'); return; }
     setLoading(true); setError('');
     await new Promise(r => setTimeout(r, 650));
-    const err = await login(email, password);
-    if (err) { setError(err); setLoading(false); }
+    const result = await login(email, password);
+    if (result) {
+      if (result.needsOtp) {
+        try {
+          await fetch(`${API}/api/auth/send-otp`, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: result.email || email.trim().toLowerCase() }),
+          });
+        } catch {}
+        setOtpEmail(result.email || email.trim().toLowerCase());
+        setStep('otp');
+      } else {
+        setError(result.error);
+      }
+      setLoading(false);
+    }
   };
+
+  const handleOtpVerified = async () => {
+    setLoading(true); setError('');
+    const result = await login(email, password);
+    if (result) { setError(result.error); setStep('form'); setLoading(false); }
+  };
+
+  if (step === 'otp') {
+    return (
+      <OtpStep
+        email={otpEmail}
+        API={API}
+        onVerified={handleOtpVerified}
+        onBack={() => setStep('form')}
+      />
+    );
+  }
 
   return (
     <>
@@ -226,6 +260,103 @@ function LoginForm() {
   );
 }
 
+/* ── OTP Verification Step ── */
+function OtpStep({ email, onVerified, onBack, API }) {
+  const [otp, setOtp]         = useState('');
+  const [error, setError]     = useState('');
+  const [loading, setLoading] = useState(false);
+  const [resendTimer, setResendTimer] = useState(60);
+  const [resending, setResending]     = useState(false);
+
+  useEffect(() => {
+    if (resendTimer <= 0) return;
+    const t = setInterval(() => setResendTimer(v => v - 1), 1000);
+    return () => clearInterval(t);
+  }, [resendTimer]);
+
+  const handleVerify = async (e) => {
+    e.preventDefault();
+    if (!otp.trim() || otp.length !== 6) { setError('Please enter the 6-digit OTP.'); return; }
+    setLoading(true); setError('');
+    try {
+      const res = await fetch(`${API}/api/auth/verify-otp`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, otp: otp.trim() }),
+      });
+      const data = await res.json();
+      if (!res.ok) { setError(data.error || 'Verification failed.'); setLoading(false); return; }
+      onVerified();
+    } catch { setError('Network error. Please try again.'); setLoading(false); }
+  };
+
+  const handleResend = async () => {
+    setResending(true); setError('');
+    try {
+      await fetch(`${API}/api/auth/send-otp`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      setResendTimer(60);
+    } catch { setError('Failed to resend. Try again.'); }
+    setResending(false);
+  };
+
+  return (
+    <>
+      <div className="auth-form-header">
+        <div style={{ fontSize: '2.5rem', marginBottom: 8 }}>{IC.shield}</div>
+        <h3 className="auth-form-title">Verify your email</h3>
+        <p className="auth-form-subtitle">
+          We sent a 6-digit code to <strong>{email}</strong>. Enter it below to continue.
+        </p>
+      </div>
+
+      <form className="auth-form" onSubmit={handleVerify} noValidate>
+        {error && (
+          <div className="auth-error">
+            <span className="auth-error-icon">{IC.warn}</span>
+            <span>{error}</span>
+          </div>
+        )}
+
+        <div className="auth-field">
+          <label className="auth-label">6-Digit OTP</label>
+          <div className="auth-input-wrap">
+            <span className="auth-input-icon">{IC.shield}</span>
+            <input
+              className="auth-input"
+              type="text"
+              inputMode="numeric"
+              maxLength={6}
+              placeholder="Enter OTP"
+              value={otp}
+              onChange={e => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
+              autoComplete="one-time-code"
+              style={{ letterSpacing: '0.3em', fontSize: '1.3rem', fontWeight: 700 }}
+            />
+          </div>
+        </div>
+
+        <button className="auth-submit" type="submit" disabled={loading}>
+          {loading ? <><span className="auth-spinner" /> Verifying…</> : 'Verify & Continue →'}
+        </button>
+
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
+          <button type="button" style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', fontSize: 13 }} onClick={onBack}>
+            ← Change email
+          </button>
+          {resendTimer > 0
+            ? <span style={{ fontSize: 13, color: '#64748b' }}>Resend in {resendTimer}s</span>
+            : <button type="button" style={{ background: 'none', border: 'none', color: '#6366f1', cursor: 'pointer', fontSize: 13 }} onClick={handleResend} disabled={resending}>
+                {resending ? 'Sending…' : 'Resend OTP'}
+              </button>
+          }
+        </div>
+      </form>
+    </>
+  );
+}
+
 /* ── Register Form ── */
 function RegisterForm() {
   const { register, setAuthTab, returnTo } = useAuth();
@@ -235,6 +366,9 @@ function RegisterForm() {
   const [showCon, setShowCon]   = useState(false);
   const [error,   setError]     = useState('');
   const [loading, setLoading]   = useState(false);
+  const [step,    setStep]      = useState('form'); // 'form' | 'otp'
+
+  const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com';
 
   const set = k => e => setForm(f => ({ ...f, [k]: e.target.value }));
   const str = getStrength(form.password);
@@ -253,16 +387,39 @@ function RegisterForm() {
     e.preventDefault();
     const v = validate();
     if (v) { setError(v); return; }
-    setLoading(true);
-    setError('');
-    await new Promise(r => setTimeout(r, 600));
+    setLoading(true); setError('');
+    try {
+      const res = await fetch(`${API}/api/auth/send-otp`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: form.email.trim().toLowerCase() }),
+      });
+      const data = await res.json();
+      if (!res.ok) { setError(data.error || 'Failed to send OTP.'); setLoading(false); return; }
+      setStep('otp');
+    } catch { setError('Network error. Please try again.'); }
+    setLoading(false);
+  };
+
+  const handleOtpVerified = async () => {
+    setLoading(true); setError('');
     const err = await register(form.name, form.email, form.password, form.phone, role);
-    if (err) { setError(err); setLoading(false); }
+    if (err) { setError(err); setStep('form'); setLoading(false); }
   };
 
   const pwMatch = form.confirm.length > 0;
   const pwOk    = form.password === form.confirm && form.confirm.length > 0;
   const isPropertyRedirect = returnTo && returnTo.startsWith('/property');
+
+  if (step === 'otp') {
+    return (
+      <OtpStep
+        email={form.email.trim().toLowerCase()}
+        API={API}
+        onVerified={handleOtpVerified}
+        onBack={() => setStep('form')}
+      />
+    );
+  }
 
   return (
     <>
@@ -288,19 +445,11 @@ function RegisterForm() {
 
       {/* Role selector */}
       <div className="auth-role-toggle">
-        <button
-          type="button"
-          className={`auth-role-btn${role === 'buyer' ? ' active' : ''}`}
-          onClick={() => setRole('buyer')}
-        >
+        <button type="button" className={`auth-role-btn${role === 'buyer' ? ' active' : ''}`} onClick={() => setRole('buyer')}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           I'm a Buyer
         </button>
-        <button
-          type="button"
-          className={`auth-role-btn${role === 'builder' ? ' active' : ''}`}
-          onClick={() => setRole('builder')}
-        >
+        <button type="button" className={`auth-role-btn${role === 'builder' ? ' active' : ''}`} onClick={() => setRole('builder')}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
           I'm a Builder
         </button>
@@ -379,8 +528,8 @@ function RegisterForm() {
 
         <button className="auth-submit" type="submit" disabled={loading}>
           {loading
-            ? <><span className="auth-spinner" /> Creating account…</>
-            : 'Create Account →'}
+            ? <><span className="auth-spinner" /> Sending OTP…</>
+            : 'Continue — Verify Email →'}
         </button>
 
         <p className="auth-terms">

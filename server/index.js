@@ -149,14 +149,26 @@ function generateOTP() {
 
 // ─── Register / Login ────────────────────────────────────────────────────────
 
+// Temporary store for emails that passed OTP verification (valid for 15 min)
+const verifiedEmails = new Map(); // email -> expiresAt
+
 // POST /api/auth/register
 app.post('/api/auth/register', (req, res) => {
   const { name, email, password, phone, role } = req.body;
-  if (!name || !email || !password) {
+  const emailKey = (email || '').toLowerCase().trim();
+  if (!name || !emailKey || !password) {
     return res.status(400).json({ error: 'Name, email and password are required.' });
   }
+
+  // Require email OTP verification before account creation
+  const verifiedAt = verifiedEmails.get(emailKey);
+  if (!verifiedAt || Date.now() > verifiedAt) {
+    verifiedEmails.delete(emailKey);
+    return res.status(403).json({ error: 'Email not verified. Please verify your email with OTP first.', needsOtp: true });
+  }
+
   const users = loadJSON(USERS_FILE, []);
-  if (users.find(u => u.email.toLowerCase() === email.toLowerCase().trim())) {
+  if (users.find(u => u.email === emailKey)) {
     return res.status(400).json({ error: 'This email is already registered.' });
   }
   const allowedRoles = ['buyer', 'builder'];
@@ -164,15 +176,17 @@ app.post('/api/auth/register', (req, res) => {
   const newUser = {
     id: Date.now(),
     name: name.trim(),
-    email: email.toLowerCase().trim(),
+    email: emailKey,
     password,
     phone: phone?.trim() || '',
     role: userRole,
     avatar: name.trim()[0].toUpperCase(),
+    emailVerified: true,
     createdAt: new Date().toISOString(),
   };
   users.push(newUser);
   saveJSON(USERS_FILE, users);
+  verifiedEmails.delete(emailKey); // consume the verification
   const { password: _pw, ...session } = newUser;
   res.json({ success: true, user: session });
 });
@@ -188,6 +202,9 @@ app.post('/api/auth/login', (req, res) => {
     u => u.email.toLowerCase() === email.toLowerCase().trim() && u.password === password
   );
   if (!found) return res.status(401).json({ error: 'Invalid email or password.' });
+  if (!found.emailVerified) {
+    return res.status(403).json({ error: 'Please verify your email before logging in.', needsOtp: true, email: found.email });
+  }
   const { password: _pw, ...session } = found;
   res.json({ success: true, user: session });
 });
@@ -448,9 +465,9 @@ app.post('/api/auth/verify-otp', (req, res) => {
     return res.status(400).json({ error: `Incorrect code. ${left} attempt${left === 1 ? '' : 's'} remaining.` });
   }
 
-  // Success — mark verified and clean up
-  entry.verified = true;
+  // Success — mark in verifiedEmails (15 min window to complete registration)
   otpStore.delete(email);
+  verifiedEmails.set(email, Date.now() + 15 * 60 * 1000);
 
   return res.json({ success: true, message: 'Email verified successfully!' });
 });
