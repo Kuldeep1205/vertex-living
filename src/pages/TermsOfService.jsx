@@ -1,10 +1,17 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 export default function TermsOfService() {
   const navigate = useNavigate();
   return (
     <div style={{ minHeight: '100vh', background: '#0d1117', color: '#e2e8f0', padding: '60px 24px', fontFamily: 'inherit' }}>
+      <Helmet>
+        <title>Terms of Service | Vertex Living – Real Estate Gurgaon</title>
+        <meta name="description" content="Read Vertex Living's terms of service. Understand the terms and conditions governing use of our real estate platform and property services in Gurgaon and Delhi NCR." />
+        <link rel="canonical" href="https://vertexliving.in/terms" />
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
       <div style={{ maxWidth: 760, margin: '0 auto' }}>
         <button onClick={() => navigate(-1)} style={{ background: 'none', border: '1px solid rgba(255,255,255,0.12)', color: '#94a3b8', borderRadius: 8, padding: '8px 16px', cursor: 'pointer', fontSize: 13, marginBottom: 36 }}>
           ← Back

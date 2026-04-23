@@ -3,54 +3,102 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
-  <!-- Homepage -->
+  <!-- ═══ HIGH PRIORITY PAGES ═══════════════════════════════════════════ -->
+
+  <!-- Homepage – target: property in gurgaon, luxury apartments gurgaon, vertex living -->
   <url>
     <loc>https://vertexliving.in/</loc>
-    <lastmod>2026-04-19</lastmod>
+    <lastmod>2026-04-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://vertexliving.in/logo1.png</image:loc>
-      <image:title>Vertex Living – Premium Real Estate in Gurgaon</image:title>
+      <image:title>Vertex Living – Premium Real Estate Gurgaon</image:title>
     </image:image>
   </url>
 
-  <!-- Story / About Page -->
-  <url>
-    <loc>https://vertexliving.in/story</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Rental Page -->
+  <!-- Rental – target: rent flat gurgaon, property for rent gurgaon, 2bhk rent gurgaon -->
   <url>
     <loc>https://vertexliving.in/rent</loc>
-    <lastmod>2026-04-19</lastmod>
+    <lastmod>2026-04-23</lastmod>
     <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Story/About – target: vertex living gurgaon, real estate company gurgaon -->
+  <url>
+    <loc>https://vertexliving.in/story</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Compare Properties – target: compare property gurgaon, property comparison gurgaon -->
+  <url>
+    <loc>https://vertexliving.in/compare</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- ═══ PROPERTY DETAIL PAGES ════════════════════════════════════════ -->
+
+  <!-- DLF The Camellias – target: dlf camellias gurgaon, golf course road property -->
+  <url>
+    <loc>https://vertexliving.in/property/dlf-camellias-phase2</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1400&q=80</image:loc>
+      <image:title>DLF The Camellias Phase 2 – Sector 42 Golf Course Road Gurgaon</image:title>
+    </image:image>
+  </url>
+
+  <!-- M3M Crown – target: m3m crown gurgaon, new launch gurgaon, sector 111 gurgaon -->
+  <url>
+    <loc>https://vertexliving.in/property/m3m-crown</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Compare Properties -->
+  <!-- IREO Emerald Hills – target: ireo gurgaon, sector 65 gurgaon property -->
   <url>
-    <loc>https://vertexliving.in/compare</loc>
-    <lastmod>2026-04-19</lastmod>
+    <loc>https://vertexliving.in/property/ireo-emerald-hills</loc>
+    <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.85</priority>
   </url>
 
-  <!-- Privacy Policy -->
+  <!-- Godrej Meridian – target: godrej properties gurgaon, sector 106 gurgaon -->
+  <url>
+    <loc>https://vertexliving.in/property/godrej-meridian</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Signature Global Titanium – target: signature global gurgaon, affordable luxury gurgaon -->
+  <url>
+    <loc>https://vertexliving.in/property/signature-global-titanium</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ═══ LEGAL PAGES ════════════════════════════════════════════════ -->
+
   <url>
     <loc>https://vertexliving.in/privacy</loc>
-    <lastmod>2026-04-19</lastmod>
+    <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
 
-  <!-- Terms of Service -->
   <url>
     <loc>https://vertexliving.in/terms</loc>
-    <lastmod>2026-04-19</lastmod>
+    <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>

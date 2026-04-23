@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { getPropertyDetail, PROPERTY_DATABASE } from '../data/properties';
 import './CompareProperties.css';
 
@@ -84,6 +85,15 @@ export default function CompareProperties() {
 
   return (
     <div className="cp-root">
+      <Helmet>
+        <title>Compare Properties in Gurgaon | Side-by-Side Comparison | Vertex Living</title>
+        <meta name="description" content="Compare luxury properties in Gurgaon side-by-side. Analyse price, size, EMI, amenities & ROI for DLF, M3M, IREO, Godrej & more. Make smarter investment decisions with Vertex Living." />
+        <meta name="keywords" content="compare property gurgaon, property comparison gurgaon, best property gurgaon, dlf vs m3m gurgaon, luxury apartment comparison, vertex living compare" />
+        <link rel="canonical" href="https://vertexliving.in/compare" />
+        <meta property="og:title" content="Compare Properties in Gurgaon | Vertex Living" />
+        <meta property="og:description" content="Side-by-side comparison of luxury properties in Gurgaon. Price, size, EMI, amenities & investment returns." />
+        <meta property="og:url" content="https://vertexliving.in/compare" />
+      </Helmet>
       {/* Top Bar */}
       <div className="cp-topbar">
         <button className="cp-back" onClick={() => navigate(-1)}>

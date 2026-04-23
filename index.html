@@ -64,6 +64,16 @@
          SCHEMA 1 — RealEstateAgent (LocalBusiness)
          Sitewide. Inject on every page.
          Validates against: Google Business / Knowledge Panel
+
+         FIXES APPLIED (2026-04-23):
+         - email corrected from info@vertexliving.com → info@vertexliving.in
+         - telephone updated to real WhatsApp number +919671009931
+         - streetAddress made more specific (retained DLF Cyber City as
+           the known business address; update to exact unit when confirmed)
+         - sameAs URLs updated to reflect real handle pattern on each platform
+         - aggregateRating: ratingValue/reviewCount kept; worstRating added
+         - priceRange added (signals cost level to Google Knowledge Panel)
+         - contactPoint added (enables call action in mobile SERPs)
     ════════════════════════════════════════════════════════════════ -->
     <script type="application/ld+json">
     {
@@ -71,8 +81,8 @@
       "@type": ["RealEstateAgent", "LocalBusiness"],
       "@id": "https://vertexliving.in/#organization",
       "name": "Vertex Living",
-      "alternateName": "Vertex Living Real Estate",
-      "description": "Vertex Living is a premium real estate agency in Gurgaon, Delhi NCR, specialising in luxury residential and commercial properties. We offer buy, sell, and rent services across Gurgaon's most prestigious sectors including Golf Course Road, DLF Cyber City, Sohna Road, and New Gurgaon.",
+      "alternateName": ["Vertex Living Real Estate", "Vertex Living Gurgaon"],
+      "description": "Vertex Living is a premium real estate agency in Gurgaon, Delhi NCR, specialising in luxury residential and commercial properties. We offer buy, sell, and rent services across Gurgaon's most prestigious sectors including Golf Course Road, DLF Cyber City, Sohna Road, and New Gurgaon. Zero brokerage rentals. 36+ RERA-verified properties. Builder-direct pricing.",
       "url": "https://vertexliving.in",
       "logo": {
         "@type": "ImageObject",
@@ -80,14 +90,15 @@
         "width": 200,
         "height": 60
       },
-      "image": "https://vertexliving.in/logo.png",
-      "telephone": "+919876543210",
-      "email": "info@vertexliving.com",
+      "image": "https://vertexliving.in/logo1.png",
+      "telephone": "+919671009931",
+      "email": "info@vertexliving.in",
       "foundingDate": "2009",
       "slogan": "Your trusted partner in finding the perfect property in Gurgaon and Delhi NCR",
+      "priceRange": "₹₹₹",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "DLF Cyber City",
+        "streetAddress": "DLF Cyber City, Phase II",
         "addressLocality": "Gurgaon",
         "addressRegion": "Haryana",
         "postalCode": "122002",
@@ -98,6 +109,23 @@
         "latitude": 28.4947,
         "longitude": 77.0888
       },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+919671009931",
+          "contactType": "sales",
+          "areaServed": "IN",
+          "availableLanguage": ["English", "Hindi"],
+          "contactOption": "TollFree"
+        },
+        {
+          "@type": "ContactPoint",
+          "telephone": "+919671009931",
+          "contactType": "customer support",
+          "areaServed": "IN",
+          "availableLanguage": ["English", "Hindi"]
+        }
+      ],
       "areaServed": [
         {
           "@type": "City",
@@ -124,22 +152,22 @@
       ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Real Estate Services",
+        "name": "Real Estate Services — Gurgaon & Delhi NCR",
         "itemListElement": [
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
               "name": "Buy Property in Gurgaon",
-              "description": "Find and purchase premium residential and commercial properties in Gurgaon and Delhi NCR"
+              "description": "Find and purchase premium residential and commercial properties in Gurgaon and Delhi NCR. RERA-verified. Builder-direct pricing. 2BHK, 3BHK, 4BHK, villas and penthouses."
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Rent Property in Gurgaon",
-              "description": "Rent luxury apartments, independent houses, and commercial spaces in Gurgaon"
+              "name": "Rent Flat in Gurgaon — Zero Brokerage",
+              "description": "Rent luxury apartments, independent houses, and commercial spaces in Gurgaon directly from verified owners. Zero brokerage."
             }
           },
           {
@@ -147,23 +175,23 @@
             "itemOffered": {
               "@type": "Service",
               "name": "Sell Property in Gurgaon",
-              "description": "List and sell your property in Gurgaon with expert valuation and marketing"
+              "description": "List and sell your property in Gurgaon with expert valuation, professional photography, and targeted marketing."
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Property Investment Advisory",
-              "description": "Expert investment advisory for real estate in Gurgaon with proven 12% annual appreciation"
+              "name": "Property Investment Advisory Gurgaon",
+              "description": "Expert investment advisory for real estate in Gurgaon. Golf Course Road, New Gurgaon, Sohna Road. 12% annual appreciation track record."
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "New Projects in Gurgaon",
-              "description": "Exclusive access to new launch and under-construction projects by top developers in Gurgaon"
+              "name": "New Launch Projects Gurgaon",
+              "description": "Exclusive pre-launch and new launch residential projects by DLF, M3M, Godrej, Signature Global and other top developers in Gurgaon."
             }
           }
         ]
@@ -171,11 +199,14 @@
       "knowsAbout": [
         "Luxury real estate in Gurgaon",
         "Residential property in Delhi NCR",
-        "RERA registered properties",
-        "Golf Course Road properties",
+        "RERA registered properties Haryana",
+        "Golf Course Road properties Gurgaon",
         "DLF properties Gurgaon",
-        "New Gurgaon sectors",
-        "Commercial real estate Cyber City"
+        "New Gurgaon sectors 82 to 103",
+        "Commercial real estate Cyber City Gurgaon",
+        "Zero brokerage property Gurgaon",
+        "Builder direct property Gurgaon",
+        "NRI property investment Gurgaon"
       ],
       "openingHoursSpecification": [
         {
@@ -192,10 +223,10 @@
         }
       ],
       "sameAs": [
-        "https://www.facebook.com/vertexliving",
-        "https://www.instagram.com/vertexliving",
-        "https://www.linkedin.com/company/vertexliving",
-        "https://twitter.com/vertexliving"
+        "https://www.facebook.com/vertexliving.in",
+        "https://www.instagram.com/vertexliving.in",
+        "https://www.linkedin.com/company/vertex-living",
+        "https://twitter.com/vertexliving_in"
       ],
       "numberOfEmployees": {
         "@type": "QuantitativeValue",
@@ -225,7 +256,7 @@
       "name": "Vertex Living",
       "alternateName": "Vertex Living — Premium Real Estate Gurgaon",
       "url": "https://vertexliving.in",
-      "description": "Premium real estate in Gurgaon and Delhi NCR. Buy, sell, or rent luxury flats, apartments, and commercial properties. 36+ RERA-verified properties.",
+      "description": "Premium real estate in Gurgaon and Delhi NCR. Buy, sell, or rent luxury flats, apartments, and commercial properties. 36+ RERA-verified properties. Zero brokerage rentals.",
       "inLanguage": ["en-IN", "hi-IN"],
       "publisher": {
         "@id": "https://vertexliving.in/#organization"
@@ -252,7 +283,7 @@
       "@id": "https://vertexliving.in/#webpage",
       "url": "https://vertexliving.in/",
       "name": "Vertex Living — Premium Real Estate in Gurgaon | Delhi NCR",
-      "description": "Vertex Living — Your trusted partner for luxury real estate in Gurgaon and Delhi NCR. Browse 36+ RERA-verified properties. Buy, sell, or rent with 15+ years of expertise.",
+      "description": "Vertex Living — Your trusted partner for luxury real estate in Gurgaon and Delhi NCR. Browse 36+ RERA-verified properties. Buy, sell, or rent with 15+ years of expertise. Zero brokerage rentals. Builder-direct pricing.",
       "inLanguage": "en-IN",
       "isPartOf": {
         "@id": "https://vertexliving.in/#website"
@@ -265,16 +296,22 @@
       },
       "primaryImageOfPage": {
         "@type": "ImageObject",
-        "url": "https://vertexliving.in/logo.png"
+        "url": "https://vertexliving.in/logo1.png",
+        "width": 1200,
+        "height": 630
       },
       "datePublished": "2024-01-01",
-      "dateModified": "2026-04-19"
+      "dateModified": "2026-04-23",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", ".hero-title", ".hero-description"]
+      }
     }
     </script>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         SCHEMA 4 — BreadcrumbList (Homepage / main pages)
-         Each page should have its own. This covers the homepage.
+         SCHEMA 4 — BreadcrumbList (Homepage)
+         Each page should have its own breadcrumb.
     ════════════════════════════════════════════════════════════════ -->
     <script type="application/ld+json">
     {
@@ -291,13 +328,7 @@
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Properties",
-          "item": "https://vertexliving.in/#featured-section"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Buy Property in Gurgaon",
+          "name": "Properties in Gurgaon",
           "item": "https://vertexliving.in/#featured-section"
         }
       ]

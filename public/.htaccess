@@ -1,0 +1,161 @@
+# ═══════════════════════════════════════════════════════════════
+#  Vertex Living — Hostinger Apache Config
+#  Production-grade: SPA routing + gzip + caching + security
+#  Updated: 2026-04-23
+# ═══════════════════════════════════════════════════════════════
+
+Options -MultiViews -Indexes
+
+# ── 1. HTTPS redirect ────────────────────────────────────────────
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ── 2. www → non-www canonical redirect ─────────────────────────
+RewriteCond %{HTTP_HOST} ^www\.vertexliving\.in$ [NC]
+RewriteRule ^(.*)$ https://vertexliving.in/$1 [L,R=301]
+
+# ── 3. SPA routing — serve index.html for all non-file/dir requests
+#    This fixes ALL 404s on /story, /rent, /compare, /privacy,
+#    /terms, /property/:id etc on Hostinger Apache.
+#    Static files (assets/, *.xml, *.txt, *.png) pass through normally.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ /index.html [QSA,L]
+
+# ── 4. Gzip / Deflate compression ───────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE font/ttf
+  AddOutputFilterByType DEFLATE font/otf
+  AddOutputFilterByType DEFLATE font/woff
+  AddOutputFilterByType DEFLATE font/woff2
+  AddOutputFilterByType DEFLATE application/font-woff
+  AddOutputFilterByType DEFLATE application/font-woff2
+
+  # Don't compress already-compressed formats
+  SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|webp|avif|mp4|webm|gz|zip|bz2)$ no-gzip dont-vary
+</IfModule>
+
+# ── 5. Browser caching (mod_expires) ────────────────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # HTML — never cache (SPA, index.html must always be fresh for new deploys)
+  ExpiresByType text/html                        "access plus 0 seconds"
+
+  # Vite-hashed JS/CSS assets — 1 year (filenames contain content hash)
+  ExpiresByType text/css                         "access plus 1 year"
+  ExpiresByType application/javascript           "access plus 1 year"
+  ExpiresByType text/javascript                  "access plus 1 year"
+
+  # Images
+  ExpiresByType image/jpeg                       "access plus 6 months"
+  ExpiresByType image/png                        "access plus 6 months"
+  ExpiresByType image/webp                       "access plus 6 months"
+  ExpiresByType image/avif                       "access plus 6 months"
+  ExpiresByType image/svg+xml                    "access plus 6 months"
+  ExpiresByType image/gif                        "access plus 6 months"
+  ExpiresByType image/x-icon                     "access plus 1 year"
+  ExpiresByType image/vnd.microsoft.icon         "access plus 1 year"
+
+  # Fonts
+  ExpiresByType font/woff                        "access plus 1 year"
+  ExpiresByType font/woff2                       "access plus 1 year"
+  ExpiresByType font/ttf                         "access plus 1 year"
+  ExpiresByType font/otf                         "access plus 1 year"
+  ExpiresByType application/font-woff            "access plus 1 year"
+  ExpiresByType application/font-woff2           "access plus 1 year"
+
+  # Sitemaps / robots / llms — short TTL so Googlebot picks up changes fast
+  ExpiresByType application/xml                  "access plus 1 day"
+  ExpiresByType text/xml                         "access plus 1 day"
+  ExpiresByType text/plain                       "access plus 1 day"
+</IfModule>
+
+# ── 6. Cache-Control headers (mod_headers) ──────────────────────
+<IfModule mod_headers.c>
+
+  # Never cache index.html — ensures new deployments are always fetched
+  <FilesMatch "^index\.html$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+
+  # Vite content-hashed assets — immutable, 1 year
+  <FilesMatch "\.(js|css)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Font files — long-term immutable cache + CORS
+  <FilesMatch "\.(woff|woff2|ttf|otf|eot)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+
+  # Images in /public (logo.png, logo1.png, og-image.png)
+  <FilesMatch "\.(png|jpg|jpeg|webp|avif|gif|svg|ico)$">
+    Header set Cache-Control "public, max-age=15552000"
+  </FilesMatch>
+
+  # Sitemaps and robots — allow revalidation within 1 day
+  <FilesMatch "(sitemap.*\.xml|robots\.txt|llms\.txt)$">
+    Header set Cache-Control "public, max-age=86400, must-revalidate"
+  </FilesMatch>
+
+  # ── Security headers ────────────────────────────────────────────
+  # Prevents MIME-type sniffing attacks
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Blocks the page from being embedded in iframes on other origins
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # Legacy XSS filter (belt-and-suspenders; CSP is the real protection)
+  Header always set X-XSS-Protection "1; mode=block"
+
+  # Controls how much referrer info is sent
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Restricts access to browser APIs
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(self), payment=(self)"
+
+  # Strict Transport Security — tells browsers to always use HTTPS
+  # max-age=1 year; include subdomains; submit to preload list once confirmed working
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+  # Content Security Policy
+  # Tuned for: React SPA + Razorpay + Unsplash images + Pexels/Mixkit video + Supabase API
+  # NOTE: After enabling, test thoroughly and monitor browser console for CSP violations.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://checkout.razorpay.com https://api.razorpay.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://images.unsplash.com https://plus.unsplash.com https://vertex-living-server.onrender.com; media-src 'self' https://videos.pexels.com https://assets.mixkit.co; connect-src 'self' https://vertex-living-server.onrender.com https://api.razorpay.com https://*.supabase.co; frame-src https://api.razorpay.com; object-src 'none'; base-uri 'self'; form-action 'self'"
+
+</IfModule>
+
+# ── 7. MIME types for modern formats ────────────────────────────
+<IfModule mod_mime.c>
+  AddType application/javascript          .js .mjs
+  AddType text/css                        .css
+  AddType image/webp                      .webp
+  AddType image/avif                      .avif
+  AddType font/woff                       .woff
+  AddType font/woff2                      .woff2
+  AddType application/json               .json
+  AddType application/xml                .xml
+  AddType text/plain                     .txt
+</IfModule>
+
+# ── 8. Custom error pages — serve SPA shell on 404/403 ──────────
+#    React Router handles the visual 404 state client-side
+ErrorDocument 404 /index.html
+ErrorDocument 403 /index.html

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- ═══════════════════════════════════════════════════════════
+       HOMEPAGE
+  ════════════════════════════════════════════════════════════ -->
+  <url>
+    <loc>https://vertexliving.in/</loc>
+    <image:image>
+      <image:loc>https://vertexliving.in/logo1.png</image:loc>
+      <image:title>Vertex Living – Premium Real Estate in Gurgaon &amp; Delhi NCR</image:title>
+      <image:caption>Vertex Living – Your trusted partner for luxury property in Gurgaon and Delhi NCR. 36+ RERA-verified properties.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1400&amp;q=80</image:loc>
+      <image:title>Luxury Apartments in Gurgaon – Vertex Living</image:title>
+      <image:caption>Premium luxury apartments available in Gurgaon through Vertex Living – Golf Course Road, Sector 65, New Gurgaon</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1400&amp;q=80</image:loc>
+      <image:title>DLF Premium Apartments – Gurgaon Real Estate</image:title>
+      <image:caption>RERA-verified DLF luxury residential properties in Gurgaon listed by Vertex Living</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1400&amp;q=80</image:loc>
+      <image:title>M3M Golf Estate – Sector 65 Gurgaon</image:title>
+      <image:caption>M3M Golf Estate luxury 4BHK apartments on Golf Course Road, Sector 65, Gurgaon – listed by Vertex Living</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1400&amp;q=80</image:loc>
+      <image:title>Luxury Villa Interiors – Gurgaon Premium Properties</image:title>
+      <image:caption>Premium villa interiors representing Vertex Living's luxury property portfolio in Gurgaon</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       STORY / ABOUT PAGE
+  ════════════════════════════════════════════════════════════ -->
+  <url>
+    <loc>https://vertexliving.in/story</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1400&amp;q=80</image:loc>
+      <image:title>Gurgaon Skyline – Vertex Living Real Estate Story</image:title>
+      <image:caption>Gurgaon's iconic skyline – the Millennium City where Vertex Living has operated for 15+ years</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&amp;q=80</image:loc>
+      <image:title>Golf Course Road Premium Properties – Vertex Living</image:title>
+      <image:caption>Ultra-luxury residential properties on Golf Course Road, Gurgaon – curated by Vertex Living</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1400&amp;q=80</image:loc>
+      <image:title>DLF The Camellias – Sector 42 Gurgaon</image:title>
+      <image:caption>DLF The Camellias – India's most prestigious luxury residential address, Sector 42, Gurgaon</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       RENTAL PAGE
+  ════════════════════════════════════════════════════════════ -->
+  <url>
+    <loc>https://vertexliving.in/rent</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1400&amp;q=80</image:loc>
+      <image:title>Furnished Flat for Rent in Gurgaon – Vertex Living</image:title>
+      <image:caption>Fully furnished 2BHK and 3BHK flats available for rent in Gurgaon through Vertex Living</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1400&amp;q=80</image:loc>
+      <image:title>Luxury Rental Apartment – Sector 42 Gurgaon</image:title>
+      <image:caption>Premium furnished rental apartments in Sector 42, Sector 65, and Golf Course Road, Gurgaon</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1400&amp;q=80</image:loc>
+      <image:title>Semi-Furnished 3BHK for Rent – New Gurgaon</image:title>
+      <image:caption>Semi-furnished 3BHK apartments for rent in New Gurgaon (Sectors 82–103) – affordable luxury rentals</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       PROPERTY DETAIL PAGES — Representative IDs
+       Property IDs 1–47 exist in the database.
+       Add new entries here as new properties are added.
+  ════════════════════════════════════════════════════════════ -->
+
+  <!-- ID 1: DLF The Camellias – Sector 42 -->
+  <url>
+    <loc>https://vertexliving.in/property/1</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1400&amp;q=80</image:loc>
+      <image:title>DLF The Camellias – Ultra-Luxury 4BHK Sector 42 Gurgaon</image:title>
+      <image:caption>DLF The Camellias, DLF Phase 5, Sector 42, Gurgaon – 5500 sqft ultra-luxury apartment at ₹8.5 Cr. RERA verified. Listed by Vertex Living.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ID 2: DLF Magnolias – Sector 42 -->
+  <url>
+    <loc>https://vertexliving.in/property/2</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1400&amp;q=80</image:loc>
+      <image:title>DLF Magnolias – Luxury Apartment Sector 42 Gurgaon</image:title>
+      <image:caption>DLF Magnolias, Sector 42 Gurgaon – 5200 sqft 4BHK luxury apartment at ₹7.8 Cr. Ready to Move. Vertex Living.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ID 3: DLF Aralias – Sector 42 -->
+  <url>
+    <loc>https://vertexliving.in/property/3</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1400&amp;q=80</image:loc>
+      <image:title>DLF Aralias – 4BHK Luxury Apartment Sector 42 Gurgaon</image:title>
+      <image:caption>DLF Aralias, DLF Phase 5, Sector 42, Gurgaon – 5800 sqft at ₹9.2 Cr. RERA verified. Listed by Vertex Living.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ID 13: M3M Golf Estate – Sector 65 -->
+  <url>
+    <loc>https://vertexliving.in/property/13</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1400&amp;q=80</image:loc>
+      <image:title>M3M Golf Estate – 4BHK Sector 65 Golf Course Road Gurgaon</image:title>
+      <image:caption>M3M Golf Estate, Golf Course Road, Sector 65, Gurgaon – 4200 sqft 4BHK at ₹4.2 Cr. Ready to Move. Vertex Living.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ID 14: Emerald Hills – Sector 65 -->
+  <url>
+    <loc>https://vertexliving.in/property/14</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1400&amp;q=80</image:loc>
+      <image:title>Emerald Hills – Luxury 4BHK Golf Course Road Sector 65 Gurgaon</image:title>
+      <image:caption>Emerald Hills, Golf Course Road, Sector 65, Gurgaon – 5200 sqft at ₹6.8 Cr. RERA verified. Vertex Living.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ID 35: The Leela Residency – Golf Course Road -->
+  <url>
+    <loc>https://vertexliving.in/property/35</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&amp;q=80</image:loc>
+      <image:title>The Leela Residency – Ultra-Luxury 4BHK Golf Course Road Gurgaon</image:title>
+      <image:caption>The Leela Residency, Golf Course Road, Gurgaon – 6000 sqft 4BHK at ₹12 Cr. Ready to Move. Listed by Vertex Living.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ID 30: DLF Cyber Hub – Commercial -->
+  <url>
+    <loc>https://vertexliving.in/property/30</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&amp;q=80</image:loc>
+      <image:title>DLF Cyber Hub – Commercial Property Cyber City Gurgaon</image:title>
+      <image:caption>DLF Cyber Hub commercial space, DLF Cyber City, Gurgaon – 50,000 sqft at ₹15 Cr. Listed by Vertex Living.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ID 20: Godrej Infinity – New Gurgaon Sector 82 -->
+  <url>
+    <loc>https://vertexliving.in/property/20</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1400&amp;q=80</image:loc>
+      <image:title>Godrej Infinity – 3BHK New Gurgaon Sector 82</image:title>
+      <image:caption>Godrej Infinity, New Gurgaon, Sector 82 – 1850 sqft 3BHK at ₹1.35 Cr. Under Construction. Vertex Living.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ID 37: Signature Global Titanium SPR – Sector 71 -->
+  <url>
+    <loc>https://vertexliving.in/property/37</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1400&amp;q=80</image:loc>
+      <image:title>Signature Global Titanium SPR – 2BHK Sector 71 Gurgaon</image:title>
+      <image:caption>Signature Global Titanium SPR, NH-48 Corridor, Sector 71, Gurgaon – 950 sqft 2BHK at ₹55 Lac. Ready to Move.</image:caption>
+    </image:image>
+  </url>
+
+</urlset>

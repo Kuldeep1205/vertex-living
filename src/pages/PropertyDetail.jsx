@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { getPropertyDetail } from '../data/properties';
 import { useAuth } from '../context/AuthContext';
 import ScheduleVisitModal from '../components/ScheduleVisitModal';
@@ -562,8 +563,46 @@ export default function PropertyDetail() {
   // Investment score color
   const scoreColor = property.investmentScore >= 80 ? '#22c55e' : property.investmentScore >= 65 ? '#f59e0b' : '#6366f1';
 
+  const propImg = (property.images && property.images[0]) || 'https://vertexliving.in/logo1.png';
+  const propDesc = `${property.name} – ${property.bedrooms || ''} BHK ${property.type || 'apartment'} in ${property.location || property.city || 'Gurgaon'}. ${property.priceDisplay || `₹${property.price} Cr`}. ${property.area ? property.area + '. ' : ''}RERA verified. Contact Vertex Living.`;
+
   return (
     <div className="pd-root">
+      <Helmet>
+        <title>{property.name} | {property.location || property.city || 'Gurgaon'} | Vertex Living</title>
+        <meta name="description" content={propDesc} />
+        <meta name="keywords" content={`${property.name}, ${property.developer || ''}, ${property.location || ''}, ${property.city || 'gurgaon'} property, buy property ${property.city || 'gurgaon'}, ${property.bedrooms || ''}bhk ${property.city || 'gurgaon'}, vertex living, rera verified gurgaon`} />
+        <link rel="canonical" href={`https://vertexliving.in/property/${property.id}`} />
+        <meta property="og:title" content={`${property.name} | ${property.priceDisplay || `₹${property.price} Cr`} | Vertex Living`} />
+        <meta property="og:description" content={propDesc} />
+        <meta property="og:url" content={`https://vertexliving.in/property/${property.id}`} />
+        <meta property="og:image" content={propImg} />
+        <meta property="og:type" content="website" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": property.type === 'Villa' ? 'SingleFamilyResidence' : 'Apartment',
+          "name": property.name,
+          "description": propDesc,
+          "url": `https://vertexliving.in/property/${property.id}`,
+          "image": propImg,
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": property.sector || property.location || '',
+            "addressLocality": property.city || 'Gurgaon',
+            "addressRegion": "Haryana",
+            "addressCountry": "IN"
+          },
+          "numberOfRooms": property.bedrooms || undefined,
+          "floorSize": property.area ? { "@type": "QuantitativeValue", "value": property.area, "unitCode": "FTK" } : undefined,
+          "offers": {
+            "@type": "Offer",
+            "price": property.price ? property.price * 10000000 : undefined,
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "seller": { "@type": "RealEstateAgent", "name": "Vertex Living", "url": "https://vertexliving.in" }
+          }
+        })}</script>
+      </Helmet>
 
       {/* ── Top Bar ── */}
       <div className="pd-topbar">

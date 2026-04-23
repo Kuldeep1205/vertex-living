@@ -1,5 +1,6 @@
 import React, { lazy, Suspense, useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
@@ -3071,6 +3072,16 @@ What would you prefer? The clock is ticking! ⏰
   return (
     <IntelligenceContext.Provider value={intelligence}>
     <div className="homepage">
+      <Helmet>
+        <title>Vertex Living | Buy Property in Gurgaon | Luxury Flats & Apartments | Zero Brokerage</title>
+        <meta name="description" content="Buy luxury flats & apartments in Gurgaon directly from builders — zero brokerage. 36+ RERA-verified properties on Golf Course Road, Sector 65, New Gurgaon. 2BHK, 3BHK, 4BHK & villas. Vertex Living." />
+        <meta name="keywords" content="property in gurgaon, buy flat gurgaon, luxury apartments gurgaon, real estate gurgaon, 2bhk gurgaon, 3bhk gurgaon, 4bhk gurgaon, golf course road property, sector 65 gurgaon, new gurgaon property, rera verified gurgaon, zero brokerage gurgaon, builder direct gurgaon, dlf gurgaon, m3m gurgaon, vertex living, vertex living gurgaon, property delhi ncr, flats in gurugram, buy property delhi ncr, luxury villas gurgaon, ready to move flats gurgaon, new launch gurgaon, property investment gurgaon" />
+        <link rel="canonical" href="https://vertexliving.in/" />
+        <meta property="og:title" content="Vertex Living | Buy Property in Gurgaon | Zero Brokerage" />
+        <meta property="og:description" content="36+ RERA-verified luxury properties in Gurgaon. Buy directly from builders — zero brokerage. Golf Course Road, Sector 65, New Gurgaon." />
+        <meta property="og:url" content="https://vertexliving.in/" />
+        <meta property="og:image" content="https://vertexliving.in/logo1.png" />
+      </Helmet>
       <MarketPulse />
       <Navbar
         scrolled={scrolled}
