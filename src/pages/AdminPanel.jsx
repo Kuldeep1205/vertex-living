@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import './AdminPanel.css'
 
-const API = (import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com') + '/api/admin'
-const RENTAL_API = '/api/rental'
+const BASE = import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com';
+const API = `${BASE}/api/admin`
+const RENTAL_API = `${BASE}/api/rental`
 
 // ─── Icons ───────────────────────────────────────────────────────────────────
 const Ico = {
@@ -88,10 +89,10 @@ export default function AdminPanel() {
       fetch(`${API}/settings`).then(r => r.json()).catch(() => ({})),
       fetch(`${API}/users`).then(r => r.json()).catch(() => []),
       fetch(`${API}/pending-properties`).then(r => r.json()).catch(() => []),
-      fetch('/api/admin/bookings').then(r => r.json()).catch(() => []),
-      fetch('/api/admin/builder-registrations').then(r => r.json()).catch(() => []),
-      fetch('/api/admin/builder-leads').then(r => r.json()).catch(() => []),
-      fetch('/api/admin/visits').then(r => r.json()).catch(() => []),
+      fetch(`${API}/bookings`).then(r => r.json()).catch(() => []),
+      fetch(`${API}/builder-registrations`).then(r => r.json()).catch(() => []),
+      fetch(`${API}/builder-leads`).then(r => r.json()).catch(() => []),
+      fetch(`${API}/visits`).then(r => r.json()).catch(() => []),
     ]).then(([props, agts, inqs, stgs, usrs, pending, bkgs, bregs, bleads, vsts]) => {
       setProperties(props)
       setAgents(agts)
@@ -141,7 +142,7 @@ export default function AdminPanel() {
     const fd = new FormData()
     files.forEach(f => fd.append('files', f))
     try {
-      const res = await fetch('/api/builder/upload-files', { method: 'POST', body: fd })
+      const res = await fetch(`${BASE}/api/builder/upload-files`, { method: 'POST', body: fd })
       const data = await res.json()
       if (data.urls) {
         setPropForm(s => ({ ...s, photos: [...(s.photos || []), ...data.urls] }))

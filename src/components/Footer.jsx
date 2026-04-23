@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Footer.css';
 
+const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com';
+
 /**
  * Footer Component
  *
@@ -20,7 +22,7 @@ const Footer = () => {
       setNlStatus('error'); return;
     }
     try {
-      await fetch('/api/admin/inquiries', {
+      await fetch(`${API}/api/admin/inquiries`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: 'Newsletter', email: nlEmail, enquiry: 'Newsletter Subscription', type: 'Newsletter' }),

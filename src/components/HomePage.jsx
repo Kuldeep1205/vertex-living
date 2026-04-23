@@ -21,6 +21,8 @@ const DualContactForm     = lazy(() => import('./DualContactForm'));
 const BuilderListingPanel = lazy(() => import('./BuilderListingPanel'));
 const BuyerProfilePanel   = lazy(() => import('./BuyerProfilePanel'));
 
+const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com';
+
 const CinematicView        = lazy(() => import('./CinematicView'));
 const PropertyMap          = lazy(() => import('./PropertyMap'));
 const InteriorPreviewModal = lazy(() => import('./InteriorPreviewModal'));
@@ -1251,10 +1253,10 @@ const HomePage = () => {
 
   const fetchLiveData = useCallback(() => {
     Promise.allSettled([
-      fetch('/api/admin/properties')
+      fetch(`${API}/api/admin/properties`)
         .then(r => r.json()).then(data => { if (Array.isArray(data) && data.length) setApiProperties(data); })
         .catch(() => {}),
-      fetch('/api/admin/agents')
+      fetch(`${API}/api/admin/agents`)
         .then(r => r.json()).then(data => { if (Array.isArray(data) && data.length) setApiAgents(data); })
         .catch(() => {}),
     ]).finally(() => setApiFetched(true));

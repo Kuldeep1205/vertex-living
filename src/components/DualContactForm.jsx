@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import './DualContactForm.css';
 
+const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com';
 const BUYER_INITIAL  = { name: '', phone: '', email: '', budget: '', type: '', sector: '', message: '' };
 const BUILDER_INITIAL = { company: '', contact: '', phone: '', email: '', rera: '', project: '', enquiry: '', message: '' };
 
@@ -33,7 +34,7 @@ export default function DualContactForm() {
       ? { ...buyer, formType: 'buyer' }
       : { ...builder, formType: 'builder' };
     try {
-      const res = await fetch('/api/admin/inquiries', {
+      const res = await fetch(`${API}/api/admin/inquiries`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

@@ -5,6 +5,8 @@ import { useAuth } from '../context/AuthContext';
 import ScheduleVisitModal from '../components/ScheduleVisitModal';
 import './PropertyDetail.css';
 
+const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com';
+
 // Auto-detect time of day
 function detectTimeOfDay() {
   const h = new Date().getHours();
@@ -201,8 +203,8 @@ export default function PropertyDetail() {
     if (!staticProperty) {
       setServerLoading(true);
       Promise.all([
-        fetch('/api/admin/properties').then(r => r.json()).catch(() => []),
-        fetch('/api/admin/pending-properties').then(r => r.json()).catch(() => []),
+        fetch(`${API}/api/admin/properties`).then(r => r.json()).catch(() => []),
+        fetch(`${API}/api/admin/pending-properties`).then(r => r.json()).catch(() => []),
       ]).then(([live, pending]) => {
         const all = [...(Array.isArray(live) ? live : []), ...(Array.isArray(pending) ? pending : [])];
         const found = all.find(p => String(p.id) === String(id));
@@ -439,7 +441,7 @@ export default function PropertyDetail() {
         ? '₹' + (TOKEN_AMOUNT / 1e5).toFixed(1) + ' L'
         : '₹' + TOKEN_AMOUNT.toLocaleString('en-IN');
 
-      const res = await fetch('/api/payment/create-order', {
+      const res = await fetch(`${API}/api/payment/create-order`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -455,7 +457,7 @@ export default function PropertyDetail() {
       const data = await res.json();
       // If Razorpay order fails (keys not configured), fall back to direct booking
       if (!data.success || !data.order?.id) {
-        const fbRes = await fetch('/api/payment/dev-booking', {
+        const fbRes = await fetch(`${API}/api/payment/dev-booking`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -479,7 +481,7 @@ export default function PropertyDetail() {
         image: '/vite.svg',
         order_id: data.order.id,
         handler: async (response) => {
-          const verifyRes = await fetch('/api/payment/verify', {
+          const verifyRes = await fetch(`${API}/api/payment/verify`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

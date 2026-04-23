@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
+const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com';
+
 const DEFAULT = {
   luxuryThreshold: 5,
   luxuryLabel: 'Luxury',
@@ -32,7 +34,7 @@ export function SiteSettingsProvider({ children }) {
   const [settings, setSettings] = useState(DEFAULT);
 
   useEffect(() => {
-    fetch('/api/admin/settings')
+    fetch(`${API}/api/admin/settings`)
       .then(r => r.json())
       .then(data => setSettings(s => ({ ...s, ...data })))
       .catch(() => {});
