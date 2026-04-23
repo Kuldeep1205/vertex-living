@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import './BuilderCTA.css';
+import { apiFetch, whatsappLink } from '../utils/apiFetch';
 
 const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com';
 
@@ -198,7 +199,7 @@ export default function BuilderCTA() {
       if (!res.ok) { setLeadErr(data.error || 'Failed to send.'); setLeadStatus('error'); return; }
       setLeadStatus('success');
     } catch {
-      setLeadErr('Server not reachable. Please try again.'); setLeadStatus('error');
+      setLeadStatus('wa-fallback');
     }
   };
 
@@ -260,7 +261,7 @@ export default function BuilderCTA() {
       setStatus('success');
       setSelectedFiles([]); setFilePreviews([]);
     } catch {
-      setErrMsg('Server not reachable. Please try again.'); setStatus('error');
+      setStatus('wa-fallback');
     }
   };
 
@@ -354,7 +355,30 @@ export default function BuilderCTA() {
               </div>
             ) : (
               <AnimatePresence mode="wait">
-                {status === 'success' ? (
+                {status === 'wa-fallback' ? (
+                  <motion.div
+                    key="wa-fallback"
+                    className="bcta-success"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.4 }}
+                    style={{ textAlign: 'center' }}
+                  >
+                    <div className="bcta-success-icon">📲</div>
+                    <h3>Register via WhatsApp</h3>
+                    <p>Our server is warming up. Send your project details via WhatsApp and we'll get back to you within 48 hours!</p>
+                    <a
+                      href={whatsappLink(`Hi! I want to register my project. Company: ${form.companyName || ''}, Contact: ${form.contactName || ''}, RERA: ${form.reraNumber || ''}.`)}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="bcta-reset-btn"
+                      style={{ display: 'inline-block', textDecoration: 'none', background: '#25d366', color: '#fff' }}
+                    >
+                      Open WhatsApp
+                    </a>
+                    <button className="bcta-reset-btn" style={{ marginTop: 8 }} onClick={() => setStatus('idle')}>Try Again</button>
+                  </motion.div>
+                ) : status === 'success' ? (
                   <motion.div
                     key="success"
                     className="bcta-success"
@@ -607,7 +631,26 @@ export default function BuilderCTA() {
               <button className="bcta-lead-close" onClick={closeContactModal}>✕</button>
 
               <AnimatePresence mode="wait">
-                {leadStatus === 'success' ? (
+                {leadStatus === 'wa-fallback' ? (
+                  <motion.div key="wa-fallback" className="bcta-lead-success"
+                    initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
+                    style={{ textAlign: 'center' }}>
+                    <div style={{ fontSize: '2.5rem', marginBottom: 12 }}>📲</div>
+                    <h3>Contact via WhatsApp</h3>
+                    <p>Our server is warming up. Reach out directly on WhatsApp — we reply within minutes!</p>
+                    <a
+                      href={whatsappLink(`Hi! I'm interested in ${contactProp?.name}. My name: ${leadForm.name}, Phone: ${leadForm.phone}.`)}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="bcta-submit"
+                      style={{ display: 'inline-block', textDecoration: 'none', background: '#25d366', marginTop: 12 }}
+                    >
+                      Open WhatsApp
+                    </a>
+                    <br />
+                    <button className="bcta-submit" style={{ marginTop: 8, background: 'transparent', border: '1px solid #555', color: '#aaa' }} onClick={() => setLeadStatus('idle')}>Try Again</button>
+                  </motion.div>
+                ) : leadStatus === 'success' ? (
                   <motion.div key="success" className="bcta-lead-success"
                     initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}>
                     <div className="bcta-lead-success-icon">

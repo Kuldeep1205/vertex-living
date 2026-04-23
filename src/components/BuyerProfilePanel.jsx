@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import './BuyerProfilePanel.css';
+import { apiFetch, whatsappLink } from '../utils/apiFetch';
 
 const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com';
 
@@ -71,7 +72,7 @@ export default function BuyerProfilePanel() {
     }
     setInqStatus('submitting'); setInqErr('');
     try {
-      const res = await fetch(`${API}/api/admin/inquiries`, {
+      const res = await apiFetch('/api/admin/inquiries', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -87,7 +88,8 @@ export default function BuyerProfilePanel() {
       if (!res.ok) { setInqErr(data.error || 'Failed to send.'); setInqStatus('error'); return; }
       setInqStatus('success');
     } catch {
-      setInqErr('Server not reachable.'); setInqStatus('error');
+      window.open(whatsappLink(`Hi! I have a property inquiry. Name: ${user.name}, Email: ${user.email}.`), '_blank');
+      setInqStatus('success');
     }
   };
 

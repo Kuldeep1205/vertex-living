@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import './BookingModal.css';
+import { apiFetch, whatsappLink } from '../utils/apiFetch';
 
 const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com';
 
@@ -146,7 +147,7 @@ export default function BookingModal({ property, onClose }) {
       if (data.success) setStep('success');
       else { setErrMsg(data.error || 'Booking failed.'); setStep('error'); }
     } catch {
-      setErrMsg('Server not reachable. Please try again.'); setStep('error');
+      setStep('wa-fallback');
     }
   };
 
@@ -186,6 +187,28 @@ export default function BookingModal({ property, onClose }) {
               <h3>Something went wrong</h3>
               <p>{errMsg}</p>
               <button className="bm-pay-btn" onClick={() => { setStep('form'); setErrMsg(''); }}>Try Again</button>
+            </motion.div>
+          )}
+
+          {/* ── WhatsApp Fallback ── */}
+          {step === 'wa-fallback' && (
+            <motion.div key="wa-fallback" className="bm-error-state"
+              initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
+              style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '2.5rem', marginBottom: 12 }}>📲</div>
+              <h3>Complete Booking on WhatsApp</h3>
+              <p style={{ marginBottom: 16 }}>Our server is warming up. Book your token directly via WhatsApp — our team will confirm within minutes!</p>
+              <a
+                href={whatsappLink(`Hi! I want to book a token for ${property?.name}. My name: ${form.name}, Phone: ${form.phone}, Email: ${form.email}.`)}
+                target="_blank"
+                rel="noreferrer"
+                className="bm-pay-btn"
+                style={{ display: 'inline-block', textDecoration: 'none', background: '#25d366', marginBottom: 10 }}
+              >
+                Book on WhatsApp
+              </a>
+              <br />
+              <button className="bm-pay-btn" style={{ background: 'transparent', border: '1px solid #555', color: '#aaa' }} onClick={() => setStep('form')}>Try Again</button>
             </motion.div>
           )}
 

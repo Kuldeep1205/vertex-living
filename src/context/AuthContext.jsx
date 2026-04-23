@@ -5,14 +5,16 @@ const AuthContext = createContext(null);
 const SESSION_KEY = 'vl_session';
 const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com';
 
-// Retry once if network fails (handles Render free-tier cold start)
-async function apiFetch(url, options) {
-  try {
-    return await fetch(url, options);
-  } catch {
-    await new Promise(r => setTimeout(r, 4000));
-    return fetch(url, options);
+// Retry up to 3 times (handles Render free-tier cold start ~30-60s wake time)
+async function apiFetch(url, options, retries = 3) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      return await fetch(url, options);
+    } catch {
+      if (i < retries - 1) await new Promise(r => setTimeout(r, 8000));
+    }
   }
+  throw new Error('Server not reachable');
 }
 
 // Silently wake the Render server in the background

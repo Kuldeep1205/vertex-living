@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import './DualContactForm.css';
-
-const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com';
+import { apiFetch, whatsappLink } from '../utils/apiFetch';
 const BUYER_INITIAL  = { name: '', phone: '', email: '', budget: '', type: '', sector: '', message: '' };
 const BUILDER_INITIAL = { company: '', contact: '', phone: '', email: '', rera: '', project: '', enquiry: '', message: '' };
 
@@ -34,7 +33,7 @@ export default function DualContactForm() {
       ? { ...buyer, formType: 'buyer' }
       : { ...builder, formType: 'builder' };
     try {
-      const res = await fetch(`${API}/api/admin/inquiries`, {
+      const res = await apiFetch('/api/admin/inquiries', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -42,7 +41,7 @@ export default function DualContactForm() {
       if (!res.ok) throw new Error('Server error');
       setStatus('success');
     } catch {
-      setStatus('error');
+      setStatus('wa-fallback');
     }
   };
 
@@ -78,20 +77,31 @@ export default function DualContactForm() {
       </div>
 
       <AnimatePresence mode="wait">
-        {status === 'error' ? (
+        {status === 'wa-fallback' ? (
           <motion.div
-            key="error"
+            key="wa-fallback"
             className="dcf-success"
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1,   y: 0  }}
             exit={{    opacity: 0, scale: 0.9, y: -10 }}
             transition={{ duration: 0.4 }}
-            style={{ background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.3)' }}
+            style={{ background: 'rgba(37,211,102,0.06)', border: '1px solid rgba(37,211,102,0.3)' }}
           >
-            <div className="dcf-success-icon">❌</div>
-            <h3 style={{ color: '#ef4444' }}>Server not reachable</h3>
-            <p>Please make sure the server is running and try again.</p>
-            <button className="dcf-reset-btn" onClick={() => setStatus('idle')}>Try Again</button>
+            <div className="dcf-success-icon">📲</div>
+            <h3>Connect via WhatsApp</h3>
+            <p>Our server is warming up. Reach us instantly on WhatsApp — we reply within minutes!</p>
+            <a
+              href={whatsappLink(tab === 'buyer'
+                ? `Hi! I'm looking for a property. Name: ${buyer.name}, Budget: ${buyer.budget || 'flexible'}, Type: ${buyer.type || 'any'}.`
+                : `Hi! I'm a builder interested in listing. Company: ${builder.company}, Contact: ${builder.contact}.`)}
+              target="_blank"
+              rel="noreferrer"
+              className="dcf-reset-btn"
+              style={{ display: 'inline-block', textDecoration: 'none', background: '#25d366', color: '#fff' }}
+            >
+              Open WhatsApp
+            </a>
+            <button className="dcf-reset-btn" style={{ marginTop: 8 }} onClick={() => setStatus('idle')}>Try Again</button>
           </motion.div>
         ) : status === 'success' ? (
           <motion.div

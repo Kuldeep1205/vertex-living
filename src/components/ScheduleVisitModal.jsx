@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './ScheduleVisitModal.css';
-
-const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com';
+import { apiFetch, whatsappLink } from '../utils/apiFetch';
 
 const TIME_SLOTS = [
   '9:00 AM – 11:00 AM',
@@ -32,7 +31,7 @@ export default function ScheduleVisitModal({ property, onClose }) {
     setErrMsg('');
     setStep('loading');
     try {
-      const res = await fetch(`${API}/api/visits`, {
+      const res = await apiFetch('/api/visits', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -46,8 +45,7 @@ export default function ScheduleVisitModal({ property, onClose }) {
       if (!res.ok) { setErrMsg(data.error || 'Something went wrong.'); setStep('form'); return; }
       setStep('success');
     } catch {
-      setErrMsg('Server not reachable. Please try again.');
-      setStep('form');
+      setStep('wa-fallback');
     }
   };
 
@@ -75,7 +73,30 @@ export default function ScheduleVisitModal({ property, onClose }) {
         </div>
 
         <AnimatePresence mode="wait">
-          {step === 'success' ? (
+          {step === 'wa-fallback' ? (
+            <motion.div
+              key="wa-fallback"
+              className="svm-success"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.35 }}
+              style={{ background: 'rgba(37,211,102,0.08)', border: '1px solid rgba(37,211,102,0.3)' }}
+            >
+              <div className="svm-success-icon">📲</div>
+              <h4>Book via WhatsApp</h4>
+              <p>Our server is starting up. Book your visit instantly via WhatsApp — we reply within minutes!</p>
+              <a
+                href={whatsappLink(`Hi! I want to schedule a site visit for ${property?.name || 'a property'} on ${form.date || 'a suitable date'} during ${form.timeSlot || 'any time'}. My name is ${form.name}, phone: ${form.phone}.`)}
+                target="_blank"
+                rel="noreferrer"
+                className="svm-submit-btn"
+                style={{ display: 'inline-block', textDecoration: 'none', background: '#25d366' }}
+              >
+                Open WhatsApp
+              </a>
+              <button className="svm-submit-btn" style={{ marginTop: 8, background: 'transparent', border: '1px solid #555', color: '#aaa' }} onClick={() => setStep('form')}>Try Again</button>
+            </motion.div>
+          ) : step === 'success' ? (
             <motion.div
               key="success"
               className="svm-success"

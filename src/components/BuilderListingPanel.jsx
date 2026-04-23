@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
 import './BuilderListingPanel.css';
+import { apiFetch, whatsappLink } from '../utils/apiFetch';
 
 const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com';
 
@@ -131,7 +132,7 @@ export default function BuilderListingPanel() {
       setFilePreviews([]);
       setTimeout(() => { setStatus('idle'); setView('list'); fetchMyProps(); }, 1800);
     } catch {
-      setErrMsg('Server not reachable. Please try again.'); setStatus('error');
+      setErrMsg('Server warming up. Please try again in 30 seconds.'); setStatus('error');
     }
   };
 
