@@ -349,10 +349,20 @@ export default function StoryPage() {
         <title>Vertex Living Story | Premium Properties in Gurgaon & Delhi NCR</title>
         <meta name="description" content="Discover the Vertex Living story — Gurgaon's most prestigious real estate portfolio. RERA-verified luxury properties on Golf Course Road, Sector 65, New Gurgaon. 12% annual appreciation. 36+ premium properties." />
         <meta name="keywords" content="vertex living story, luxury real estate gurgaon, DLF camellias, M3M golf estate, golf course road property, buy property gurgaon, rera verified gurgaon, vertex living properties" />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://vertexliving.in/story" />
+        <meta property="og:type" content="website" />
         <meta property="og:title" content="Vertex Living Story | Premium Properties in Gurgaon" />
         <meta property="og:description" content="Gurgaon's most prestigious real estate portfolio. RERA-verified luxury properties with 12% annual appreciation." />
         <meta property="og:url" content="https://vertexliving.in/story" />
+        <meta property="og:image" content="https://vertexliving.in/logo1.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Vertex Living" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Vertex Living Story | Premium Properties in Gurgaon" />
+        <meta name="twitter:description" content="Gurgaon's most prestigious real estate portfolio. RERA-verified luxury properties with 12% annual appreciation." />
+        <meta name="twitter:image" content="https://vertexliving.in/logo1.png" />
       </Helmet>
 
       {/* Side progress */}

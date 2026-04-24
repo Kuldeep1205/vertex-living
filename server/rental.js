@@ -52,7 +52,7 @@ router.post('/auth/register', (req, res) => {
     password,
     phone,
     role,
-    avatar: name[0].toUpperCase(),
+    avatar: (name && name[0]) ? name[0].toUpperCase() : 'U',
     createdAt: new Date().toISOString(),
   };
 

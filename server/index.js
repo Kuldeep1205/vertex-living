@@ -102,6 +102,23 @@ const VISITS_FILE = path.join(DATA_DIR_DATA, 'visits.json');
 // Ensure data dir exists
 if (!fs.existsSync(DATA_DIR_DATA)) fs.mkdirSync(DATA_DIR_DATA, { recursive: true });
 
+// Seed admin users on every startup (survives Render ephemeral filesystem resets)
+function seedAdminUsers() {
+  const users = loadJSON(USERS_FILE, []);
+  const admins = [
+    { id: 'admin-001', name: 'Admin', email: 'admin@vertexliving.in', password: 'VxAdmin@2024', phone: '', role: 'admin', avatar: 'A', emailVerified: true, createdAt: '2024-01-01T00:00:00.000Z' },
+    { id: 'admin-002', name: 'Backend Team', email: 'backend@vertexliving.in', password: 'VxBackend@2024', phone: '', role: 'admin', avatar: 'B', emailVerified: true, createdAt: '2024-01-01T00:00:00.000Z' },
+  ];
+  let changed = false;
+  for (const admin of admins) {
+    if (!users.find(u => u.email === admin.email)) {
+      users.push(admin);
+      changed = true;
+    }
+  }
+  if (changed) saveJSON(USERS_FILE, users);
+}
+
 function loadJSON(file, fallback) {
   try {
     return JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -202,7 +219,7 @@ app.post('/api/auth/login', (req, res) => {
     u => u.email.toLowerCase() === email.toLowerCase().trim() && u.password === password
   );
   if (!found) return res.status(401).json({ error: 'Invalid email or password.' });
-  if (!found.emailVerified) {
+  if (!found.emailVerified && found.role !== 'admin') {
     return res.status(403).json({ error: 'Please verify your email before logging in.', needsOtp: true, email: found.email });
   }
   const { password: _pw, ...session } = found;
@@ -589,17 +606,21 @@ Important rules:
   ];
 
   let replyText = '';
-  try {
-    const completion = await openaiClient.chat.completions.create({
-      model: 'gpt-4o',
-      messages: openaiMessages,
-      max_tokens: 300,
-      temperature: 0.85,
-    });
-    replyText = completion.choices[0]?.message?.content?.trim() || '';
-  } catch (err) {
-    console.error('[WhatsApp] OpenAI error:', err.message);
+  if (!openaiClient) {
     replyText = `Hi! Thanks for reaching out to ${aiConfig.businessName || 'Vertex Living'} 🏠 I'll get back to you shortly!`;
+  } else {
+    try {
+      const completion = await openaiClient.chat.completions.create({
+        model: 'gpt-4o',
+        messages: openaiMessages,
+        max_tokens: 300,
+        temperature: 0.85,
+      });
+      replyText = completion.choices[0]?.message?.content?.trim() || '';
+    } catch (err) {
+      console.error('[WhatsApp] OpenAI error:', err.message);
+      replyText = `Hi! Thanks for reaching out to ${aiConfig.businessName || 'Vertex Living'} 🏠 I'll get back to you shortly!`;
+    }
   }
 
   // Save assistant reply to history
@@ -1312,6 +1333,9 @@ YOUR RULES:
     { role: 'user', content: message },
   ];
 
+  if (!openaiClient) {
+    return res.status(503).json({ error: 'AI unavailable', reply: 'AI service is not configured.', chips: ['Browse Properties', 'Check Budget', 'Book Site Visit', 'EMI Calculator'] });
+  }
   try {
     const completion = await openaiClient.chat.completions.create({
       model: 'gpt-4o',
@@ -1426,9 +1450,21 @@ app.delete('/api/admin/visits/:id', (req, res) => {
 
 if (!process.env.VERCEL) {
   server.listen(PORT, () => {
+    seedAdminUsers();
     console.log(`\n🤖 AI Phone Server running on port ${PORT}`);
     console.log(`📞 Twilio webhook: POST http://your-domain/incoming-call`);
     console.log(`📊 Dashboard API: http://localhost:${PORT}/api/stats\n`);
+
+    // Self-ping every 14 min to prevent Render cold starts
+    const SELF_URL = process.env.RENDER_EXTERNAL_URL || `http://localhost:${PORT}`;
+    setInterval(async () => {
+      try {
+        const res = await fetch(`${SELF_URL}/health`);
+        console.log(`[ping] ${new Date().toISOString()} → ${res.status}`);
+      } catch (e) {
+        console.warn('[ping] self-ping failed:', e.message);
+      }
+    }, 5 * 60 * 1000);
   });
 }
 

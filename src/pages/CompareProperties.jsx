@@ -89,10 +89,20 @@ export default function CompareProperties() {
         <title>Compare Properties in Gurgaon | Side-by-Side Comparison | Vertex Living</title>
         <meta name="description" content="Compare luxury properties in Gurgaon side-by-side. Analyse price, size, EMI, amenities & ROI for DLF, M3M, IREO, Godrej & more. Make smarter investment decisions with Vertex Living." />
         <meta name="keywords" content="compare property gurgaon, property comparison gurgaon, best property gurgaon, dlf vs m3m gurgaon, luxury apartment comparison, vertex living compare" />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://vertexliving.in/compare" />
+        <meta property="og:type" content="website" />
         <meta property="og:title" content="Compare Properties in Gurgaon | Vertex Living" />
         <meta property="og:description" content="Side-by-side comparison of luxury properties in Gurgaon. Price, size, EMI, amenities & investment returns." />
         <meta property="og:url" content="https://vertexliving.in/compare" />
+        <meta property="og:image" content="https://vertexliving.in/logo1.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Vertex Living" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Compare Properties in Gurgaon | Vertex Living" />
+        <meta name="twitter:description" content="Side-by-side comparison of luxury properties in Gurgaon. Price, size, EMI, amenities & investment returns." />
+        <meta name="twitter:image" content="https://vertexliving.in/logo1.png" />
       </Helmet>
       {/* Top Bar */}
       <div className="cp-topbar">

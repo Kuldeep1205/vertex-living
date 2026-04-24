@@ -997,10 +997,20 @@ export default function RentalPage() {
         <title>Rent Property in Gurgaon | Flats & Apartments for Rent | Vertex Living</title>
         <meta name="description" content="Rent flats, apartments & houses in Gurgaon, Delhi NCR. Zero brokerage, verified owners. 2BHK, 3BHK, furnished & unfurnished rentals in Sector 42, 65, Golf Course Road, New Gurgaon. Vertex Living." />
         <meta name="keywords" content="rent property gurgaon, flats for rent gurgaon, apartments for rent gurugram, rental property delhi ncr, 2bhk rent gurgaon, 3bhk rent gurgaon, furnished flat gurgaon, pg gurgaon, vertex living rental" />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://vertexliving.in/rent" />
+        <meta property="og:type" content="website" />
         <meta property="og:title" content="Rent Property in Gurgaon | Zero Brokerage | Vertex Living" />
         <meta property="og:description" content="Rent verified flats & apartments in Gurgaon. Zero brokerage. Direct from owners." />
         <meta property="og:url" content="https://vertexliving.in/rent" />
+        <meta property="og:image" content="https://vertexliving.in/logo1.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Vertex Living" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Rent Property in Gurgaon | Zero Brokerage | Vertex Living" />
+        <meta name="twitter:description" content="Rent verified flats & apartments in Gurgaon. Zero brokerage. Direct from owners." />
+        <meta name="twitter:image" content="https://vertexliving.in/logo1.png" />
       </Helmet>
       {/* Hero */}
       <div className="rental-hero">
