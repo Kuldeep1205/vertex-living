@@ -9,7 +9,7 @@ Disallow: /access-denied
 User-agent: Googlebot-Image
 Allow: /
 
-# Sitemaps
+# Sitemaps (hosted on vertexliving.in)
 Sitemap: https://vertexliving.in/sitemap.xml
 Sitemap: https://vertexliving.in/sitemap-images.xml
 

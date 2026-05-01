@@ -3,104 +3,106 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
-  <!-- ═══ HIGH PRIORITY PAGES ═══════════════════════════════════════════ -->
+  <!-- ═══ HOMEPAGE ════════════════════════════════════════════════════════════ -->
 
-  <!-- Homepage – target: property in gurgaon, luxury apartments gurgaon, vertex living -->
   <url>
     <loc>https://vertexliving.in/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://vertexliving.in/logo1.png</image:loc>
-      <image:title>Vertex Living – Premium Real Estate Gurgaon</image:title>
+      <image:title>Vertex Living — Premium Real Estate Gurgaon Delhi NCR</image:title>
     </image:image>
   </url>
 
-  <!-- Rental – target: rent flat gurgaon, property for rent gurgaon, 2bhk rent gurgaon -->
+  <!-- ═══ RENTAL PAGE ════════════════════════════════════════════════════════ -->
+
   <url>
     <loc>https://vertexliving.in/rent</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
 
-  <!-- Story/About – target: vertex living gurgaon, real estate company gurgaon -->
-  <url>
-    <loc>https://vertexliving.in/story</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
+  <!-- ═══ CITY LANDING PAGES — RENT PROPERTY [CITY] ════════════════════════ -->
 
-  <!-- Compare Properties – target: compare property gurgaon, property comparison gurgaon -->
-  <url>
-    <loc>https://vertexliving.in/compare</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.75</priority>
-  </url>
+  <url><loc>https://vertexliving.in/rent/gurugram</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vertexliving.in/rent/gurgaon</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vertexliving.in/rent/noida</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vertexliving.in/rent/greater-noida</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vertexliving.in/rent/delhi</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vertexliving.in/rent/jaipur</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vertexliving.in/rent/faridabad</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vertexliving.in/rent/ghaziabad</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
 
-  <!-- ═══ PROPERTY DETAIL PAGES ════════════════════════════════════════ -->
+  <!-- ═══ STATIC PAGES ═══════════════════════════════════════════════════════ -->
 
-  <!-- DLF The Camellias – target: dlf camellias gurgaon, golf course road property -->
-  <url>
-    <loc>https://vertexliving.in/property/dlf-camellias-phase2</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1400&q=80</image:loc>
-      <image:title>DLF The Camellias Phase 2 – Sector 42 Golf Course Road Gurgaon</image:title>
-    </image:image>
-  </url>
+  <url><loc>https://vertexliving.in/story</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/compare</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
 
-  <!-- M3M Crown – target: m3m crown gurgaon, new launch gurgaon, sector 111 gurgaon -->
-  <url>
-    <loc>https://vertexliving.in/property/m3m-crown</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
+  <!-- ═══ PROPERTY DETAIL PAGES — BUY/SELL ═══════════════════════════════════ -->
 
-  <!-- IREO Emerald Hills – target: ireo gurgaon, sector 65 gurgaon property -->
-  <url>
-    <loc>https://vertexliving.in/property/ireo-emerald-hills</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
+  <url><loc>https://vertexliving.in/property/1</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.9</priority><image:image><image:loc>https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1400&q=80</image:loc><image:title>DLF The Camellias Sector 42 Golf Course Road Gurgaon</image:title></image:image></url>
+  <url><loc>https://vertexliving.in/property/2</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vertexliving.in/property/3</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vertexliving.in/property/4</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/5</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/6</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/7</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/8</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/9</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/10</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/11</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/12</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/13</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vertexliving.in/property/14</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vertexliving.in/property/15</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/16</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/17</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/18</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/19</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/20</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/21</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/22</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/property/23</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/property/24</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/property/25</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/property/26</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/property/27</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/property/28</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/property/29</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/property/30</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/31</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/32</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/property/33</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/34</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/35</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vertexliving.in/property/36</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/property/37</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vertexliving.in/property/38</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/39</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/40</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/41</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/42</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/property/43</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/property/44</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/property/45</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/property/46</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/property/47</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 
-  <!-- Godrej Meridian – target: godrej properties gurgaon, sector 106 gurgaon -->
-  <url>
-    <loc>https://vertexliving.in/property/godrej-meridian</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
+  <!-- ═══ SECTOR-SPECIFIC RENTAL PAGES ═══════════════════════════════════════ -->
 
-  <!-- Signature Global Titanium – target: signature global gurgaon, affordable luxury gurgaon -->
-  <url>
-    <loc>https://vertexliving.in/property/signature-global-titanium</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <url><loc>https://vertexliving.in/rent/gurugram?area=Golf+Course+Road</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/gurugram?area=Sohna+Road</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/gurugram?area=Dwarka+Expressway</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/gurugram?type=2BHK</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/gurugram?type=3BHK</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/gurugram?type=Villa</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 
-  <!-- ═══ LEGAL PAGES ════════════════════════════════════════════════ -->
+  <!-- ═══ LEGAL PAGES ════════════════════════════════════════════════════════ -->
 
-  <url>
-    <loc>https://vertexliving.in/privacy</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://vertexliving.in/terms</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
+  <url><loc>https://vertexliving.in/privacy</loc><lastmod>2026-05-01</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://vertexliving.in/terms</loc><lastmod>2026-05-01</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
 
 </urlset>

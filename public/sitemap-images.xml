@@ -63,20 +63,16 @@
     <loc>https://vertexliving.in/rent</loc>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1400&amp;q=80</image:loc>
-      <image:title>Furnished Flat for Rent in Gurgaon – Vertex Living</image:title>
-      <image:caption>Fully furnished 2BHK and 3BHK flats available for rent in Gurgaon through Vertex Living</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1400&amp;q=80</image:loc>
-      <image:title>Luxury Rental Apartment – Sector 42 Gurgaon</image:title>
-      <image:caption>Premium furnished rental apartments in Sector 42, Sector 65, and Golf Course Road, Gurgaon</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1400&amp;q=80</image:loc>
-      <image:title>Semi-Furnished 3BHK for Rent – New Gurgaon</image:title>
-      <image:caption>Semi-furnished 3BHK apartments for rent in New Gurgaon (Sectors 82–103) – affordable luxury rentals</image:caption>
+      <image:title>Furnished Flat for Rent in India – Vertex Living Zero Brokerage</image:title>
+      <image:caption>Fully furnished 2BHK and 3BHK flats available for rent across India. Zero brokerage. Direct from owners. Vertex Living.</image:caption>
     </image:image>
   </url>
+
+  <!-- City Landing Pages -->
+  <url><loc>https://vertexliving.in/rent/gurugram</loc><image:image><image:loc>https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1400&amp;q=80</image:loc><image:title>Rent Flats in Gurugram Zero Brokerage Vertex Living</image:title><image:caption>2BHK 3BHK 4BHK flats for rent in Gurugram. Zero brokerage. Direct from verified owners. Vertex Living.</image:caption></image:image></url>
+  <url><loc>https://vertexliving.in/rent/delhi</loc><image:image><image:loc>https://images.unsplash.com/photo-1536431311719-398b6704d4cc?w=1400&amp;q=80</image:loc><image:title>Rent Flats in Delhi Zero Brokerage Vertex Living</image:title><image:caption>Flats for rent across Delhi. Zero brokerage. Direct from verified owners. Vertex Living.</image:caption></image:image></url>
+  <url><loc>https://vertexliving.in/rent/noida</loc><image:image><image:loc>https://images.unsplash.com/photo-1577495508326-19a1b3cf65b7?w=1400&amp;q=80</image:loc><image:title>Rent Flats in Noida Zero Brokerage Vertex Living</image:title><image:caption>Flats for rent in Noida. Zero brokerage. Direct from verified owners. Vertex Living.</image:caption></image:image></url>
+  <url><loc>https://vertexliving.in/rent/jaipur</loc><image:image><image:loc>https://images.unsplash.com/photo-1599733594230-6b823276abcc?w=1400&amp;q=80</image:loc><image:title>Rent Flats in Jaipur Zero Brokerage Vertex Living</image:title><image:caption>Flats for rent in Jaipur (Pink City). Zero brokerage. Direct from verified owners. Vertex Living.</image:caption></image:image></url>
 
   <!-- ═══════════════════════════════════════════════════════════
        PROPERTY DETAIL PAGES — Representative IDs

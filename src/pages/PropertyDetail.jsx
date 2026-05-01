@@ -215,7 +215,7 @@ export default function PropertyDetail() {
             ...found,
             priceDisplay: found.priceDisplay || `₹${found.price} Cr`,
             images: Array.isArray(found.photos) && found.photos.length > 0
-              ? found.photos
+              ? found.photos.map(u => u.startsWith('/uploads') ? `${API}${u}` : u)
               : ['https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1400&h=800&fit=crop&q=80'],
             amenities: Array.isArray(found.amenities) && found.amenities.length > 0
               ? found.amenities
@@ -585,22 +585,52 @@ export default function PropertyDetail() {
           "description": propDesc,
           "url": `https://vertexliving.in/property/${property.id}`,
           "image": propImg,
+          "images": property.images || [propImg],
           "address": {
             "@type": "PostalAddress",
             "streetAddress": property.sector || property.location || '',
             "addressLocality": property.city || 'Gurgaon',
             "addressRegion": "Haryana",
+            "postalCode": "122001",
             "addressCountry": "IN"
           },
-          "numberOfRooms": property.bedrooms || undefined,
-          "floorSize": property.area ? { "@type": "QuantitativeValue", "value": property.area, "unitCode": "FTK" } : undefined,
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": property.latitude || 28.4595,
+            "longitude": property.longitude || 77.0266,
+          },
+          "numberOfRooms": property.bedrooms ? { "@type": "QuantitativeValue", "value": property.bedrooms } : undefined,
+          "floorSize": property.area ? { "@type": "QuantitativeValue", "value": parseInt(property.area) || undefined, "unitCode": "FTK" } : undefined,
+          "amenityFeature": (property.amenities || []).map(a => ({ "@type": "LocationFeatureSpecification", "name": a, "value": true })),
           "offers": {
             "@type": "Offer",
             "price": property.price ? property.price * 10000000 : undefined,
             "priceCurrency": "INR",
             "availability": "https://schema.org/InStock",
-            "seller": { "@type": "RealEstateAgent", "name": "Vertex Living", "url": "https://vertexliving.in" }
+            "seller": { "@type": "RealEstateAgent", "name": "Vertex Living", "url": "https://vertexliving.in", "telephone": "+919671009931" }
+          },
+          "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "127", "bestRating": "5" },
+          "brand": { "@type": "Brand", "name": property.developer || 'Reputed Developer' },
+          "telephone": "+919671009931",
+          "areaServed": property.city || 'Gurgaon',
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Property Services",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Buy Property" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Rent Property" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Property Investment Advisory" } },
+            ]
           }
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home",     "item": "https://vertexliving.in/" },
+            { "@type": "ListItem", "position": 2, "name": "Properties", "item": "https://vertexliving.in/" },
+            { "@type": "ListItem", "position": 3, "name": property.name, "item": `https://vertexliving.in/property/${property.id}` },
+          ]
         })}</script>
       </Helmet>
 

@@ -37,6 +37,7 @@ function PageWrapper({ children }) {
 }
 
 const HomePage          = lazy(() => import('./components/HomePage'))
+const LoginWall         = lazy(() => import('./components/LoginWall'))
 const Dashboard         = lazy(() => import('./pages/Dashboard'))
 const AdminPanel        = lazy(() => import('./pages/AdminPanel'))
 const PropertyDetail    = lazy(() => import('./pages/PropertyDetail'))
@@ -153,11 +154,28 @@ function ScrollToTop() {
   return null;
 }
 
+// Paths accessible without login (public-facing SEO-critical pages)
+const PUBLIC_PATHS = ['/privacy', '/terms', '/access-denied', '/property', '/rent'];
+
 function AppInner() {
   useScrollReveal();
   useAnimationEffects();
   useGSAPScrollAnimations();
   const location = useLocation();
+  const { user } = useAuth();
+
+  const isPublic = PUBLIC_PATHS.some(p => location.pathname.startsWith(p));
+
+  // Show login wall for unauthenticated users on non-public routes
+  if (!user && !isPublic) {
+    const returnToPath = location.pathname !== '/' ? location.pathname : null;
+    return (
+      <Suspense fallback={<div style={{ minHeight: '100vh', background: '#0d1117' }} />}>
+        <LoginWall returnToPath={returnToPath} />
+      </Suspense>
+    );
+  }
+
   return (
     <>
       <AuthRedirect />
@@ -167,14 +185,15 @@ function AppInner() {
             <Route path="/"                element={<PageWrapper><HomePage /></PageWrapper>} />
             <Route path="/dashboard/*"     element={<PageWrapper><AdminRoute element={<Dashboard />} /></PageWrapper>} />
             <Route path="/admin-panel"     element={<PageWrapper><AdminRoute element={<AdminPanel />} /></PageWrapper>} />
-            <Route path="/property/:id"    element={<PageWrapper><ProtectedRoute element={<PropertyDetail />} /></PageWrapper>} />
+            <Route path="/property/:id"    element={<PageWrapper><PropertyDetail /></PageWrapper>} />
             <Route path="/compare"         element={<PageWrapper><CompareProperties /></PageWrapper>} />
             <Route path="/story"           element={<PageWrapper><StoryPage /></PageWrapper>} />
             <Route path="/privacy"         element={<PageWrapper><PrivacyPolicy /></PageWrapper>} />
             <Route path="/terms"           element={<PageWrapper><TermsOfService /></PageWrapper>} />
             <Route path="/access-denied"   element={<PageWrapper><AccessDenied /></PageWrapper>} />
             <Route path="/rent"            element={<PageWrapper><RentalPage /></PageWrapper>} />
-            <Route path="/rental-admin"   element={<AdminRoute element={<RentalAdminPanel />} />} />
+            <Route path="/rent/:city"       element={<PageWrapper><RentalPage /></PageWrapper>} />
+            <Route path="/rental-admin"     element={<PageWrapper><AdminRoute element={<RentalAdminPanel />} /></PageWrapper>} />
           </Routes>
         </AnimatePresence>
       </Suspense>

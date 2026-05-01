@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useRentalAuth } from '../context/RentalAuthContext';
 import './RentalPage.css';
 
@@ -28,6 +29,128 @@ function furnishingBadge(f) {
 
 const PROPERTY_TYPES = ['1BHK','2BHK','3BHK','4BHK','Villa','PG','Commercial'];
 const FURNISHING_OPTIONS = ['Furnished','Semi-Furnished','Unfurnished'];
+
+// ─── City SEO Configs ────────────────────────────────────────────────────────
+const CITY_CONFIGS = {
+  gurugram: {
+    displayName: 'Gurugram', displayIcon: '🏙️',
+    h1: 'Rent Flats & Apartments in Gurugram — Zero Brokerage',
+    title: 'Rent Flats in Gurugram | 2BHK 3BHK for Rent | Vertex Living',
+    description: 'Find verified 2BHK, 3BHK flats for rent in Gurugram. Zero brokerage. Direct from owners. Golf Course Road, Sector 42, 43, 57, 65, 66, 67, New Gurugram (Sectors 82–108), Sohna Road. Updated daily.',
+    keywords: 'rent flat gurugram, flats for rent gurugram, 2bhk rent gurugram, 3bhk rent gurugram, 4bhk rent gurugram, villa rent gurugram, pg gurugram, property for rent gurugram',
+    ogTitle: 'Rent Flats in Gurugram | Zero Brokerage | Vertex Living',
+    ogDesc: '2BHK, 3BHK, 4BHK flats for rent in Gurugram. Zero brokerage. Direct from verified owners.',
+    geoRegion: 'IN-HR', geoPosition: '28.4595;77.0266',
+    lat: 28.4595, lng: 77.0266, region: 'Haryana',
+    intro: 'Gurugram (also spelled Gurgaon) is the financial and IT hub of North India, located in Haryana along the Delhi-Gurgaon Expressway. Home to Fortune 500 companies and premium residential townships, Gurugram offers the finest rental options in NCR — from luxury apartments on Golf Course Road to affordable flats in New Gurgaon. Vertex Living connects tenants directly with verified landlords across all Gurugram localities.',
+    popularSectors: ['Golf Course Road', 'Sector 42', 'Sector 43', 'Sector 57', 'Sector 65', 'Sector 67', 'Sohna Road', 'Dwarka Expressway', 'New Gurgaon (82–108)'],
+  },
+  gurgaon: {
+    displayName: 'Gurgaon', displayIcon: '🏙️',
+    h1: 'Rent Flats & Apartments in Gurgaon — Zero Brokerage',
+    title: 'Rent Flats in Gurgaon | 2BHK 3BHK for Rent NCR | Vertex Living',
+    description: 'Browse verified rental flats in Gurgaon. 2BHK, 3BHK, 4BHK, villas, PGs. Zero brokerage. Direct from owners. DLF Cyber City, Golf Course Road, New Gurgaon. Updated daily.',
+    keywords: 'rent flat gurgaon, flats for rent gurgaon, 2bhk rent gurgaon, 3bhk rent gurgaon, villa rent gurgaon, pg gurgaon, property for rent gurgaon, luxury flat gurgaon',
+    ogTitle: 'Rent Flats in Gurgaon | Zero Brokerage | Vertex Living',
+    ogDesc: '2BHK, 3BHK, 4BHK flats for rent in Gurgaon. Zero brokerage. Direct from verified owners.',
+    geoRegion: 'IN-HR', geoPosition: '28.4595;77.0266',
+    lat: 28.4595, lng: 77.0266, region: 'Haryana',
+    intro: 'Gurgaon is one of India\'s most dynamically growing cities, part of the Delhi NCR region. With world-class infrastructure, top multinational offices, and premium residential projects, Gurgaon is the top choice for professionals and families looking for quality rentals. From DLF Cyber City to New Gurgaon townships, Vertex Living lists hundreds of verified rental properties across all price segments.',
+    popularSectors: ['Golf Course Road', 'Sector 42', 'Sector 57', 'Sector 65', 'Cyber City', 'MG Road', 'Sohna Road', 'Dwarka Expressway', 'New Gurgaon'],
+  },
+  delhi: {
+    displayName: 'Delhi', displayIcon: '🏛️',
+    h1: 'Rent Flats & Apartments in Delhi — Zero Brokerage',
+    title: 'Rent Flats in Delhi | 2BHK 3BHK for Rent | Vertex Living',
+    description: 'Find verified rental flats in Delhi. Zero brokerage. Direct from owners. Lajpat Nagar, Dwarka, Vasant Kunj, Saket, Rohini, Pitampura, RK Puram. Updated daily.',
+    keywords: 'rent flat delhi, flats for rent delhi, 2bhk rent delhi, 3bhk rent delhi, 4bhk rent delhi, villa rent delhi, pg delhi, property for rent delhi, luxury flat delhi',
+    ogTitle: 'Rent Flats in Delhi | Zero Brokerage | Vertex Living',
+    ogDesc: 'Flats for rent across Delhi. Zero brokerage. Direct from verified owners.',
+    geoRegion: 'IN-DL', geoPosition: '28.6139;77.2090',
+    lat: 28.6139, lng: 77.2090, region: 'Delhi',
+    intro: 'Delhi, India\'s capital, offers unmatched rental diversity — from affordable builder floors in South Delhi to premium apartments in Dwarka and Vasant Kunj. The city\'s metro connectivity makes commuting easy across all localities. Vertex Living brings you verified rental listings across all major Delhi localities with zero brokerage.',
+    popularSectors: ['Dwarka', 'Rohini', 'Lajpat Nagar', 'Vasant Kunj', 'Saket', 'Pitampura', 'RK Puram', 'Mayur Vihar', 'Paharganj'],
+  },
+  noida: {
+    displayName: 'Noida', displayIcon: '🌆',
+    h1: 'Rent Flats & Apartments in Noida — Zero Brokerage',
+    title: 'Rent Flats in Noida | 2BHK 3BHK for Rent | Vertex Living',
+    description: 'Find verified rental flats in Noida. Zero brokerage. Direct from owners. Sector 62, 63, 76, 100, 104, 105, 107, 108. Updated daily.',
+    keywords: 'rent flat noida, flats for rent noida, 2bhk rent noida, 3bhk rent noida, villa rent noida, pg noida, property for rent noida',
+    ogTitle: 'Rent Flats in Noida | Zero Brokerage | Vertex Living',
+    ogDesc: 'Flats for rent in Noida. Zero brokerage. Direct from verified owners.',
+    geoRegion: 'IN-UP', geoPosition: '28.5355;77.3910',
+    lat: 28.5355, lng: 77.3910, region: 'Uttar Pradesh',
+    intro: 'Noida (New Okhla Industrial Development Authority) is a rapidly growing city in Gautam Buddha Nagar district of Uttar Pradesh, part of Delhi NCR. Known for its planned layout, IT parks, and excellent metro connectivity via the Blue Line, Noida offers premium rental options at competitive prices compared to Delhi and Gurugram. Vertex Living lists verified rental properties across all Noida sectors.',
+    popularSectors: ['Sector 62', 'Sector 63', 'Sector 76', 'Sector 78', 'Sector 100', 'Sector 104', 'Sector 105', 'Sector 107', 'Sector 108', 'Sector 137'],
+  },
+  'greater-noida': {
+    displayName: 'Greater Noida', displayIcon: '🌿',
+    h1: 'Rent Flats & Apartments in Greater Noida — Zero Brokerage',
+    title: 'Rent Flats in Greater Noida | 2BHK 3BHK for Rent | Vertex Living',
+    description: 'Find verified rental flats in Greater Noida. Zero brokerage. Direct from owners. Alpha 1, Alpha 2, Gamma 1, Gamma 2, Omega 1, TechZone. Updated daily.',
+    keywords: 'rent flat greater noida, flats for rent greater noida, 2bhk rent greater noida, 3bhk rent greater noida, villa rent greater noida, property for rent greater noida',
+    ogTitle: 'Rent Flats in Greater Noida | Zero Brokerage | Vertex Living',
+    ogDesc: 'Flats for rent in Greater Noida. Zero brokerage. Direct from verified owners.',
+    geoRegion: 'IN-UP', geoPosition: '28.4744;77.5037',
+    lat: 28.4744, lng: 77.5037, region: 'Uttar Pradesh',
+    intro: 'Greater Noida is a planned city in Gautam Buddha Nagar district, known for its wide roads, green spaces, and growing educational institutions like Galgotias University and Greater Noida Knowledge Park. The Yamuna Expressway has spurred rapid development, making Greater Noida an emerging hub for both residential and commercial rentals. Vertex Living offers zero-brokerage rental listings across all Greater Noida localities.',
+    popularSectors: ['Alpha 1', 'Alpha 2', 'Beta 1', 'Beta 2', 'Gamma 1', 'Gamma 2', 'Omega 1', 'TechZone', 'Pari Chowk', 'Yamuna Expressway'],
+  },
+  jaipur: {
+    displayName: 'Jaipur', displayIcon: '🏰',
+    h1: 'Rent Flats & Apartments in Jaipur — Zero Brokerage',
+    title: 'Rent Flats in Jaipur | 2BHK 3BHK for Rent | Vertex Living',
+    description: 'Find verified rental flats in Jaipur. Zero brokerage. Direct from owners. Vaishali Nagar, Mansarovar, MI Road, Jagatpur, Ajmer Road, Tonk Road. Updated daily.',
+    keywords: 'rent flat jaipur, flats for rent jaipur, 2bhk rent jaipur, 3bhk rent jaipur, villa rent jaipur, pg jaipur, property for rent jaipur, luxury flat jaipur',
+    ogTitle: 'Rent Flats in Jaipur | Zero Brokerage | Vertex Living',
+    ogDesc: 'Flats for rent in Jaipur (Pink City). Zero brokerage. Direct from verified owners.',
+    geoRegion: 'IN-RJ', geoPosition: '26.9124;75.7873',
+    lat: 26.9124, lng: 75.7873, region: 'Rajasthan',
+    intro: 'Jaipur, the capital city of Rajasthan and the Pink City of India, is a major cultural and economic hub in North India. With growing IT and manufacturing sectors, Jaipur offers excellent rental opportunities across diverse neighbourhoods — from the historic walled city to modern townships on Ajmer Road and Tonk Road. Vertex Living provides verified, zero-brokerage rental listings throughout Jaipur.',
+    popularSectors: ['Vaishali Nagar', 'Mansarovar', 'MI Road', 'C-Scheme', 'Bani Park', 'Jagatpur', 'Ajmer Road', 'Tonk Road', 'Sanganer', 'Sitapura'],
+  },
+  faridabad: {
+    displayName: 'Faridabad', displayIcon: '🏭',
+    h1: 'Rent Flats & Apartments in Faridabad — Zero Brokerage',
+    title: 'Rent Flats in Faridabad | 2BHK 3BHK for Rent | Vertex Living',
+    description: 'Find verified rental flats in Faridabad. Zero brokerage. Direct from owners. Sector 12, 14, 15, 16, 21, 28, 35, 37. Updated daily.',
+    keywords: 'rent flat faridabad, flats for rent faridabad, 2bhk rent faridabad, 3bhk rent faridabad, villa rent faridabad, pg faridabad, property for rent faridabad',
+    ogTitle: 'Rent Flats in Faridabad | Zero Brokerage | Vertex Living',
+    ogDesc: 'Flats for rent in Faridabad. Zero brokerage. Direct from verified owners.',
+    geoRegion: 'IN-HR', geoPosition: '28.4089;77.3178',
+    lat: 28.4089, lng: 77.3178, region: 'Haryana',
+    intro: 'Faridabad is a major industrial city in Haryana, part of Delhi NCR, situated along the Delhi–Mathura road. Well-connected via the Delhi Metro Pink Line and the Faridabad–Noida–Ghaziabad Expressway, Faridabad offers affordable rental options with excellent connectivity. Vertex Living provides verified zero-brokerage rentals across all Faridabad sectors.',
+    popularSectors: ['Sector 12', 'Sector 14', 'Sector 15', 'Sector 16', 'Sector 21', 'Sector 28', 'Sector 35', 'Sector 37', 'Sector 70', 'Sector 81'],
+  },
+  ghaziabad: {
+    displayName: 'Ghaziabad', displayIcon: '🌐',
+    h1: 'Rent Flats & Apartments in Ghaziabad — Zero Brokerage',
+    title: 'Rent Flats in Ghaziabad | 2BHK 3BHK for Rent | Vertex Living',
+    description: 'Find verified rental flats in Ghaziabad. Zero brokerage. Direct from owners. Raj Nagar, Vaishali, Indirapuram, Crossing Republik, Vasundhara. Updated daily.',
+    keywords: 'rent flat ghaziabad, flats for rent ghaziabad, 2bhk rent ghaziabad, 3bhk rent ghaziabad, villa rent ghaziabad, pg ghaziabad, property for rent ghaziabad',
+    ogTitle: 'Rent Flats in Ghaziabad | Zero Brokerage | Vertex Living',
+    ogDesc: 'Flats for rent in Ghaziabad. Zero brokerage. Direct from verified owners.',
+    geoRegion: 'IN-UP', geoPosition: '28.6692;77.4538',
+    lat: 28.6692, lng: 77.4538, region: 'Uttar Pradesh',
+    intro: 'Ghaziabad is one of the oldest industrial cities in Uttar Pradesh and a key component of Delhi NCR. Well-connected to Delhi via the Delhi–Ghaziabad-Meerut RRTS and the Ghaziabad–Noida Direct Bridge, the city offers highly affordable rental options with good infrastructure. Vertex Living lists verified, zero-brokerage rental properties across all major Ghaziabad localities.',
+    popularSectors: ['Raj Nagar', 'Raj Nagar Extension', 'Vaishali', 'Indirapuram', 'Crossing Republik', 'Vasundhara', 'Govind Puram', 'Sanjay Nagar', 'Model Town', 'Kavi Nagar'],
+  },
+};
+
+// ─── City FAQ Data ────────────────────────────────────────────────────────────
+const CITY_FAQS = {
+  default: [
+    { name: 'What is the average rent for a 2BHK flat in this city?', acceptedAnswer: { text: 'Average rent for a 2BHK in most cities ranges from ₹12,000 to ₹30,000/month depending on location, furnishing, and amenities. Premium localities command higher rents. Vertex Living lists verified properties at all price points.' } },
+    { name: 'Is it possible to rent a flat without paying brokerage?', acceptedAnswer: { text: 'Yes! All properties on Vertex Living are listed directly by verified owners — zero brokerage guaranteed. You deal directly with the landlord or their authorised representative.' } },
+    { name: 'What documents are required to rent a flat?', acceptedAnswer: { text: 'Standard documents include: valid ID proof (Aadhaar/Passport), PAN card, passport-size photographs, address proof, employment/income proof, and 2–3 months rent as security deposit. Some landlords may also require a NOC from your current landlord.' } },
+    { name: 'Are there furnished flats available for rent?', acceptedAnswer: { text: 'Yes, Vertex Living lists both furnished, semi-furnished, and unfurnished properties. Fully furnished 2BHK/3BHK flats typically cost ₹5,000–₹15,000 more per month in rent but save you the cost of buying furniture.' } },
+    { name: 'How do I schedule a site visit?', acceptedAnswer: { text: 'Simply click the "Contact Owner" button on any listing, fill in your details, and the owner will connect with you directly. You can also call or WhatsApp the owner directly — no middlemen involved.' } },
+    { name: 'Is the security deposit refundable?', acceptedAnswer: { text: 'In most cases, the security deposit (typically 2–3 months rent) is fully refundable at the end of your tenancy, subject to property condition. Always get the terms in writing in your rental agreement.' } },
+    { name: 'What is the typical lease duration?', acceptedAnswer: { text: 'Standard residential lease duration in India is 11 months, renewable by mutual agreement. Some owners may offer shorter or longer terms. Vertex Living recommends a registered rent agreement for legal protection.' } },
+    { name: 'Can I list my property for rent on Vertex Living?', acceptedAnswer: { text: 'Yes! Register as an owner on Vertex Living and list your property for free. Reach thousands of verified tenants across India without paying any brokerage commission.' } },
+  ],
+};
 const AMENITIES_LIST = [
   'Parking','Lift','24/7 Security','Power Backup','Gym','Swimming Pool',
   'Club House','Intercom','CCTV','Visitors Parking','Pet Friendly','Gas Pipeline',
@@ -262,7 +385,7 @@ function RentalAuthModal() {
             {rentalTab === 'register' && (
               <div className="rental-form-group">
                 <label>Phone Number</label>
-                <input className="rental-input" type="tel" placeholder="+91 98765 43210" value={form.phone} onChange={e => set('phone', e.target.value)} required />
+                <input className="rental-input" type="tel" placeholder="+91 9671009931" value={form.phone} onChange={e => set('phone', e.target.value)} required />
               </div>
             )}
             {err && <div className="rental-form-error">{err}</div>}
@@ -344,7 +467,7 @@ function RentalInlineAuth() {
               </div>
               <div className="rental-form-group">
                 <label>Phone Number</label>
-                <input className="rental-input" type="tel" placeholder="+91 98765 43210" value={form.phone} onChange={e => set('phone', e.target.value)} required />
+                <input className="rental-input" type="tel" placeholder="+91 9671009931" value={form.phone} onChange={e => set('phone', e.target.value)} required />
               </div>
               <div className="rental-form-group">
                 <label>I am a</label>
@@ -560,7 +683,7 @@ function AddPropertyModal({ onClose, onAdded }) {
             </div>
 
             <div className="rental-form-group">
-              <label>City / Locality <span style={{ fontSize:'0.75rem', color:'var(--rp-muted)' }}>(anywhere in India)</span></label>
+              <label>City / Locality <span style={{ fontSize:'0.75rem', color:'var(--rp-muted)' }}>(Gurugram & Delhi NCR)</span></label>
               <LocationInput
                 value={form.sector}
                 onChange={v => set('sector', v)}
@@ -597,13 +720,13 @@ function AddPropertyModal({ onClose, onAdded }) {
                 onClick={() => fileInputRef.current?.click()}
               >
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ opacity: 0.5 }}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-                <span>Click to select photos / PDFs</span>
-                <span style={{ fontSize:'0.75rem', opacity: 0.5 }}>JPG, JPEG, PDF · max 20 MB each · up to 5 files</span>
+                <span>Click to select files</span>
+                <span style={{ fontSize:'0.75rem', opacity: 0.5 }}>Images, Videos, PDFs & all types · max 100 MB each</span>
               </div>
               <input
                 ref={fileInputRef}
                 type="file"
-                accept=".jpg,.jpeg,.pdf"
+                accept="*/*"
                 multiple
                 style={{ display: 'none' }}
                 onChange={handleFileChange}
@@ -756,7 +879,7 @@ function InquiryModal({ property, onClose }) {
                 </div>
                 <div className="rental-form-group">
                   <label>Phone</label>
-                  <input className="rental-input" type="tel" placeholder="+91 98765 43210" value={form.tenantPhone} onChange={e => set('tenantPhone', e.target.value)} />
+                  <input className="rental-input" type="tel" placeholder="+91 9671009931" value={form.tenantPhone} onChange={e => set('tenantPhone', e.target.value)} />
                 </div>
                 <div className="rental-form-group">
                   <label>Message</label>
@@ -845,7 +968,9 @@ function PropertyCard({ property, isOwner, onInquiry, onDelete, ownerInquiries }
         </div>
 
         {(property.sector || property.location) && (
-          <div className="rental-card-location"><IconPin /> {property.sector || property.location}</div>
+          <div className="rental-card-location">
+            <IconPin /> {property.sector || property.location}
+          </div>
         )}
 
         <div className="rental-card-meta">
@@ -914,6 +1039,8 @@ function PropertyCard({ property, isOwner, onInquiry, onDelete, ownerInquiries }
 // ─── Main Page ─────────────────────────────────────────────────────────────────
 
 export default function RentalPage() {
+  const { city: resolvedCity } = useParams();
+  const config = resolvedCity ? (CITY_CONFIGS[resolvedCity] || null) : null;
   const {
     rentalUser, openRentalLogin, openRentalRegister, rentalLogout,
     isRentalOwner,
@@ -969,9 +1096,15 @@ export default function RentalPage() {
     loadInquiries();
   };
 
-  // Filtered properties
   const rentRange = RENT_RANGES[filterRent];
   const filtered = properties.filter(p => {
+    // City filter (from /rent/:city route)
+    if (resolvedCity && config) {
+      const locLower = `${p.sector || ''} ${p.location || ''} ${p.city || ''}`.toLowerCase();
+      const cityNorm = resolvedCity.toLowerCase();
+      const extraTerms = cityNorm === 'gurugram' ? ['gurgaon'] : cityNorm === 'gurgaon' ? ['gurugram'] : [];
+      if (![cityNorm, ...extraTerms].some(t => locLower.includes(t) || locLower.includes(t.replace(/-/g, ' ')))) return false;
+    }
     if (filterType       && p.type !== filterType) return false;
     if (filterFurnishing && p.furnishing !== filterFurnishing) return false;
     if (p.rentPerMonth < rentRange.min || p.rentPerMonth > rentRange.max) return false;
@@ -985,6 +1118,7 @@ export default function RentalPage() {
 
   const myProperties = properties.filter(p => rentalUser && String(p.ownerId) === String(rentalUser.id));
   const displayList  = activeTab === 'mylistings' ? myProperties : filtered;
+  const displayCount = activeTab === 'mylistings' ? myProperties.length : filtered.length;
 
   const clearFilters = () => {
     setFilterType(''); setFilterFurnishing(''); setFilterRent(0); setFilterSector('');
@@ -994,28 +1128,37 @@ export default function RentalPage() {
   return (
     <div className="rental-page">
       <Helmet>
-        <title>Rent Property in Gurgaon | Flats & Apartments for Rent | Vertex Living</title>
-        <meta name="description" content="Rent flats, apartments & houses in Gurgaon, Delhi NCR. Zero brokerage, verified owners. 2BHK, 3BHK, furnished & unfurnished rentals in Sector 42, 65, Golf Course Road, New Gurgaon. Vertex Living." />
-        <meta name="keywords" content="rent property gurgaon, flats for rent gurgaon, apartments for rent gurugram, rental property delhi ncr, 2bhk rent gurgaon, 3bhk rent gurgaon, furnished flat gurgaon, pg gurgaon, vertex living rental" />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://vertexliving.in/rent" />
+        <title>{config ? config.title : 'Rent Property in India — Zero Brokerage | Vertex Living'}</title>
+        <meta name="description" content={config ? config.description : 'Rent verified flats, apartments & houses anywhere in India. Zero brokerage. Direct from owners. Updated daily.'} />
+        <meta name="keywords" content={config ? config.keywords : 'rent property India, flat for rent India, rent flat India, rental property, 2bhk rent India, 3bhk rent India, vertex living rental'} />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+        <link rel="canonical" href={`https://vertexliving.in/rent${resolvedCity ? '/' + resolvedCity : ''}`} />
+        {config && <meta name="geo.region" content={config.geoRegion} />}
+        {config && <meta name="geo.placename" content={config.displayName + ', India'} />}
+        {config && <meta name="geo.position" content={config.geoPosition} />}
+        {config && <meta name="ICBM" content={config.geoPosition} />}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Rent Property in Gurgaon | Zero Brokerage | Vertex Living" />
-        <meta property="og:description" content="Rent verified flats & apartments in Gurgaon. Zero brokerage. Direct from owners." />
-        <meta property="og:url" content="https://vertexliving.in/rent" />
+        <meta property="og:title" content={config ? config.ogTitle : 'Rent Property Anywhere in India | Zero Brokerage | Vertex Living'} />
+        <meta property="og:description" content={config ? config.ogDesc : 'Rent verified flats & apartments across India. Zero brokerage. Direct from owners.'} />
+        <meta property="og:url" content={`https://vertexliving.in/rent${resolvedCity ? '/' + resolvedCity : ''}`} />
         <meta property="og:image" content="https://vertexliving.in/logo1.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:site_name" content="Vertex Living" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Rent Property in Gurgaon | Zero Brokerage | Vertex Living" />
-        <meta name="twitter:description" content="Rent verified flats & apartments in Gurgaon. Zero brokerage. Direct from owners." />
+        <meta name="twitter:title" content={config ? config.ogTitle : 'Rent Property Anywhere in India | Zero Brokerage | Vertex Living'} />
+        <meta name="twitter:description" content={config ? config.ogDesc : 'Rent verified flats & apartments across India. Zero brokerage.'} />
         <meta name="twitter:image" content="https://vertexliving.in/logo1.png" />
+        {config && <meta name="language" content="English, Hindi" />}
       </Helmet>
       {/* Hero */}
       <div className="rental-hero">
-        <h1 className="rental-hero-title">Rent Property in Gurgaon — Zero Brokerage</h1>
-        <p className="rental-hero-subtitle">Verified rental properties in Gurgaon & Delhi NCR — direct from owners, zero brokerage</p>
+        <h1 className="rental-hero-title">{config ? config.h1 : 'Rent Property Anywhere in India — Zero Brokerage'}</h1>
+        <p className="rental-hero-subtitle">
+          {config
+            ? `Verified rental flats & apartments in ${config.displayName} — direct from owners, zero brokerage`
+            : 'Verified rental properties across India — direct from owners, zero brokerage'}
+        </p>
         <div className="rental-hero-pills">
           <span className="rental-hero-pill">&#10003; Zero Brokerage</span>
           <span className="rental-hero-pill">&#10003; Verified Owners</span>
@@ -1023,6 +1166,48 @@ export default function RentalPage() {
           <span className="rental-hero-pill">&#10003; Pan India</span>
         </div>
       </div>
+
+      {/* City-specific intro content — unique SEO-rich content */}
+      {config && (
+        <div style={{ maxWidth: 860, margin: '0 auto', padding: '0 16px 24px' }}>
+          <div style={{
+            background: 'linear-gradient(135deg, rgba(99,102,241,0.08), rgba(139,92,246,0.05))',
+            border: '1px solid rgba(99,102,241,0.2)',
+            borderRadius: 16, padding: '24px 28px', marginTop: -8,
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
+              <span style={{ fontSize: '1.6rem' }}>{config.displayIcon}</span>
+              <h2 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--rp-text)', margin: 0 }}>
+                Rental Market in {config.displayName}
+              </h2>
+            </div>
+            <p style={{ color: 'var(--rp-muted)', lineHeight: 1.75, fontSize: '0.9rem', margin: '0 0 16px' }}>
+              {config.intro}
+            </p>
+            {config.popularSectors && (
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
+                <span style={{ fontSize: '0.78rem', color: 'var(--rp-muted)', fontWeight: 600, marginRight: 4 }}>Popular Areas:</span>
+                {config.popularSectors.map(s => (
+                  <span key={s} style={{
+                    background: 'rgba(99,102,241,0.12)', color: '#818cf8',
+                    border: '1px solid rgba(99,102,241,0.2)', borderRadius: 20,
+                    padding: '3px 12px', fontSize: '0.78rem', fontWeight: 500,
+                  }}>
+                    {s}
+                  </span>
+                ))}
+              </div>
+            )}
+            <a href={`/rent/${resolvedCity}`} style={{
+              display: 'inline-flex', alignItems: 'center', gap: 6,
+              color: '#818cf8', fontWeight: 600, fontSize: '0.85rem',
+              textDecoration: 'none',
+            }}>
+              {displayCount} properties in {config.displayName} →
+            </a>
+          </div>
+        </div>
+      )}
 
       {/* Auth Section — inline card when not logged in */}
       {!rentalUser ? (
@@ -1099,6 +1284,47 @@ export default function RentalPage() {
         </div>
       )}
 
+      {/* FAQ JSON-LD Schema */}
+      {config && (
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "name": `Rent Property FAQ — ${config.displayName}`,
+          "url": `https://vertexliving.in/rent/${resolvedCity}`,
+          "mainEntity": (CITY_FAQS[resolvedCity] || CITY_FAQS.default),
+        })}</script>
+      )}
+      {config && (
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": `Vertex Living — ${config.displayName}`,
+          "description": `Premium rental property services in ${config.displayName}. Zero brokerage flats, villas and apartments. Direct from verified owners.`,
+          "url": `https://vertexliving.in/rent/${resolvedCity}`,
+          "telephone": "+919671009931",
+          "email": "support@vertexliving.in",
+          "priceRange": "₹₹",
+          "address": { "@type": "PostalAddress", "addressLocality": config.displayName, "addressRegion": config.region, "addressCountry": "IN" },
+          "geo": { "@type": "GeoCoordinates", "latitude": config.lat, "longitude": config.lng },
+          "areaServed": { "@type": "City", "name": config.displayName },
+          "openingHoursSpecification": [
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "09:00", "closes": "19:00" },
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "10:00", "closes": "17:00" },
+          ],
+        })}</script>
+      )}
+      {config && (
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home",          "item": "https://vertexliving.in/" },
+            { "@type": "ListItem", "position": 2, "name": "Rent",           "item": "https://vertexliving.in/rent" },
+            { "@type": "ListItem", "position": 3, "name": config.displayName, "item": `https://vertexliving.in/rent/${resolvedCity}` },
+          ]
+        })}</script>
+      )}
+
       {/* Content */}
       <div className="rental-content">
         {activeTab === 'mylistings' && isRentalOwner && (
@@ -1140,6 +1366,32 @@ export default function RentalPage() {
           </div>
         )}
       </div>
+
+      {/* Related Cities Section */}
+      {config && (
+        <div style={{ maxWidth: 860, margin: '0 auto', padding: '16px 16px 32px' }}>
+          <div style={{ borderTop: '1px solid var(--rp-border, #30363d)', paddingTop: 24 }}>
+            <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--rp-text)', marginBottom: 16 }}>
+              Explore Rentals in Other Cities
+            </h3>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+              {Object.keys(CITY_CONFIGS).filter(c => c !== resolvedCity).map(cityKey => (
+                <a key={cityKey} href={`/rent/${cityKey}`} style={{
+                  display: 'flex', alignItems: 'center', gap: 6,
+                  padding: '8px 16px', borderRadius: 10,
+                  background: 'rgba(99,102,241,0.08)',
+                  border: '1px solid rgba(99,102,241,0.2)',
+                  color: '#818cf8', textDecoration: 'none',
+                  fontSize: '0.85rem', fontWeight: 600,
+                  transition: 'all 0.2s',
+                }}>
+                  {CITY_CONFIGS[cityKey].displayIcon} {CITY_CONFIGS[cityKey].displayName}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Modals */}
       <RentalAuthModal />

@@ -64,13 +64,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({
   storage,
-  limits: { fileSize: 20 * 1024 * 1024 }, // 20 MB per file
-  fileFilter: (_req, file, cb) => {
-    const allowed = ['.jpg', '.jpeg', '.pdf'];
-    const ext = path.extname(file.originalname).toLowerCase();
-    if (allowed.includes(ext)) cb(null, true);
-    else cb(new Error('Only JPG and PDF files are allowed'));
-  },
+  limits: { fileSize: 100 * 1024 * 1024 }, // 100 MB per file
 });
 
 // Serve uploaded files statically
@@ -153,7 +147,9 @@ const OTP_RESEND_GAP = 60 * 1000;       // 1 minute between resends
 function getMailTransporter() {
   const user = process.env.GMAIL_USER;
   const pass = process.env.GMAIL_APP_PASSWORD;
-  if (!user || !pass || user.includes('aapki.gmail')) return null;
+  if (!user || !pass) return null;
+  // Detect placeholder values — treat as unconfigured
+  if (user.includes('aapki.gmail') || pass.replace(/\s/g, '').includes('xxxx')) return null;
   return nodemailer.createTransport({
     service: 'gmail',
     auth: { user, pass },
@@ -175,6 +171,9 @@ app.post('/api/auth/register', (req, res) => {
   const emailKey = (email || '').toLowerCase().trim();
   if (!name || !emailKey || !password) {
     return res.status(400).json({ error: 'Name, email and password are required.' });
+  }
+  if (!phone || !phone.trim()) {
+    return res.status(400).json({ error: 'Mobile number is required.' });
   }
 
   // Require email OTP verification before account creation
@@ -402,7 +401,7 @@ app.post('/api/auth/send-otp', async (req, res) => {
   if (transporter) {
     try {
       await transporter.sendMail({
-        from: `"Vertex Living" <${process.env.GMAIL_USER}>`,
+        from: '"Vertex Living" <info@vertexliving.in>',
         to: email,
         subject: 'Your Vertex Living Verification Code',
         html: `
@@ -443,11 +442,11 @@ app.post('/api/auth/send-otp', async (req, res) => {
       return res.json({ success: true, message: 'OTP sent to your email.' });
     } catch (err) {
       console.error('[OTP] Email send failed:', err.message);
-      // Fall through to dev mode
+      return res.status(500).json({ error: 'OTP email bhejne mein error aaya. Server pe GMAIL_APP_PASSWORD check karo. (' + err.message + ')' });
     }
   }
 
-  // Dev/Demo mode — log OTP to console (when email not configured)
+  // Dev mode — credentials not configured, log OTP to console
   console.log(`\n[OTP DEV MODE] Email: ${email}  OTP: ${otp}\n`);
   return res.json({
     success: true,
@@ -1134,7 +1133,7 @@ function generateInvoiceHTML(b) {
         <h4>Issued By</h4>
         <div class="info-row"><span class="lbl">Company</span><span class="val">Vertex Living</span></div>
         <div class="info-row"><span class="lbl">City</span><span class="val">Gurgaon, Haryana</span></div>
-        <div class="info-row"><span class="lbl">Email</span><span class="val">info@vertexliving.in</span></div>
+        <div class="info-row"><span class="lbl">Email</span><span class="val">support@vertexliving.in</span></div>
       </div>
     </div>
 
@@ -1189,7 +1188,7 @@ function generateInvoiceHTML(b) {
   <div class="footer">
     <div class="footer-brand">VERTEX <span>LIVING</span></div>
     <div class="footer-meta">
-      SCO 120, Sector 44, Gurgaon · info@vertexliving.in · +91 98765 43210<br>
+      SCO 120, Sector 44, Gurgaon · support@vertexliving.in · +91 9671009931<br>
       This is a system-generated invoice. No signature required.
     </div>
   </div>
@@ -1217,7 +1216,7 @@ async function sendInvoiceEmail(booking) {
 
   try {
     await transporter.sendMail({
-      from: `"Vertex Living" <${process.env.GMAIL_USER}>`,
+      from: '"Vertex Living" <info@vertexliving.in>',
       to: booking.userEmail,
       subject: `✅ Booking Confirmed — ${booking.propertyName} | Invoice ${invoiceNo}`,
       html: `
@@ -1243,7 +1242,7 @@ async function sendInvoiceEmail(booking) {
             <p style="color:#475569;font-size:13px;line-height:1.6">The full invoice is attached below. Our team will contact you within 2 hours to schedule a site visit and discuss next steps.</p>
           </div>
           <div style="background:#fff;border-radius:10px;padding:20px;font-size:12px;color:#94a3b8;text-align:center">
-            Vertex Living · SCO 120, Sector 44, Gurgaon · info@vertexliving.in<br>
+            Vertex Living · SCO 120, Sector 44, Gurgaon · support@vertexliving.in<br>
             This is an automated email. Please do not reply.
           </div>
         </div>
@@ -1312,7 +1311,7 @@ ABOUT VERTEX LIVING:
 - Properties in Gurgaon & Delhi NCR
 - All properties RERA registered
 - 200+ builders registered, ₹47 Cr+ saved by buyers so far
-- Contact: +91 98765 43210 | info@vertexliving.com
+- Contact: +91 9671009931 | support@vertexliving.in
 
 CURRENT LIVE LISTINGS:
 ${propLines || 'Properties loading — ask me anything!'}
@@ -1444,6 +1443,178 @@ app.delete('/api/admin/visits/:id', (req, res) => {
   const visits = loadJSON(VISITS_FILE, []).filter(v => String(v.id) !== String(req.params.id));
   saveJSON(VISITS_FILE, visits);
   res.json({ ok: true });
+});
+
+// ─── SEO Sitemap Endpoints ────────────────────────────────────────────────────
+
+const RENTAL_PROPS_FILE = path.join(DATA_DIR_DATA, 'rental_properties.json');
+
+// GET /api/sitemap.xml — dynamic sitemap for all indexable pages
+app.get('/api/sitemap.xml', async (req, res) => {
+  const BASE = 'https://vertexliving.in';
+  const today = new Date().toISOString().split('T')[0];
+
+  const staticPages = [
+    { loc: '/',             priority: '1.0',  changefreq: 'daily',  lastmod: today },
+    { loc: '/rent',         priority: '0.95', changefreq: 'daily',  lastmod: today },
+    { loc: '/story',        priority: '0.85', changefreq: 'weekly', lastmod: today },
+    { loc: '/compare',      priority: '0.75', changefreq: 'weekly', lastmod: today },
+    { loc: '/privacy',      priority: '0.3',  changefreq: 'monthly', lastmod: today },
+    { loc: '/terms',        priority: '0.3',  changefreq: 'monthly', lastmod: today },
+  ];
+
+  const CITIES = [
+    { slug: 'gurugram',      name: 'Gurugram',      region: 'Haryana' },
+    { slug: 'gurgaon',      name: 'Gurgaon',       region: 'Haryana' },
+    { slug: 'noida',        name: 'Noida',         region: 'Uttar Pradesh' },
+    { slug: 'greater-noida',name: 'Greater Noida', region: 'Uttar Pradesh' },
+    { slug: 'delhi',        name: 'Delhi',         region: 'Delhi' },
+    { slug: 'jaipur',       name: 'Jaipur',        region: 'Rajasthan' },
+    { slug: 'faridabad',   name: 'Faridabad',     region: 'Haryana' },
+    { slug: 'ghaziabad',   name: 'Ghaziabad',     region: 'Uttar Pradesh' },
+  ];
+
+  const cityPages = CITIES.map(c => ({
+    loc: `/rent/${c.slug}`,
+    priority: '0.9',
+    changefreq: 'daily',
+    lastmod: today,
+  }));
+
+  // Builder properties from admin API
+  let builderProps = [];
+  try {
+    const fetched = await fetch(`http://localhost:${PORT}/api/admin/properties`, {
+      headers: { 'Origin': 'http://localhost' },
+    }).catch(() => null);
+    if (fetched?.ok) {
+      const data = await fetched.json();
+      if (Array.isArray(data)) builderProps = data;
+    }
+  } catch { /* ignore */ }
+
+  const builderPages = builderProps
+    .filter(p => p.approvalStatus === 'approved' || !p.approvalStatus)
+    .map(p => ({
+      loc: `/property/${p.id || p.name?.toLowerCase().replace(/\s+/g, '-')}`,
+      priority: '0.85',
+      changefreq: 'weekly',
+      lastmod: today,
+    }));
+
+  // Live rental properties
+  const rentalProps = loadJSON(RENTAL_PROPS_FILE, []);
+  const rentalPages = rentalProps
+    .filter(p => p.status === 'active')
+    .map(p => ({
+      loc: `/rent`,
+      priority: '0.8',
+      changefreq: 'daily',
+      lastmod: p.listedAt ? p.listedAt.split('T')[0] : today,
+    }));
+
+  const allUrls = [...staticPages, ...cityPages, ...builderPages, ...rentalPages];
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${allUrls.map(u => `  <url>
+    <loc>${BASE}${u.loc}</loc>
+    <lastmod>${u.lastmod}</lastmod>
+    <changefreq>${u.changefreq}</changefreq>
+    <priority>${u.priority}</priority>
+  </url>`).join('\n')}
+</urlset>`;
+
+  res.setHeader('Content-Type', 'application/xml');
+  res.setHeader('Cache-Control', 'public, max-age=3600');
+  res.send(xml);
+});
+
+// GET /api/sitemap-images.xml — image sitemap for all properties
+app.get('/api/sitemap-images.xml', async (req, res) => {
+  const BASE = 'https://vertexliving.in';
+  const IMAGE_BASE = 'https://images.unsplash.com';
+
+  let allProps = [];
+  try {
+    const fetched = await fetch(`http://localhost:${PORT}/api/admin/properties`).catch(() => null);
+    if (fetched?.ok) {
+      const data = await fetched.json();
+      if (Array.isArray(data)) allProps = data;
+    }
+  } catch { /* ignore */ }
+
+  const rentalProps = loadJSON(RENTAL_PROPS_FILE, []);
+  const merged = [...allProps, ...rentalProps];
+
+  const entries = [
+    {
+      loc: BASE + '/',
+      image: {
+        loc: 'https://vertexliving.in/logo1.png',
+        title: 'Vertex Living — Premium Real Estate Gurgaon',
+        caption: 'Vertex Living: Zero brokerage property platform in Gurgaon and Delhi NCR.',
+      },
+    },
+    {
+      loc: BASE + '/rent',
+      image: {
+        loc: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1400&q=80',
+        title: 'Rent Property in India — Zero Brokerage | Vertex Living',
+        caption: 'Find verified rental flats, apartments, and villas across India. Zero brokerage.',
+      },
+    },
+  ];
+
+  merged.forEach(p => {
+    const pageLoc = p.id
+      ? `${BASE}/property/${p.id}`
+      : `${BASE}/rent`;
+    const photos = Array.isArray(p.photos) ? p.photos.filter(Boolean) : [];
+    if (photos.length === 0) {
+      entries.push({
+        loc: pageLoc,
+        image: {
+          loc: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1400&q=80',
+          title: p.name || 'Rental Property',
+          caption: `${p.name || 'Property'} for rent in ${p.location || p.sector || 'India'}. ${p.type || ''}. Listed on Vertex Living.`,
+        },
+      });
+    } else {
+      photos.forEach((url, i) => {
+        const imgUrl = url.startsWith('/uploads')
+          ? `http://localhost:${PORT}${url}`
+          : url;
+        entries.push({
+          loc: pageLoc,
+          image: {
+            loc: imgUrl,
+            title: `${p.name || 'Property'} — Image ${i + 1}`,
+            caption: `${p.name || 'Property'} in ${p.sector || p.location || 'India'}. ${p.type || ''}. Zero brokerage rental.`,
+          },
+        });
+      });
+    }
+  });
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${entries.map(e => `  <url>
+    <loc>${e.loc}</loc>
+    <image:image>
+      <image:loc>${e.image.loc}</image:loc>
+      <image:title>${e.image.title || ''}</image:title>
+      <image:caption>${e.image.caption || ''}</image:caption>
+    </image:image>
+  </url>`).join('\n')}
+</urlset>`;
+
+  res.setHeader('Content-Type', 'application/xml');
+  res.setHeader('Cache-Control', 'public, max-age=3600');
+  res.send(xml);
 });
 
 // ─── Start Server ────────────────────────────────────────────────────────────

@@ -1,4 +1,5 @@
 import React, { lazy, Suspense, useState, useEffect, useRef, useCallback } from 'react';
+const resolvePhoto = url => (url && url.startsWith('/uploads')) ? `${API}${url}` : url;
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
@@ -7,13 +8,11 @@ import { useAuth } from '../context/AuthContext';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import Navbar from './Navbar';
 import BottomNav from './BottomNav';
-import StickyAssistant from './StickyAssistant';
 import BookingModal from './BookingModal';
 
 const PriceTimeline    = lazy(() => import('./PriceTimeline'));
 const LifeSimulator    = lazy(() => import('./LifeSimulator'));
 const CompareBar       = lazy(() => import('./CompareBar'));
-const ChatWidget       = lazy(() => import('./ChatWidget'));
 const Footer           = lazy(() => import('./Footer'));
 const SavingsCalculator = lazy(() => import('./SavingsCalculator'));
 const HowItWorks       = lazy(() => import('./HowItWorks'));
@@ -25,7 +24,6 @@ const BuyerProfilePanel   = lazy(() => import('./BuyerProfilePanel'));
 const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com';
 
 const CinematicView        = lazy(() => import('./CinematicView'));
-const PropertyMap          = lazy(() => import('./PropertyMap'));
 const InteriorPreviewModal = lazy(() => import('./InteriorPreviewModal'));
 const RoomPlanner          = lazy(() => import('./RoomPlanner'));
 import {
@@ -39,7 +37,6 @@ import { PROPERTY_DETAILS } from '../data/properties';
 import { useSiteSettings } from '../context/SiteSettingsContext';
 import { useIntelligence, IntelligenceContext } from '../hooks/useIntelligence';
 import SmartGreeting from './SmartGreeting';
-import LiveActivity from './LiveActivity';
 import MarketPulse from './MarketPulse';
 import SocialProof from './SocialProof';
 import './HomePage.css';
@@ -1258,7 +1255,7 @@ const HomePage = () => {
         .then(r => r.json()).then(data => { if (Array.isArray(data) && data.length) setApiProperties(data); })
         .catch(() => {}),
       fetch(`${API}/api/admin/agents`)
-        .then(r => r.json()).then(data => { if (Array.isArray(data) && data.length) setApiAgents(data); })
+        .then(r => r.json()).then(data => { if (Array.isArray(data)) setApiAgents(data); })
         .catch(() => {}),
     ]).finally(() => setApiFetched(true));
   }, []);
@@ -1312,14 +1309,15 @@ const HomePage = () => {
   // Compare state
   const [compareList, setCompareList] = useState([]);
   const [pageLoaded, setPageLoaded] = useState(false);
-  const { mood: navbarMood } = useTheme();
-  // Filter entire DB by current mood: luxury = ₹7 Cr+, budget = under ₹7 Cr
-  const moodFilteredDB = React.useMemo(() => {
-    const threshold = parseFloat(siteSettings.luxuryThreshold) || 5;
-    return liveProperties.filter(p => navbarMood === 'luxury' ? p.price >= threshold : p.price < threshold);
-  }, [navbarMood, liveProperties, siteSettings.luxuryThreshold]
-  );
+  const { mood: navbarMood, setMood: setNavbarMood } = useTheme();
   const [activeMood, setActiveMood] = useState(() => navbarMood || 'luxury');
+  // Filter entire DB by effective mood — activeMood is source of truth; falls back to navbarMood
+  const moodFilteredDB = React.useMemo(() => {
+    const effectiveMood = activeMood || navbarMood || 'luxury';
+    if (effectiveMood === 'family') return liveProperties;
+    const threshold = parseFloat(siteSettings.luxuryThreshold) || 5;
+    return liveProperties.filter(p => effectiveMood === 'luxury' ? p.price >= threshold : p.price < threshold);
+  }, [activeMood, navbarMood, liveProperties, siteSettings.luxuryThreshold]);
 
   const moodProperties = React.useMemo(() => {
     if (!activeMood || !MOODS[activeMood]) return [];
@@ -3570,6 +3568,46 @@ What would you prefer? The clock is ticking! ⏰
         </div>
       </section>
 
+      {/* Rent by City Section */}
+      <section id="rent-cities" style={{ padding: '72px 0', background: 'var(--bg-secondary, #0f1117)' }}>
+        <div className="container">
+          <div className="section-header" style={{ marginBottom: '40px' }}>
+            <h2 className="section-title">Rent Property in Your City — Zero Brokerage</h2>
+            <p className="section-subtitle">
+              Browse verified rental flats and apartments across India's top cities. Direct from owners.
+            </p>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '16px', maxWidth: 1100, margin: '0 auto' }}>
+            {[
+              { slug: 'gurugram',      name: 'Gurugram',      icon: '🏙️', count: '200+' },
+              { slug: 'noida',          name: 'Noida',          icon: '🌆', count: '150+' },
+              { slug: 'delhi',          name: 'Delhi',           icon: '🏛️', count: '180+' },
+              { slug: 'greater-noida', name: 'Greater Noida',  icon: '🌿', count: '80+'  },
+              { slug: 'jaipur',         name: 'Jaipur',          icon: '🏰', count: '60+'  },
+              { slug: 'faridabad',     name: 'Faridabad',      icon: '🏭', count: '70+'  },
+              { slug: 'ghaziabad',     name: 'Ghaziabad',      icon: '🌐', count: '65+'  },
+              { slug: 'gurgaon',        name: 'Gurgaon',         icon: '🏙️', count: '200+' },
+            ].map(city => (
+              <a key={city.slug} href={`/rent/${city.slug}`} style={{
+                display: 'flex', flexDirection: 'column', alignItems: 'center',
+                justifyContent: 'center', gap: 10, padding: '24px 16px',
+                background: 'rgba(99,102,241,0.06)', border: '1px solid rgba(99,102,241,0.15)',
+                borderRadius: 16, textDecoration: 'none', transition: 'all 0.25s',
+              }}>
+                <span style={{ fontSize: '2.4rem' }}>{city.icon}</span>
+                <strong style={{ color: 'var(--text-primary)', fontSize: '0.95rem', fontWeight: 700, textAlign: 'center' }}>{city.name}</strong>
+                <span style={{ color: '#818cf8', fontSize: '0.78rem', fontWeight: 600 }}>{city.count} properties</span>
+              </a>
+            ))}
+          </div>
+          <div style={{ textAlign: 'center', marginTop: 28 }}>
+            <a href="/rent" style={{ color: '#818cf8', fontWeight: 600, fontSize: '0.9rem', textDecoration: 'none' }}>
+              View all rentals across India →
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Builder CTA Section */}
       <BuilderCTA />
 
@@ -3644,8 +3682,8 @@ What would you prefer? The clock is ticking! ⏰
       {/* Future Life Simulator */}
       <LifeSimulator />
 
-      {/* Agent Showcase Section */}
-      <section id="agent-showcase-section" className="agent-showcase-section">
+      {/* Agent Showcase Section — hidden when admin has deleted all agents */}
+      {(liveAgents === null || liveAgents.length > 0) && <section id="agent-showcase-section" className="agent-showcase-section">
         <div className="container">
           <div className="section-header">
             <h2 className="section-title reveal-left">Meet Our Expert Agents</h2>
@@ -3655,7 +3693,7 @@ What would you prefer? The clock is ticking! ⏰
           </div>
 
           <div className="agent-showcase-grid">
-            {!pageLoaded ? Array(4).fill(0).map((_, i) => <AgentCardSkeleton key={i} />) : (liveAgents || [{
+            {!pageLoaded ? Array(4).fill(0).map((_, i) => <AgentCardSkeleton key={i} />) : (liveAgents !== null ? liveAgents : [{
                 name: 'Arjun Sharma',
                 photo: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=400',
                 experience: 12,
@@ -3746,7 +3784,7 @@ What would you prefer? The clock is ticking! ⏰
             ))}
           </div>
         </div>
-      </section>
+      </section>}
 
       {/* ── Property DNA Match Section ── */}
       <section className="dna-section">
@@ -3955,7 +3993,11 @@ What would you prefer? The clock is ticking! ⏰
                     key={key}
                     className={`mood-pill${isActive ? ' mood-pill--active' : ''}`}
                     style={{ '--m-color': mood.color, '--m-gradient': mood.gradient }}
-                    onClick={() => setActiveMood(isActive ? null : key)}
+                    onClick={() => {
+                      const newKey = isActive ? null : key;
+                      setActiveMood(newKey);
+                      if (newKey === 'luxury' || newKey === 'budget') setNavbarMood(newKey);
+                    }}
                     whileHover={{ scale: 1.04 }}
                     whileTap={{ scale: 0.96 }}
                   >
@@ -4031,12 +4073,14 @@ What would you prefer? The clock is ticking! ⏰
             activeMood ? (
               <AnimatePresence>
                 {moodProperties.map((p, i) => {
-                  const uploadedPhoto = (p.photos && p.photos[0]) || (p.images && p.images[0]);
+                  const rawPhotos = (p.photos?.length ? p.photos : p.images) || [];
+                  const resolvedPhotos = rawPhotos.map(resolvePhoto);
+                  const uploadedPhoto = resolvedPhotos[0];
                   const primarySrc = uploadedPhoto || `https://images.unsplash.com/photo-${MOODS[activeMood].images[i % 3]}?w=600&h=300&fit=crop`;
                   return (
                   <HoverCard
                     key={p.id}
-                    imgs={uploadedPhoto ? (p.photos || p.images) : getHoverImages(primarySrc, p.id)}
+                    imgs={uploadedPhoto ? resolvedPhotos : getHoverImages(primarySrc, p.id)}
                     amenities={getHoverAmenities(p.price, p.type)}
                     price={p.priceDisplay}
                     status={p.status}
@@ -4443,7 +4487,9 @@ What would you prefer? The clock is ticking! ⏰
               {/* Cards Grid */}
               <div className="properties-grid">
                 {displayProps.map((p, i) => {
-                  const uploadedPhoto = (p.photos && p.photos[0]) || (p.images && p.images[0]);
+                  const rawPhotos = (p.photos?.length ? p.photos : p.images) || [];
+                  const resolvedPhotos = rawPhotos.map(resolvePhoto);
+                  const uploadedPhoto = resolvedPhotos[0];
                   const fallbackImgs = [
                     'photo-1545324418-cc1a3fa10c00','photo-1613490493576-7fde63acd811',
                     'photo-1512917774080-9991f1c4c750','photo-1600596542815-ffad4c1539a9',
@@ -4453,7 +4499,7 @@ What would you prefer? The clock is ticking! ⏰
                   return (
                     <HoverCard
                       key={p.id}
-                      imgs={uploadedPhoto ? (p.photos || p.images) : getHoverImages(primarySrc, p.id)}
+                      imgs={uploadedPhoto ? resolvedPhotos : getHoverImages(primarySrc, p.id)}
                       amenities={getHoverAmenities(p.price, p.type)}
                       price={p.priceDisplay}
                       status={p.status}
@@ -4568,14 +4614,6 @@ What would you prefer? The clock is ticking! ⏰
         );
       })}
 
-      {/* Interactive Map Section */}
-      <div id="map-section" style={{ scrollMarginTop: '70px' }}>
-        <Suspense fallback={<div style={{ height: '500px', background: '#0d1117', borderRadius: '12px' }} />}>
-          <PropertyMap
-            onViewDetails={(property) => setSelectedPickProject(property)}
-          />
-        </Suspense>
-      </div>
 
 
       {/* Dream Home Generator Section */}
@@ -4697,7 +4735,7 @@ What would you prefer? The clock is ticking! ⏰
               </p>
 
               <div className="contact-methods">
-                <a className="contact-method" href="tel:+919876543210">
+                <a className="contact-method" href="tel:+919671009931">
                   <div className="contact-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
@@ -4706,11 +4744,11 @@ What would you prefer? The clock is ticking! ⏰
                   </div>
                   <div>
                     <div className="contact-label">Call Us</div>
-                    <div className="contact-value">+91 98765 43210</div>
+                    <div className="contact-value">+91 9671009931</div>
                   </div>
                 </a>
 
-                <a className="contact-method" href="https://mail.google.com/mail/?view=cm&to=info@vertexliving.com" target="_blank" rel="noopener noreferrer">
+                <a className="contact-method" href="https://mail.google.com/mail/?view=cm&to=support@vertexliving.in" target="_blank" rel="noopener noreferrer">
                   <div className="contact-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
@@ -4720,23 +4758,10 @@ What would you prefer? The clock is ticking! ⏰
                   </div>
                   <div>
                     <div className="contact-label">Email Us</div>
-                    <div className="contact-value">info@vertexliving.com</div>
+                    <div className="contact-value">support@vertexliving.in</div>
                   </div>
                 </a>
 
-                <a className="contact-method" href="https://maps.google.com/?q=DLF+Cyber+City+Gurgaon" target="_blank" rel="noopener noreferrer">
-                  <div className="contact-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
-                        stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="2"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="contact-label">Visit Us</div>
-                    <div className="contact-value">DLF Cyber City, Gurgaon</div>
-                  </div>
-                </a>
               </div>
 
               {/* Social Links */}
@@ -4770,7 +4795,12 @@ What would you prefer? The clock is ticking! ⏰
 
             {/* Contact / Builder / Buyer Panel */}
             <div className="contact-form-wrapper">
-              {isBuilder ? (
+              {isAdmin ? (
+                <>
+                  <Suspense fallback={null}><BuilderListingPanel /></Suspense>
+                  <Suspense fallback={null}><BuyerProfilePanel /></Suspense>
+                </>
+              ) : isBuilder ? (
                 <Suspense fallback={null}>
                   <BuilderListingPanel />
                 </Suspense>
@@ -4786,8 +4816,6 @@ What would you prefer? The clock is ticking! ⏰
         </div>
       </section>
 
-      {/* AI Chatbot Widget */}
-      <ChatWidget />
 
       {/* Premium Locations — Ultra Luxury Modal */}
       {showPremiumModal && (
@@ -5794,19 +5822,11 @@ What would you prefer? The clock is ticking! ⏰
         onClear={() => setCompareList([])}
       />
 
-      {/* WhatsApp Float Button */}
-      <a href="https://wa.me/919671009931" target="_blank" rel="noopener noreferrer" className="whatsapp-float">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="white">
-          <path d="M14 2C7.373 2 2 7.373 2 14c0 2.625.748 5.074 2.05 7.15L2.5 25.5l4.5-.6C9.024 25.825 11.477 26.5 14 26.5c6.627 0 12-5.373 12-12S20.627 2 14 2zm0 22c-2.097 0-4.11-.549-5.875-1.588l-.42-.25-3.65.49.49-3.56-.24-.41C3.531 17.347 3 15.395 3 14c0-6.065 4.935-11 11-11s11 4.935 11 11-4.935 11-11 11zm6.04-8.227c-.33-.165-1.955-.965-2.26-1.075-.305-.11-.527-.165-.748.165-.22.33-.855 1.075-1.048 1.295-.192.22-.385.247-.715.082-.33-.165-1.395-.513-2.655-1.637-.984-.877-1.648-1.96-1.84-2.29-.192-.33-.02-.507.145-.67.15-.15.33-.385.495-.577.165-.192.22-.33.33-.547.11-.22.055-.413-.027-.578-.083-.165-.748-1.8-1.025-2.465-.27-.648-.545-.56-.748-.57-.192-.01-.413-.01-.635-.01-.22 0-.577.082-.88.413-.302.33-1.152 1.125-1.152 2.742 0 1.617 1.177 3.18 1.342 3.402.165.22 2.315 3.535 5.607 4.958 2.145.925 2.585.74 3.05.695.695-.068 1.955-.8 2.23-1.57.275-.773.275-1.435.192-1.57-.082-.137-.302-.22-.632-.385z"/>
-        </svg>
-      </a>
 
       <Footer />
 
       {/* Bottom Navigation — Mobile App Feel */}
       <BottomNav scrollToSection={scrollToSection} />
-      <StickyAssistant />
-      <LiveActivity />
 
       {/* Cinematic Property View */}
       <Suspense fallback={null}>
