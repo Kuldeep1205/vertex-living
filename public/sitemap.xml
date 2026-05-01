@@ -25,16 +25,79 @@
     <priority>0.95</priority>
   </url>
 
-  <!-- ═══ CITY LANDING PAGES — RENT PROPERTY [CITY] ════════════════════════ -->
+  <!-- ═══ CITY LANDING PAGES — ALL 50 CITIES ═════════════════════════════════ -->
 
+  <!-- Tier 1 Metros -->
+  <url><loc>https://vertexliving.in/rent/mumbai</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vertexliving.in/rent/bangalore</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vertexliving.in/rent/hyderabad</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vertexliving.in/rent/chennai</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vertexliving.in/rent/kolkata</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vertexliving.in/rent/pune</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+
+  <!-- NCR & Satellites -->
+  <url><loc>https://vertexliving.in/rent/delhi</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
   <url><loc>https://vertexliving.in/rent/gurugram</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
   <url><loc>https://vertexliving.in/rent/gurgaon</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
   <url><loc>https://vertexliving.in/rent/noida</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
   <url><loc>https://vertexliving.in/rent/greater-noida</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>https://vertexliving.in/rent/delhi</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>https://vertexliving.in/rent/jaipur</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
   <url><loc>https://vertexliving.in/rent/faridabad</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
   <url><loc>https://vertexliving.in/rent/ghaziabad</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vertexliving.in/rent/jaipur</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+
+  <!-- Tier 1 Satellites -->
+  <url><loc>https://vertexliving.in/rent/navi-mumbai</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/rent/thane</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.85</priority></url>
+
+  <!-- Tier 2 IT/Industrial -->
+  <url><loc>https://vertexliving.in/rent/ahmedabad</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/rent/chandigarh</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/rent/lucknow</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/rent/kochi</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/rent/indore</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/rent/bhopal</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/rent/surat</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/rent/vadodara</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/rent/rajkot</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/nagpur</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/coimbatore</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/rent/visakhapatnam</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/rent/mangalore</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/mysore</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/dehradun</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/patna</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/bhubaneswar</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/raipur</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/ranchi</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/jamshedpur</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/guwahati</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+
+  <!-- Tier 2 State Capitals -->
+  <url><loc>https://vertexliving.in/rent/ludhiana</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/jalandhar</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/kanpur</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/allahabad</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/varanasi</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/srinagar</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/jammu</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/shimla</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/goa</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vertexliving.in/rent/trivandrum</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/madurai</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+
+  <!-- Tier 3 Emerging -->
+  <url><loc>https://vertexliving.in/rent/gwalior</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/jabalpur</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/bilaspur</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/siliguri</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/aligarh</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/bareilly</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/moradabad</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/mathura</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/kolhapur</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/nashik</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/aurangabad</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vertexliving.in/rent/saharanpur</loc><lastmod>2026-05-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 
   <!-- ═══ STATIC PAGES ═══════════════════════════════════════════════════════ -->
 

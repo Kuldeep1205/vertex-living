@@ -163,14 +163,30 @@ const Footer = () => {
               <h4 className="footer-heading">Rent by City</h4>
               <ul className="footer-links-list">
                 {[
-                  { label: 'Rent in Gurugram', city: 'gurugram' },
-                  { label: 'Rent in Gurgaon', city: 'gurgaon' },
-                  { label: 'Rent in Noida', city: 'noida' },
-                  { label: 'Rent in Greater Noida', city: 'greater-noida' },
-                  { label: 'Rent in Delhi', city: 'delhi' },
-                  { label: 'Rent in Jaipur', city: 'jaipur' },
-                  { label: 'Rent in Faridabad', city: 'faridabad' },
-                  { label: 'Rent in Ghaziabad', city: 'ghaziabad' },
+                  { label: 'Mumbai', city: 'mumbai' },
+                  { label: 'Bangalore', city: 'bangalore' },
+                  { label: 'Hyderabad', city: 'hyderabad' },
+                  { label: 'Chennai', city: 'chennai' },
+                  { label: 'Kolkata', city: 'kolkata' },
+                  { label: 'Pune', city: 'pune' },
+                  { label: 'Delhi', city: 'delhi' },
+                  { label: 'Gurugram', city: 'gurugram' },
+                  { label: 'Noida', city: 'noida' },
+                  { label: 'Jaipur', city: 'jaipur' },
+                  { label: 'Ahmedabad', city: 'ahmedabad' },
+                  { label: 'Lucknow', city: 'lucknow' },
+                  { label: 'Chandigarh', city: 'chandigarh' },
+                  { label: 'Kochi', city: 'kochi' },
+                  { label: 'Indore', city: 'indore' },
+                  { label: 'Bhopal', city: 'bhopal' },
+                  { label: 'Surat', city: 'surat' },
+                  { label: 'Vadodara', city: 'vadodara' },
+                  { label: 'Goa', city: 'goa' },
+                  { label: 'Coimbatore', city: 'coimbatore' },
+                  { label: 'Patna', city: 'patna' },
+                  { label: 'Nagpur', city: 'nagpur' },
+                  { label: 'Visakhapatnam', city: 'visakhapatnam' },
+                  { label: 'Guwahati', city: 'guwahati' },
                 ].map(link => (
                   <li key={link.city}>
                     <a className="footer-link" href={`/rent/${link.city}`} style={{ color: '#818cf8', fontWeight: 500 }}>{link.label}</a>

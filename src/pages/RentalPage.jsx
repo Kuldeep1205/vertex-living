@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useRentalAuth } from '../context/RentalAuthContext';
+import { generateCityConfig, getCitiesByRegion } from '../data/cityData';
 import './RentalPage.css';
 
 const API = import.meta.env.VITE_API_URL || 'https://vertex-living-server.onrender.com';
@@ -30,113 +31,21 @@ function furnishingBadge(f) {
 const PROPERTY_TYPES = ['1BHK','2BHK','3BHK','4BHK','Villa','PG','Commercial'];
 const FURNISHING_OPTIONS = ['Furnished','Semi-Furnished','Unfurnished'];
 
-// ─── City SEO Configs ────────────────────────────────────────────────────────
-const CITY_CONFIGS = {
-  gurugram: {
-    displayName: 'Gurugram', displayIcon: '🏙️',
-    h1: 'Rent Flats & Apartments in Gurugram — Zero Brokerage',
-    title: 'Rent Flats in Gurugram | 2BHK 3BHK for Rent | Vertex Living',
-    description: 'Find verified 2BHK, 3BHK flats for rent in Gurugram. Zero brokerage. Direct from owners. Golf Course Road, Sector 42, 43, 57, 65, 66, 67, New Gurugram (Sectors 82–108), Sohna Road. Updated daily.',
-    keywords: 'rent flat gurugram, flats for rent gurugram, 2bhk rent gurugram, 3bhk rent gurugram, 4bhk rent gurugram, villa rent gurugram, pg gurugram, property for rent gurugram',
-    ogTitle: 'Rent Flats in Gurugram | Zero Brokerage | Vertex Living',
-    ogDesc: '2BHK, 3BHK, 4BHK flats for rent in Gurugram. Zero brokerage. Direct from verified owners.',
-    geoRegion: 'IN-HR', geoPosition: '28.4595;77.0266',
-    lat: 28.4595, lng: 77.0266, region: 'Haryana',
-    intro: 'Gurugram (also spelled Gurgaon) is the financial and IT hub of North India, located in Haryana along the Delhi-Gurgaon Expressway. Home to Fortune 500 companies and premium residential townships, Gurugram offers the finest rental options in NCR — from luxury apartments on Golf Course Road to affordable flats in New Gurgaon. Vertex Living connects tenants directly with verified landlords across all Gurugram localities.',
-    popularSectors: ['Golf Course Road', 'Sector 42', 'Sector 43', 'Sector 57', 'Sector 65', 'Sector 67', 'Sohna Road', 'Dwarka Expressway', 'New Gurgaon (82–108)'],
-  },
-  gurgaon: {
-    displayName: 'Gurgaon', displayIcon: '🏙️',
-    h1: 'Rent Flats & Apartments in Gurgaon — Zero Brokerage',
-    title: 'Rent Flats in Gurgaon | 2BHK 3BHK for Rent NCR | Vertex Living',
-    description: 'Browse verified rental flats in Gurgaon. 2BHK, 3BHK, 4BHK, villas, PGs. Zero brokerage. Direct from owners. DLF Cyber City, Golf Course Road, New Gurgaon. Updated daily.',
-    keywords: 'rent flat gurgaon, flats for rent gurgaon, 2bhk rent gurgaon, 3bhk rent gurgaon, villa rent gurgaon, pg gurgaon, property for rent gurgaon, luxury flat gurgaon',
-    ogTitle: 'Rent Flats in Gurgaon | Zero Brokerage | Vertex Living',
-    ogDesc: '2BHK, 3BHK, 4BHK flats for rent in Gurgaon. Zero brokerage. Direct from verified owners.',
-    geoRegion: 'IN-HR', geoPosition: '28.4595;77.0266',
-    lat: 28.4595, lng: 77.0266, region: 'Haryana',
-    intro: 'Gurgaon is one of India\'s most dynamically growing cities, part of the Delhi NCR region. With world-class infrastructure, top multinational offices, and premium residential projects, Gurgaon is the top choice for professionals and families looking for quality rentals. From DLF Cyber City to New Gurgaon townships, Vertex Living lists hundreds of verified rental properties across all price segments.',
-    popularSectors: ['Golf Course Road', 'Sector 42', 'Sector 57', 'Sector 65', 'Cyber City', 'MG Road', 'Sohna Road', 'Dwarka Expressway', 'New Gurgaon'],
-  },
-  delhi: {
-    displayName: 'Delhi', displayIcon: '🏛️',
-    h1: 'Rent Flats & Apartments in Delhi — Zero Brokerage',
-    title: 'Rent Flats in Delhi | 2BHK 3BHK for Rent | Vertex Living',
-    description: 'Find verified rental flats in Delhi. Zero brokerage. Direct from owners. Lajpat Nagar, Dwarka, Vasant Kunj, Saket, Rohini, Pitampura, RK Puram. Updated daily.',
-    keywords: 'rent flat delhi, flats for rent delhi, 2bhk rent delhi, 3bhk rent delhi, 4bhk rent delhi, villa rent delhi, pg delhi, property for rent delhi, luxury flat delhi',
-    ogTitle: 'Rent Flats in Delhi | Zero Brokerage | Vertex Living',
-    ogDesc: 'Flats for rent across Delhi. Zero brokerage. Direct from verified owners.',
-    geoRegion: 'IN-DL', geoPosition: '28.6139;77.2090',
-    lat: 28.6139, lng: 77.2090, region: 'Delhi',
-    intro: 'Delhi, India\'s capital, offers unmatched rental diversity — from affordable builder floors in South Delhi to premium apartments in Dwarka and Vasant Kunj. The city\'s metro connectivity makes commuting easy across all localities. Vertex Living brings you verified rental listings across all major Delhi localities with zero brokerage.',
-    popularSectors: ['Dwarka', 'Rohini', 'Lajpat Nagar', 'Vasant Kunj', 'Saket', 'Pitampura', 'RK Puram', 'Mayur Vihar', 'Paharganj'],
-  },
-  noida: {
-    displayName: 'Noida', displayIcon: '🌆',
-    h1: 'Rent Flats & Apartments in Noida — Zero Brokerage',
-    title: 'Rent Flats in Noida | 2BHK 3BHK for Rent | Vertex Living',
-    description: 'Find verified rental flats in Noida. Zero brokerage. Direct from owners. Sector 62, 63, 76, 100, 104, 105, 107, 108. Updated daily.',
-    keywords: 'rent flat noida, flats for rent noida, 2bhk rent noida, 3bhk rent noida, villa rent noida, pg noida, property for rent noida',
-    ogTitle: 'Rent Flats in Noida | Zero Brokerage | Vertex Living',
-    ogDesc: 'Flats for rent in Noida. Zero brokerage. Direct from verified owners.',
-    geoRegion: 'IN-UP', geoPosition: '28.5355;77.3910',
-    lat: 28.5355, lng: 77.3910, region: 'Uttar Pradesh',
-    intro: 'Noida (New Okhla Industrial Development Authority) is a rapidly growing city in Gautam Buddha Nagar district of Uttar Pradesh, part of Delhi NCR. Known for its planned layout, IT parks, and excellent metro connectivity via the Blue Line, Noida offers premium rental options at competitive prices compared to Delhi and Gurugram. Vertex Living lists verified rental properties across all Noida sectors.',
-    popularSectors: ['Sector 62', 'Sector 63', 'Sector 76', 'Sector 78', 'Sector 100', 'Sector 104', 'Sector 105', 'Sector 107', 'Sector 108', 'Sector 137'],
-  },
-  'greater-noida': {
-    displayName: 'Greater Noida', displayIcon: '🌿',
-    h1: 'Rent Flats & Apartments in Greater Noida — Zero Brokerage',
-    title: 'Rent Flats in Greater Noida | 2BHK 3BHK for Rent | Vertex Living',
-    description: 'Find verified rental flats in Greater Noida. Zero brokerage. Direct from owners. Alpha 1, Alpha 2, Gamma 1, Gamma 2, Omega 1, TechZone. Updated daily.',
-    keywords: 'rent flat greater noida, flats for rent greater noida, 2bhk rent greater noida, 3bhk rent greater noida, villa rent greater noida, property for rent greater noida',
-    ogTitle: 'Rent Flats in Greater Noida | Zero Brokerage | Vertex Living',
-    ogDesc: 'Flats for rent in Greater Noida. Zero brokerage. Direct from verified owners.',
-    geoRegion: 'IN-UP', geoPosition: '28.4744;77.5037',
-    lat: 28.4744, lng: 77.5037, region: 'Uttar Pradesh',
-    intro: 'Greater Noida is a planned city in Gautam Buddha Nagar district, known for its wide roads, green spaces, and growing educational institutions like Galgotias University and Greater Noida Knowledge Park. The Yamuna Expressway has spurred rapid development, making Greater Noida an emerging hub for both residential and commercial rentals. Vertex Living offers zero-brokerage rental listings across all Greater Noida localities.',
-    popularSectors: ['Alpha 1', 'Alpha 2', 'Beta 1', 'Beta 2', 'Gamma 1', 'Gamma 2', 'Omega 1', 'TechZone', 'Pari Chowk', 'Yamuna Expressway'],
-  },
-  jaipur: {
-    displayName: 'Jaipur', displayIcon: '🏰',
-    h1: 'Rent Flats & Apartments in Jaipur — Zero Brokerage',
-    title: 'Rent Flats in Jaipur | 2BHK 3BHK for Rent | Vertex Living',
-    description: 'Find verified rental flats in Jaipur. Zero brokerage. Direct from owners. Vaishali Nagar, Mansarovar, MI Road, Jagatpur, Ajmer Road, Tonk Road. Updated daily.',
-    keywords: 'rent flat jaipur, flats for rent jaipur, 2bhk rent jaipur, 3bhk rent jaipur, villa rent jaipur, pg jaipur, property for rent jaipur, luxury flat jaipur',
-    ogTitle: 'Rent Flats in Jaipur | Zero Brokerage | Vertex Living',
-    ogDesc: 'Flats for rent in Jaipur (Pink City). Zero brokerage. Direct from verified owners.',
-    geoRegion: 'IN-RJ', geoPosition: '26.9124;75.7873',
-    lat: 26.9124, lng: 75.7873, region: 'Rajasthan',
-    intro: 'Jaipur, the capital city of Rajasthan and the Pink City of India, is a major cultural and economic hub in North India. With growing IT and manufacturing sectors, Jaipur offers excellent rental opportunities across diverse neighbourhoods — from the historic walled city to modern townships on Ajmer Road and Tonk Road. Vertex Living provides verified, zero-brokerage rental listings throughout Jaipur.',
-    popularSectors: ['Vaishali Nagar', 'Mansarovar', 'MI Road', 'C-Scheme', 'Bani Park', 'Jagatpur', 'Ajmer Road', 'Tonk Road', 'Sanganer', 'Sitapura'],
-  },
-  faridabad: {
-    displayName: 'Faridabad', displayIcon: '🏭',
-    h1: 'Rent Flats & Apartments in Faridabad — Zero Brokerage',
-    title: 'Rent Flats in Faridabad | 2BHK 3BHK for Rent | Vertex Living',
-    description: 'Find verified rental flats in Faridabad. Zero brokerage. Direct from owners. Sector 12, 14, 15, 16, 21, 28, 35, 37. Updated daily.',
-    keywords: 'rent flat faridabad, flats for rent faridabad, 2bhk rent faridabad, 3bhk rent faridabad, villa rent faridabad, pg faridabad, property for rent faridabad',
-    ogTitle: 'Rent Flats in Faridabad | Zero Brokerage | Vertex Living',
-    ogDesc: 'Flats for rent in Faridabad. Zero brokerage. Direct from verified owners.',
-    geoRegion: 'IN-HR', geoPosition: '28.4089;77.3178',
-    lat: 28.4089, lng: 77.3178, region: 'Haryana',
-    intro: 'Faridabad is a major industrial city in Haryana, part of Delhi NCR, situated along the Delhi–Mathura road. Well-connected via the Delhi Metro Pink Line and the Faridabad–Noida–Ghaziabad Expressway, Faridabad offers affordable rental options with excellent connectivity. Vertex Living provides verified zero-brokerage rentals across all Faridabad sectors.',
-    popularSectors: ['Sector 12', 'Sector 14', 'Sector 15', 'Sector 16', 'Sector 21', 'Sector 28', 'Sector 35', 'Sector 37', 'Sector 70', 'Sector 81'],
-  },
-  ghaziabad: {
-    displayName: 'Ghaziabad', displayIcon: '🌐',
-    h1: 'Rent Flats & Apartments in Ghaziabad — Zero Brokerage',
-    title: 'Rent Flats in Ghaziabad | 2BHK 3BHK for Rent | Vertex Living',
-    description: 'Find verified rental flats in Ghaziabad. Zero brokerage. Direct from owners. Raj Nagar, Vaishali, Indirapuram, Crossing Republik, Vasundhara. Updated daily.',
-    keywords: 'rent flat ghaziabad, flats for rent ghaziabad, 2bhk rent ghaziabad, 3bhk rent ghaziabad, villa rent ghaziabad, pg ghaziabad, property for rent ghaziabad',
-    ogTitle: 'Rent Flats in Ghaziabad | Zero Brokerage | Vertex Living',
-    ogDesc: 'Flats for rent in Ghaziabad. Zero brokerage. Direct from verified owners.',
-    geoRegion: 'IN-UP', geoPosition: '28.6692;77.4538',
-    lat: 28.6692, lng: 77.4538, region: 'Uttar Pradesh',
-    intro: 'Ghaziabad is one of the oldest industrial cities in Uttar Pradesh and a key component of Delhi NCR. Well-connected to Delhi via the Delhi–Ghaziabad-Meerut RRTS and the Ghaziabad–Noida Direct Bridge, the city offers highly affordable rental options with good infrastructure. Vertex Living lists verified, zero-brokerage rental properties across all major Ghaziabad localities.',
-    popularSectors: ['Raj Nagar', 'Raj Nagar Extension', 'Vaishali', 'Indirapuram', 'Crossing Republik', 'Vasundhara', 'Govind Puram', 'Sanjay Nagar', 'Model Town', 'Kavi Nagar'],
-  },
-};
+// ─── City SEO Configs — lazy-built from cityData.js ───────────────────────────
+const CITY_CONFIGS = {};
+function getAllCityConfigs() {
+  if (Object.keys(CITY_CONFIGS).length > 0) return CITY_CONFIGS;
+  const allSlugs = [
+    'mumbai','bangalore','hyderabad','chennai','kolkata','pune',
+    'delhi','gurugram','gurgaon','noida','greater-noida','faridabad','ghaziabad','jaipur',
+    'navi-mumbai','thane',
+    'ahmedabad','chandigarh','lucknow','kochi','indore','bhopal','surat','vadodara','rajkot','nagpur','coimbatore','visakhapatnam','mangalore','mysore','dehradun','patna','bhubaneswar','raipur','ranchi','jamshedpur','guwahati',
+    'ludhiana','jalandhar','kanpur','allahabad','varanasi','srinagar','jammu','shimla','goa','trivandrum','madurai',
+    'gwalior','jabalpur','bilaspur','siliguri','aligarh','bareilly','moradabad','mathura','kolhapur','nashik','aurangabad','saharanpur',
+  ];
+  allSlugs.forEach(s => { CITY_CONFIGS[s] = generateCityConfig(s); });
+  return CITY_CONFIGS;
+}
 
 // ─── City FAQ Data ────────────────────────────────────────────────────────────
 const CITY_FAQS = {
@@ -1040,7 +949,7 @@ function PropertyCard({ property, isOwner, onInquiry, onDelete, ownerInquiries }
 
 export default function RentalPage() {
   const { city: resolvedCity } = useParams();
-  const config = resolvedCity ? (CITY_CONFIGS[resolvedCity] || null) : null;
+  const config = resolvedCity ? (getAllCityConfigs()[resolvedCity] || generateCityConfig(resolvedCity)) : null;
   const {
     rentalUser, openRentalLogin, openRentalRegister, rentalLogout,
     isRentalOwner,
@@ -1375,7 +1284,7 @@ export default function RentalPage() {
               Explore Rentals in Other Cities
             </h3>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-              {Object.keys(CITY_CONFIGS).filter(c => c !== resolvedCity).map(cityKey => (
+              {Object.keys(getAllCityConfigs()).filter(c => c !== resolvedCity).map(cityKey => (
                 <a key={cityKey} href={`/rent/${cityKey}`} style={{
                   display: 'flex', alignItems: 'center', gap: 6,
                   padding: '8px 16px', borderRadius: 10,
@@ -1385,7 +1294,7 @@ export default function RentalPage() {
                   fontSize: '0.85rem', fontWeight: 600,
                   transition: 'all 0.2s',
                 }}>
-                  {CITY_CONFIGS[cityKey].displayIcon} {CITY_CONFIGS[cityKey].displayName}
+                  {getAllCityConfigs()[cityKey].displayIcon} {getAllCityConfigs()[cityKey].displayName}
                 </a>
               ))}
             </div>
